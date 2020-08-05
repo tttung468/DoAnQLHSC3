@@ -1,5 +1,5 @@
 package pojos;
-// Generated Aug 5, 2020 4:10:55 PM by Hibernate Tools 4.3.1
+// Generated Aug 5, 2020 10:41:27 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -20,7 +20,7 @@ public class Grade  implements java.io.Serializable {
      private String createdby;
      private Date modifieddate;
      private String modifiedby;
-     private Set classes = new HashSet(0);
+     private Set schoolclasses = new HashSet(0);
 
     public Grade() {
     }
@@ -30,7 +30,7 @@ public class Grade  implements java.io.Serializable {
         this.createddate = createddate;
         this.modifieddate = modifieddate;
     }
-    public Grade(String code, String name, Boolean isdeleted, Date createddate, String createdby, Date modifieddate, String modifiedby, Set classes) {
+    public Grade(String code, String name, Boolean isdeleted, Date createddate, String createdby, Date modifieddate, String modifiedby, Set schoolclasses) {
        this.code = code;
        this.name = name;
        this.isdeleted = isdeleted;
@@ -38,7 +38,7 @@ public class Grade  implements java.io.Serializable {
        this.createdby = createdby;
        this.modifieddate = modifieddate;
        this.modifiedby = modifiedby;
-       this.classes = classes;
+       this.schoolclasses = schoolclasses;
     }
    
     public Long getId() {
@@ -97,12 +97,12 @@ public class Grade  implements java.io.Serializable {
     public void setModifiedby(String modifiedby) {
         this.modifiedby = modifiedby;
     }
-    public Set getClasses() {
-        return this.classes;
+    public Set getSchoolclasses() {
+        return this.schoolclasses;
     }
     
-    public void setClasses(Set classes) {
-        this.classes = classes;
+    public void setSchoolclasses(Set schoolclasses) {
+        this.schoolclasses = schoolclasses;
     }
 
 

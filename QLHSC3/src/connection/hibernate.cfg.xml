@@ -48,17 +48,16 @@ Contributor(s):
     <property name="hibernate.connection.password">090575</property>
     <mapping resource="pojos/Grade.hbm.xml"/>
     <mapping resource="pojos/Nationality.hbm.xml"/>
-    <mapping resource="pojos/Teacher.hbm.xml"/>
     <mapping resource="pojos/Score.hbm.xml"/>
+    <mapping resource="pojos/Teacher.hbm.xml"/>
     <mapping resource="pojos/Observation.hbm.xml"/>
     <mapping resource="pojos/Religion.hbm.xml"/>
     <mapping resource="pojos/Regulation.hbm.xml"/>
-    <mapping resource="pojos/Studentofclass.hbm.xml"/>
     <mapping resource="pojos/Hrstaff.hbm.xml"/>
+    <mapping resource="pojos/Studentofclass.hbm.xml"/>
     <mapping resource="pojos/Subject.hbm.xml"/>
     <mapping resource="pojos/Relatives.hbm.xml"/>
     <mapping resource="pojos/Student.hbm.xml"/>
-    <mapping resource="pojos/Class.hbm.xml"/>
     <mapping resource="pojos/Performance.hbm.xml"/>
     <mapping resource="pojos/Scoretype.hbm.xml"/>
     <mapping resource="pojos/Conduct.hbm.xml"/>
@@ -73,6 +72,7 @@ Contributor(s):
     <mapping resource="pojos/Relationship.hbm.xml"/>
     <mapping resource="pojos/Teacherassignment.hbm.xml"/>
     <mapping resource="pojos/Verificationtoken.hbm.xml"/>
+    <mapping resource="pojos/Schoolclass.hbm.xml"/>
     <mapping resource="pojos/Headmaster.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

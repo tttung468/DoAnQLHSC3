@@ -1,5 +1,5 @@
 package pojos;
-// Generated Aug 5, 2020 4:10:55 PM by Hibernate Tools 4.3.1
+// Generated Aug 5, 2020 10:41:27 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -11,7 +11,7 @@ public class Score  implements java.io.Serializable {
 
 
      private Long id;
-     private Class class;
+     private Schoolclass schoolclass;
      private Schoolyear schoolyear;
      private Scoretype scoretype;
      private Semester semester;
@@ -33,8 +33,8 @@ public class Score  implements java.io.Serializable {
         this.createddate = createddate;
         this.modifieddate = modifieddate;
     }
-    public Score(Class class, Schoolyear schoolyear, Scoretype scoretype, Semester semester, Student student, Subject subject, Float value, Integer ordinalnumber, Boolean isdeleted, Date createddate, String createdby, Date modifieddate, String modifiedby) {
-       this.class = class;
+    public Score(Schoolclass schoolclass, Schoolyear schoolyear, Scoretype scoretype, Semester semester, Student student, Subject subject, Float value, Integer ordinalnumber, Boolean isdeleted, Date createddate, String createdby, Date modifieddate, String modifiedby) {
+       this.schoolclass = schoolclass;
        this.schoolyear = schoolyear;
        this.scoretype = scoretype;
        this.semester = semester;
@@ -56,12 +56,12 @@ public class Score  implements java.io.Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    public Class getClass() {
-        return this.class;
+    public Schoolclass getSchoolclass() {
+        return this.schoolclass;
     }
     
-    public void setClass(Class class) {
-        this.class = class;
+    public void setSchoolclass(Schoolclass schoolclass) {
+        this.schoolclass = schoolclass;
     }
     public Schoolyear getSchoolyear() {
         return this.schoolyear;

@@ -1,5 +1,5 @@
 package pojos;
-// Generated Aug 5, 2020 4:10:55 PM by Hibernate Tools 4.3.1
+// Generated Aug 5, 2020 10:41:27 PM by Hibernate Tools 4.3.1
 
 
 import java.util.Date;
@@ -11,8 +11,8 @@ public class Conduct  implements java.io.Serializable {
 
 
      private Long id;
-     private Class class;
      private Conducttype conducttype;
+     private Schoolclass schoolclass;
      private Schoolyear schoolyear;
      private Semester semester;
      private Student student;
@@ -31,9 +31,9 @@ public class Conduct  implements java.io.Serializable {
         this.createddate = createddate;
         this.modifieddate = modifieddate;
     }
-    public Conduct(Class class, Conducttype conducttype, Schoolyear schoolyear, Semester semester, Student student, Teacher teacher, Boolean isdeleted, Date createddate, String createdby, Date modifieddate, String modifiedby) {
-       this.class = class;
+    public Conduct(Conducttype conducttype, Schoolclass schoolclass, Schoolyear schoolyear, Semester semester, Student student, Teacher teacher, Boolean isdeleted, Date createddate, String createdby, Date modifieddate, String modifiedby) {
        this.conducttype = conducttype;
+       this.schoolclass = schoolclass;
        this.schoolyear = schoolyear;
        this.semester = semester;
        this.student = student;
@@ -52,19 +52,19 @@ public class Conduct  implements java.io.Serializable {
     public void setId(Long id) {
         this.id = id;
     }
-    public Class getClass() {
-        return this.class;
-    }
-    
-    public void setClass(Class class) {
-        this.class = class;
-    }
     public Conducttype getConducttype() {
         return this.conducttype;
     }
     
     public void setConducttype(Conducttype conducttype) {
         this.conducttype = conducttype;
+    }
+    public Schoolclass getSchoolclass() {
+        return this.schoolclass;
+    }
+    
+    public void setSchoolclass(Schoolclass schoolclass) {
+        this.schoolclass = schoolclass;
     }
     public Schoolyear getSchoolyear() {
         return this.schoolyear;
