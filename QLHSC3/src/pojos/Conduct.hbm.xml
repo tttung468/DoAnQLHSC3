@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 5, 2020 4:10:56 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojos.Conduct" table="conduct" catalog="qlhsc3db" optimistic-lock="version">
+        <id name="id" type="java.lang.Long">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="class" class="pojos.Class" fetch="select">
+            <column name="classid" />
+        </many-to-one>
+        <many-to-one name="conducttype" class="pojos.Conducttype" fetch="select">
+            <column name="conducttypeid" />
+        </many-to-one>
+        <many-to-one name="schoolyear" class="pojos.Schoolyear" fetch="select">
+            <column name="schoolyearid" />
+        </many-to-one>
+        <many-to-one name="semester" class="pojos.Semester" fetch="select">
+            <column name="semesterid" />
+        </many-to-one>
+        <many-to-one name="student" class="pojos.Student" fetch="select">
+            <column name="studentid" />
+        </many-to-one>
+        <many-to-one name="teacher" class="pojos.Teacher" fetch="select">
+            <column name="formteacherid" />
+        </many-to-one>
+        <property name="isdeleted" type="java.lang.Boolean">
+            <column name="isdeleted" />
+        </property>
+        <property name="createddate" type="timestamp">
+            <column name="createddate" length="19" not-null="true" />
+        </property>
+        <property name="createdby" type="string">
+            <column name="createdby" />
+        </property>
+        <property name="modifieddate" type="timestamp">
+            <column name="modifieddate" length="19" not-null="true" />
+        </property>
+        <property name="modifiedby" type="string">
+            <column name="modifiedby" />
+        </property>
+    </class>
+</hibernate-mapping>

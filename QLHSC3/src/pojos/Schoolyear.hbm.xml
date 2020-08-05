@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 5, 2020 4:10:56 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojos.Schoolyear" table="schoolyear" catalog="qlhsc3db" optimistic-lock="version">
+        <id name="id" type="java.lang.Long">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="code" type="string">
+            <column name="code" unique="true" />
+        </property>
+        <property name="lowerbound" type="java.lang.Integer">
+            <column name="lowerbound" />
+        </property>
+        <property name="upperbound" type="java.lang.Integer">
+            <column name="upperbound" />
+        </property>
+        <property name="theme" type="string">
+            <column name="theme" />
+        </property>
+        <property name="isdeleted" type="java.lang.Boolean">
+            <column name="isdeleted" />
+        </property>
+        <property name="createddate" type="timestamp">
+            <column name="createddate" length="19" not-null="true" />
+        </property>
+        <property name="createdby" type="string">
+            <column name="createdby" />
+        </property>
+        <property name="modifieddate" type="timestamp">
+            <column name="modifieddate" length="19" not-null="true" />
+        </property>
+        <property name="modifiedby" type="string">
+            <column name="modifiedby" />
+        </property>
+        <set name="teacherassignments" table="teacherassignment" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="schoolyearid" />
+            </key>
+            <one-to-many class="pojos.Teacherassignment" />
+        </set>
+        <set name="observations" table="observation" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="schoolyearid" />
+            </key>
+            <one-to-many class="pojos.Observation" />
+        </set>
+        <set name="studentofclasses" table="studentofclass" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="schoolyearid" />
+            </key>
+            <one-to-many class="pojos.Studentofclass" />
+        </set>
+        <set name="conducts" table="conduct" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="schoolyearid" />
+            </key>
+            <one-to-many class="pojos.Conduct" />
+        </set>
+        <set name="formteacherassignments" table="formteacherassignment" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="schoolyearid" />
+            </key>
+            <one-to-many class="pojos.Formteacherassignment" />
+        </set>
+        <set name="scores" table="score" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="schoolyearid" />
+            </key>
+            <one-to-many class="pojos.Score" />
+        </set>
+    </class>
+</hibernate-mapping>
