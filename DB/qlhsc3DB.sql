@@ -237,8 +237,8 @@ CREATE TABLE Grade
 
 	PRIMARY KEY(id)
 );
--- BẢNG Class
-CREATE TABLE Class
+-- BẢNG SchoolClass
+CREATE TABLE SchoolClass
 (
 	id BIGINT AUTO_INCREMENT,
     code VARCHAR(255) UNIQUE,
@@ -511,16 +511,16 @@ ALTER TABLE Teacher ADD
 	CONSTRAINT FK_Teacher_Account FOREIGN KEY(accountid) REFERENCES Account(id);
 ALTER TABLE Teacher ADD 
 	CONSTRAINT CHK_Teacher_gender CHECK(gender IN(N'Nam', N'Nữ', N'Khác'));
--- BẢNG Class
-ALTER TABLE Class ADD 
-	CONSTRAINT FK_Class_Grade FOREIGN KEY(gradeid) REFERENCES Grade(id);
+-- BẢNG SchoolClass
+ALTER TABLE SchoolClass ADD 
+	CONSTRAINT FK_SchoolClass_Grade FOREIGN KEY(gradeid) REFERENCES Grade(id);
 -- BẢNG FormTeacherAssignment
 ALTER TABLE FormTeacherAssignment ADD 
 	CONSTRAINT FK_FormTeacherAssignment_SchoolYear FOREIGN KEY(schoolyearid) REFERENCES SchoolYear(id);
 ALTER TABLE FormTeacherAssignment ADD 
 	CONSTRAINT FK_FormTeacherAssignment_Teacher FOREIGN KEY(formteacherid) REFERENCES Teacher(id);
 ALTER TABLE FormTeacherAssignment ADD 
-	CONSTRAINT FK_FormTeacherAssignment_Class FOREIGN KEY(classid) REFERENCES Class(id);
+	CONSTRAINT FK_FormTeacherAssignment_SchoolClass FOREIGN KEY(classid) REFERENCES SchoolClass(id);
 -- BẢNG Student
 ALTER TABLE Student ADD 
 	CONSTRAINT FK_Student_Ethnic FOREIGN KEY(ethnicid) REFERENCES Ethnic(id);
@@ -540,7 +540,7 @@ ALTER TABLE StudentOfClass ADD
 ALTER TABLE StudentOfClass ADD 
 	CONSTRAINT FK_StudentOfClass_Student FOREIGN KEY(studentid) REFERENCES Student(id);
 ALTER TABLE StudentOfClass ADD 
-	CONSTRAINT FK_StudentOfClass_Class FOREIGN KEY(classid) REFERENCES Class(id);
+	CONSTRAINT FK_StudentOfClass_Class FOREIGN KEY(classid) REFERENCES SchoolClass(id);
 -- BẢNG Observation
 ALTER TABLE Observation ADD 
 	CONSTRAINT FK_Observation_SchoolYear FOREIGN KEY(schoolyearid) REFERENCES SchoolYear(id);
@@ -549,7 +549,7 @@ ALTER TABLE Observation ADD
 ALTER TABLE Observation ADD 
 	CONSTRAINT FK_Observation_Student FOREIGN KEY(studentid) REFERENCES Student(id);
 ALTER TABLE Observation ADD 
-	CONSTRAINT FK_Observation_Class FOREIGN KEY(classid) REFERENCES Class(id);
+	CONSTRAINT FK_Observation_SchoolClass FOREIGN KEY(classid) REFERENCES SchoolClass(id);
 -- BẢNG TeacherAssignment
 ALTER TABLE TeacherAssignment ADD 
 	CONSTRAINT FK_TeacherAssignment_Subject FOREIGN KEY(subjectid) REFERENCES Subject(id);
@@ -560,7 +560,7 @@ ALTER TABLE TeacherAssignment ADD
 ALTER TABLE TeacherAssignment ADD 
 	CONSTRAINT FK_TeacherAssignment_Teacher FOREIGN KEY(teacherid) REFERENCES Teacher(id);
 ALTER TABLE TeacherAssignment ADD 
-	CONSTRAINT FK_TeacherAssignment_Class FOREIGN KEY(classid) REFERENCES Class(id);
+	CONSTRAINT FK_TeacherAssignment_SchoolClass FOREIGN KEY(classid) REFERENCES SchoolClass(id);
 -- BẢNG Relatives
 ALTER TABLE Relatives ADD 
 	CONSTRAINT FK_Relatives_Relationship FOREIGN KEY(relationshipid) REFERENCES Relationship(id);
@@ -580,7 +580,7 @@ ALTER TABLE Conduct ADD
 ALTER TABLE Conduct ADD 
 	CONSTRAINT FK_Conduct_Student FOREIGN KEY(studentid) REFERENCES Student(id);
 ALTER TABLE Conduct ADD 
-	CONSTRAINT FK_Conduct_Class FOREIGN KEY(classid) REFERENCES Class(id);
+	CONSTRAINT FK_Conduct_SchoolClass FOREIGN KEY(classid) REFERENCES SchoolClass(id);
 -- BẢNG Score
 ALTER TABLE Score ADD 
 	CONSTRAINT FK_Score_ScoreType FOREIGN KEY(scoretypeid) REFERENCES ScoreType(id);
@@ -593,9 +593,8 @@ ALTER TABLE Score ADD
 ALTER TABLE Score ADD 
 	CONSTRAINT FK_Score_Student FOREIGN KEY(studentid) REFERENCES Student(id);
 ALTER TABLE Score ADD 
-	CONSTRAINT FK_Score_Class FOREIGN KEY(classid) REFERENCES Class(id);
+	CONSTRAINT FK_Score_SchoolClass FOREIGN KEY(classid) REFERENCES SchoolClass(id);
 -- 4/. Nhập dữ liệu -----------------------------------------------------------------------------------------------------------------------------------
-DELETE FROM qlhsc3DB.Role;
 -- BẢNG Role
 INSERT INTO Role(code, name, priority)
 VALUES('admin', N'Quản trị viên', 0);
@@ -707,46 +706,46 @@ INSERT INTO Grade(code, name)
 VALUES('K11', 'Khối 11');
 INSERT INTO Grade(code, name)
 VALUES('K12', 'Khối 12');
--- BẢNG Class
-INSERT INTO Class(code, name, gradeid)
+-- BẢNG SchoolClass
+INSERT INTO SchoolClass(code, name, gradeid)
 VALUES('10A1', 'Lớp 10A1', 1);
-INSERT INTO Class(code, name, gradeid)
+INSERT INTO SchoolClass(code, name, gradeid)
 VALUES('10A2', 'Lớp 10A2', 1);
-INSERT INTO Class(code, name, gradeid)
+INSERT INTO SchoolClass(code, name, gradeid)
 VALUES('10A3', 'Lớp 10A3', 1);
-INSERT INTO Class(code, name, gradeid)
+INSERT INTO SchoolClass(code, name, gradeid)
 VALUES('10A4', 'Lớp 10A4', 1);
-INSERT INTO Class(code, name, gradeid)
+INSERT INTO SchoolClass(code, name, gradeid)
 VALUES('10A5', 'Lớp 10A5', 1);
-INSERT INTO Class(code, name, gradeid)
+INSERT INTO SchoolClass(code, name, gradeid)
 VALUES('10A6', 'Lớp 10A6', 1);
-INSERT INTO Class(code, name, gradeid)
+INSERT INTO SchoolClass(code, name, gradeid)
 VALUES('10A7', 'Lớp 10A7', 1);
-INSERT INTO Class(code, name, gradeid)
+INSERT INTO SchoolClass(code, name, gradeid)
 VALUES('10A8', 'Lớp 10A8', 1);
 
-INSERT INTO Class(code, name, gradeid)
+INSERT INTO SchoolClass(code, name, gradeid)
 VALUES('11A1', 'Lớp 11A1', 2);
-INSERT INTO Class(code, name, gradeid)
+INSERT INTO SchoolClass(code, name, gradeid)
 VALUES('11A2', 'Lớp 11A2', 2);
-INSERT INTO Class(code, name, gradeid)
+INSERT INTO SchoolClass(code, name, gradeid)
 VALUES('11A3', 'Lớp 11A3', 2);
-INSERT INTO Class(code, name, gradeid)
+INSERT INTO SchoolClass(code, name, gradeid)
 VALUES('11A4', 'Lớp 11A4', 2);
-INSERT INTO Class(code, name, gradeid)
+INSERT INTO SchoolClass(code, name, gradeid)
 VALUES('11A5', 'Lớp 11A5', 2);
 
-INSERT INTO Class(code, name, gradeid)
+INSERT INTO SchoolClass(code, name, gradeid)
 VALUES('12A1', 'Lớp 12A1', 3);
-INSERT INTO Class(code, name, gradeid)
+INSERT INTO SchoolClass(code, name, gradeid)
 VALUES('12A2', 'Lớp 12A2', 3);
-INSERT INTO Class(code, name, gradeid)
+INSERT INTO SchoolClass(code, name, gradeid)
 VALUES('12A3', 'Lớp 12A3', 3);
-INSERT INTO Class(code, name, gradeid)
+INSERT INTO SchoolClass(code, name, gradeid)
 VALUES('12A4', 'Lớp 12A4', 3);
-INSERT INTO Class(code, name, gradeid)
+INSERT INTO SchoolClass(code, name, gradeid)
 VALUES('12A5', 'Lớp 12A5', 3);
-INSERT INTO Class(code, name, gradeid)
+INSERT INTO SchoolClass(code, name, gradeid)
 VALUES('12A6', 'Lớp 12A6', 3);
 -- BẢNG Student
 INSERT INTO Student(code, name, phone, identifycard, email, avatarpath, gender, birth, address, status, ethnicid, religionid, nationalityid)
@@ -815,7 +814,7 @@ SELECT * FROM qlhsc3DB.Ethnic;
 SELECT * FROM qlhsc3DB.Religion;
 SELECT * FROM qlhsc3DB.Nationality;
 SELECT * FROM qlhsc3DB.Grade;
-SELECT * FROM qlhsc3DB.Class;
+SELECT * FROM qlhsc3DB.SchoolClass;
 SELECT * FROM qlhsc3DB.FormTeacherAssignment;
 SELECT * FROM qlhsc3DB.Student;
 SELECT * FROM qlhsc3DB.StudentOfClass;
@@ -843,7 +842,7 @@ DROP TABLE qlhsc3DB.Ethnic;
 DROP TABLE qlhsc3DB.Religion;
 DROP TABLE qlhsc3DB.Nationality;
 DROP TABLE qlhsc3DB.Grade;
-DROP TABLE qlhsc3DB.Class;
+DROP TABLE qlhsc3DB.SchoolClass;
 DROP TABLE qlhsc3DB.FormTeacherAssignment;
 DROP TABLE qlhsc3DB.Student;
 DROP TABLE qlhsc3DB.StudentOfClass;
