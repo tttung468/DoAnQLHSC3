@@ -8,7 +8,7 @@
             <column name="id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="role" class="pojos.Role" fetch="select">
+        <many-to-one name="role" class="pojos.Role" lazy="false" fetch="join">
             <column name="roleid" />
         </many-to-one>
         <property name="username" type="string">
@@ -32,31 +32,31 @@
         <property name="modifiedby" type="string">
             <column name="modifiedby" />
         </property>
-        <set name="hrstaffs" table="hrstaff" inverse="true" lazy="true" fetch="select">
+        <set name="hrstaffs" table="hrstaff" inverse="true" lazy="false" fetch="join">
             <key>
                 <column name="accountid" />
             </key>
             <one-to-many class="pojos.Hrstaff" />
         </set>
-        <set name="verificationtokens" table="verificationtoken" inverse="true" lazy="true" fetch="select">
+        <set name="verificationtokens" table="verificationtoken" inverse="true" lazy="false" fetch="join">
             <key>
                 <column name="accountid" />
             </key>
             <one-to-many class="pojos.Verificationtoken" />
         </set>
-        <set name="headmasters" table="headmaster" inverse="true" lazy="true" fetch="select">
+        <set name="headmasters" table="headmaster" inverse="true" lazy="false" fetch="join">
             <key>
                 <column name="accountid" />
             </key>
             <one-to-many class="pojos.Headmaster" />
         </set>
-        <set name="officestaffs" table="officestaff" inverse="true" lazy="true" fetch="select">
+        <set name="officestaffs" table="officestaff" inverse="true" lazy="false" fetch="join">
             <key>
                 <column name="accountid" />
             </key>
             <one-to-many class="pojos.Officestaff" />
         </set>
-        <set name="teachers" table="teacher" inverse="true" lazy="true" fetch="select">
+        <set name="teachers" table="teacher" inverse="true" lazy="false" fetch="join">
             <key>
                 <column name="accountid" />
             </key>

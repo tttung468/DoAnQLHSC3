@@ -8,19 +8,19 @@
             <column name="id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="schoolclass" class="pojos.Schoolclass" fetch="select">
+        <many-to-one name="schoolclass" class="pojos.Schoolclass" lazy="false" fetch="join">
             <column name="classid" />
         </many-to-one>
-        <many-to-one name="schoolyear" class="pojos.Schoolyear" fetch="select">
+        <many-to-one name="schoolyear" class="pojos.Schoolyear" lazy="false" fetch="join">
             <column name="schoolyearid" />
         </many-to-one>
-        <many-to-one name="student" class="pojos.Student" fetch="select">
+        <many-to-one name="student" class="pojos.Student" lazy="false" fetch="join">
             <column name="studentid" />
         </many-to-one>
-        <many-to-one name="teacher" class="pojos.Teacher" fetch="select">
+        <many-to-one name="teacher" class="pojos.Teacher" lazy="false" fetch="join">
             <column name="formteacherid" />
         </many-to-one>
-        <property name="content" type="java.lang.Integer">
+        <property name="content" type="string">
             <column name="content" />
         </property>
         <property name="isdeleted" type="java.lang.Boolean">

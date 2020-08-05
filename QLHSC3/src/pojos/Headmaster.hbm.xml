@@ -8,10 +8,10 @@
             <column name="id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="account" class="pojos.Account" fetch="select">
+        <many-to-one name="account" class="pojos.Account" lazy="false" fetch="join">
             <column name="accountid" />
         </many-to-one>
-        <many-to-one name="subject" class="pojos.Subject" fetch="select">
+        <many-to-one name="subject" class="pojos.Subject" lazy="false" fetch="join">
             <column name="subjectid" />
         </many-to-one>
         <property name="code" type="string">

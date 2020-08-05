@@ -32,7 +32,7 @@
         <property name="modifiedby" type="string">
             <column name="modifiedby" />
         </property>
-        <set name="accounts" table="account" inverse="true" lazy="true" fetch="select">
+        <set name="accounts" table="account" inverse="true" lazy="false" fetch="join">
             <key>
                 <column name="roleid" />
             </key>

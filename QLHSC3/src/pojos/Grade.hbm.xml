@@ -29,7 +29,7 @@
         <property name="modifiedby" type="string">
             <column name="modifiedby" />
         </property>
-        <set name="schoolclasses" table="schoolclass" inverse="true" lazy="true" fetch="select">
+        <set name="schoolclasses" table="schoolclass" inverse="true" lazy="false" fetch="join">
             <key>
                 <column name="gradeid" />
             </key>

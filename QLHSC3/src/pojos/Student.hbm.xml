@@ -8,13 +8,13 @@
             <column name="id" />
             <generator class="identity" />
         </id>
-        <many-to-one name="ethnic" class="pojos.Ethnic" fetch="select">
+        <many-to-one name="ethnic" class="pojos.Ethnic" lazy="false" fetch="join">
             <column name="ethnicid" />
         </many-to-one>
-        <many-to-one name="nationality" class="pojos.Nationality" fetch="select">
+        <many-to-one name="nationality" class="pojos.Nationality" lazy="false" fetch="join">
             <column name="nationalityid" />
         </many-to-one>
-        <many-to-one name="religion" class="pojos.Religion" fetch="select">
+        <many-to-one name="religion" class="pojos.Religion" lazy="false" fetch="join">
             <column name="religionid" />
         </many-to-one>
         <property name="code" type="string">
@@ -62,31 +62,31 @@
         <property name="modifiedby" type="string">
             <column name="modifiedby" />
         </property>
-        <set name="conducts" table="conduct" inverse="true" lazy="true" fetch="select">
+        <set name="conducts" table="conduct" inverse="true" lazy="false" fetch="join">
             <key>
                 <column name="studentid" />
             </key>
             <one-to-many class="pojos.Conduct" />
         </set>
-        <set name="observations" table="observation" inverse="true" lazy="true" fetch="select">
+        <set name="observations" table="observation" inverse="true" lazy="false" fetch="join">
             <key>
                 <column name="studentid" />
             </key>
             <one-to-many class="pojos.Observation" />
         </set>
-        <set name="relativeses" table="relatives" inverse="true" lazy="true" fetch="select">
+        <set name="relativeses" table="relatives" inverse="true" lazy="false" fetch="join">
             <key>
                 <column name="studentid" />
             </key>
             <one-to-many class="pojos.Relatives" />
         </set>
-        <set name="studentofclasses" table="studentofclass" inverse="true" lazy="true" fetch="select">
+        <set name="studentofclasses" table="studentofclass" inverse="true" lazy="false" fetch="join">
             <key>
                 <column name="studentid" />
             </key>
             <one-to-many class="pojos.Studentofclass" />
         </set>
-        <set name="scores" table="score" inverse="true" lazy="true" fetch="select">
+        <set name="scores" table="score" inverse="true" lazy="false" fetch="join">
             <key>
                 <column name="studentid" />
             </key>

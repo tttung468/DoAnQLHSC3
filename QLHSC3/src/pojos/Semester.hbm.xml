@@ -32,25 +32,25 @@
         <property name="modifiedby" type="string">
             <column name="modifiedby" />
         </property>
-        <set name="studentofclasses" table="studentofclass" inverse="true" lazy="true" fetch="select">
+        <set name="studentofclasses" table="studentofclass" inverse="true" lazy="false" fetch="join">
             <key>
                 <column name="semesterid" />
             </key>
             <one-to-many class="pojos.Studentofclass" />
         </set>
-        <set name="scores" table="score" inverse="true" lazy="true" fetch="select">
+        <set name="scores" table="score" inverse="true" lazy="false" fetch="join">
             <key>
                 <column name="semesterid" />
             </key>
             <one-to-many class="pojos.Score" />
         </set>
-        <set name="conducts" table="conduct" inverse="true" lazy="true" fetch="select">
+        <set name="conducts" table="conduct" inverse="true" lazy="false" fetch="join">
             <key>
                 <column name="semesterid" />
             </key>
             <one-to-many class="pojos.Conduct" />
         </set>
-        <set name="teacherassignments" table="teacherassignment" inverse="true" lazy="true" fetch="select">
+        <set name="teacherassignments" table="teacherassignment" inverse="true" lazy="false" fetch="join">
             <key>
                 <column name="semesterid" />
             </key>

@@ -29,7 +29,7 @@
         <property name="modifiedby" type="string">
             <column name="modifiedby" />
         </property>
-        <set name="relativeses" table="relatives" inverse="true" lazy="true" fetch="select">
+        <set name="relativeses" table="relatives" inverse="true" lazy="false" fetch="join">
             <key>
                 <column name="relationshipid" />
             </key>
