@@ -315,7 +315,7 @@ CREATE TABLE StudentOfClass
 CREATE TABLE Observation 
 (
 	id BIGINT AUTO_INCREMENT,
-    content INT,
+    content NVARCHAR(255),
     schoolyearid BIGINT,
     formteacherid BIGINT,
     studentid BIGINT,
