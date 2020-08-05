@@ -9,7 +9,7 @@ CREATE TABLE Role
 	id BIGINT AUTO_INCREMENT,
 	code VARCHAR(255) UNIQUE,
 	name NVARCHAR(255),
-    	priority INT,
+	priority INT,
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
@@ -54,6 +54,8 @@ CREATE TABLE Subject
 	id BIGINT AUTO_INCREMENT,
 	code VARCHAR(255) UNIQUE,
 	name NVARCHAR(255),
+    classHours INT,
+    factor INT,
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
@@ -170,22 +172,7 @@ CREATE TABLE SchoolYear
     code VARCHAR(255) UNIQUE,
 	lowerbound INT,
     upperbound INT,
-	isdeleted BOOLEAN,
-	createddate TIMESTAMP,
-	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
-	modifiedby NVARCHAR(255),
-
-	PRIMARY KEY(id)
-);
--- BẢNG SubjectOfSchoolYear
-CREATE TABLE SubjectOfSchoolYear
-(
-	id BIGINT AUTO_INCREMENT,
-	classhours INT,
-    factor INT,
-    schoolyearid BIGINT,
-    subjectid BIGINT,
+    theme NVARCHAR(255),
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
@@ -269,7 +256,7 @@ CREATE TABLE Class
 CREATE TABLE FormTeacherAssignment 
 (
 	id BIGINT AUTO_INCREMENT,
-    size INT,
+    capacity INT,
     schoolyearid BIGINT,
     formteacherid BIGINT,
     classid BIGINT,
@@ -524,11 +511,6 @@ ALTER TABLE Teacher ADD
 	CONSTRAINT FK_Teacher_Account FOREIGN KEY(accountid) REFERENCES Account(id);
 ALTER TABLE Teacher ADD 
 	CONSTRAINT CHK_Teacher_gender CHECK(gender IN(N'Nam', N'Nữ', N'Khác'));
--- BẢNG SubjectOfSchoolYear
-ALTER TABLE SubjectOfSchoolYear ADD 
-	CONSTRAINT FK_SubjectOfSchoolYear_SchoolYear FOREIGN KEY(schoolyearid) REFERENCES SchoolYear(id);
-ALTER TABLE SubjectOfSchoolYear ADD 
-	CONSTRAINT FK_SubjectOfSchoolYear_Subject FOREIGN KEY(subjectid) REFERENCES Subject(id);
 -- BẢNG Class
 ALTER TABLE Class ADD 
 	CONSTRAINT FK_Class_Grade FOREIGN KEY(gradeid) REFERENCES Grade(id);
@@ -627,46 +609,46 @@ INSERT INTO Role(code, name, priority)
 VALUES('teacher', N'Giáo viên', 3);
 -- BẢNG Account
 INSERT INTO Account(username, password, roleid)
-VALUES('admin@gmail.com', '123456', 0);
+VALUES('admin@gmail.com', '123456', 1);
 INSERT INTO Account(username, password, roleid)
-VALUES('headmaster@gmail.com', '123456', 1);
+VALUES('headmaster@gmail.com', '123456', 2);
 INSERT INTO Account(username, password, roleid)
-VALUES('hr@gmail.com', '123456', 2);
+VALUES('hr@gmail.com', '123456', 3);
 INSERT INTO Account(username, password, roleid)
-VALUES('office@gmail.com', '123456', 3);
+VALUES('office@gmail.com', '123456', 4);
 INSERT INTO Account(username, password, roleid)
-VALUES('teacher1@gmail.com', '123456', 4);
+VALUES('teacher1@gmail.com', '123456', 5);
 INSERT INTO Account(username, password, roleid)
-VALUES('teacher2@gmail.com', '123456', 4);
+VALUES('teacher2@gmail.com', '123456', 5);
 -- BẢNG Subject
-INSERT INTO Subject(code, name, factor)
-VALUES('math', 'Toán', 2);
-INSERT INTO Subject(code, name, factor)
-VALUES('literature', 'Ngữ Văn', 2);
-INSERT INTO Subject(code, name, factor)
-VALUES('english', 'Anh Văn', 1);
-INSERT INTO Subject(code, name, factor)
-VALUES('chemistry', 'Hóa Học', 1);
-INSERT INTO Subject(code, name, factor)
-VALUES('physics', 'Vật Lí', 1);
-INSERT INTO Subject(code, name, factor)
-VALUES('science', 'Sinh Học', 1);
-INSERT INTO Subject(code, name, factor)
-VALUES('history', 'Lịch Sử', 1);
-INSERT INTO Subject(code, name, factor)
-VALUES('geography', 'Địa Lí', 1);
-INSERT INTO Subject(code, name, factor)
-VALUES('technology', 'Công Nghệ', 1);
-INSERT INTO Subject(code, name, factor)
-VALUES('civic-education', 'Giáo Dục Công Dân', 1);
-INSERT INTO Subject(code, name, factor)
-VALUES('informatics', 'Tin Học', 1);
-INSERT INTO Subject(code, name, factor)
-VALUES('physical-education', 'Thể Dục', 1);
-INSERT INTO Subject(code, name, factor)
-VALUES('music', 'Âm Nhạc', 1);
-INSERT INTO Subject(code, name, factor)
-VALUES('act', 'Mỹ Thuật', 1);
+INSERT INTO Subject(code, name, classHours, factor)
+VALUES('math', 'Toán', 105, 2);
+INSERT INTO Subject(code, name, classHours, factor)
+VALUES('literature', 'Ngữ Văn', 105, 2);
+INSERT INTO Subject(code, name, classHours, factor)
+VALUES('english', 'Anh Văn', 105, 1);
+INSERT INTO Subject(code, name, classHours, factor)
+VALUES('chemistry', 'Hóa Học', 70, 1);
+INSERT INTO Subject(code, name, classHours, factor)
+VALUES('physics', 'Vật Lí', 70, 1);
+INSERT INTO Subject(code, name, classHours, factor)
+VALUES('science', 'Sinh Học', 70, 1);
+INSERT INTO Subject(code, name, classHours, factor)
+VALUES('history', 'Lịch Sử', 70, 1);
+INSERT INTO Subject(code, name, classHours, factor)
+VALUES('geography', 'Địa Lí', 70, 1);
+INSERT INTO Subject(code, name, classHours, factor)
+VALUES('technology', 'Công Nghệ', 70, 1);
+INSERT INTO Subject(code, name, classHours, factor)
+VALUES('civic-education', 'Giáo Dục Công Dân', 70, 1);
+INSERT INTO Subject(code, name, classHours, factor)
+VALUES('informatics', 'Tin Học', 70, 1);
+INSERT INTO Subject(code, name, classHours, factor)
+VALUES('physical-education', 'Thể Dục', 70, 1);
+INSERT INTO Subject(code, name, classHours, factor)
+VALUES('music', 'Âm Nhạc', 70, 1);
+INSERT INTO Subject(code, name, classHours, factor)
+VALUES('act', 'Mỹ Thuật', 70,  1);
 -- BẢNG Headmaster
 INSERT INTO Headmaster(code, name, phone, avatarpath, gender, birth, address, salary, subjectid, accountid)
 VALUES('headmaster-001', 'Nguyễn Văn Hiệu Trưởng', '0111111111', null, 'Nam', '1999-01-01', 'KTX khu B, TP HCM', 30000000, null, 2);
