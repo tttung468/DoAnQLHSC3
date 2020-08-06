@@ -30,7 +30,7 @@
             <column name="createdby" />
         </property>
         <property name="modifieddate" type="timestamp">
-            <column name="modifieddate" length="19" not-null="true" />
+            <column name="modifieddate" length="19" />
         </property>
         <property name="modifiedby" type="string">
             <column name="modifiedby" />
