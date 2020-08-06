@@ -13,7 +13,7 @@ CREATE TABLE Role
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
@@ -28,7 +28,7 @@ CREATE TABLE Account
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
@@ -43,7 +43,7 @@ CREATE TABLE VerificationToken
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
@@ -59,7 +59,7 @@ CREATE TABLE Subject
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
@@ -81,7 +81,7 @@ CREATE TABLE Headmaster
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
@@ -102,7 +102,7 @@ CREATE TABLE HRStaff
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
@@ -123,7 +123,7 @@ CREATE TABLE OfficeStaff
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
@@ -145,7 +145,7 @@ CREATE TABLE Teacher
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
@@ -160,7 +160,7 @@ CREATE TABLE Semester
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
@@ -176,7 +176,7 @@ CREATE TABLE SchoolYear
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
@@ -190,7 +190,7 @@ CREATE TABLE Ethnic
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
@@ -204,7 +204,7 @@ CREATE TABLE Religion
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
@@ -218,7 +218,7 @@ CREATE TABLE Nationality
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
@@ -232,7 +232,7 @@ CREATE TABLE Grade
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
@@ -247,7 +247,7 @@ CREATE TABLE SchoolClass
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
@@ -263,7 +263,7 @@ CREATE TABLE FormTeacherAssignment
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
@@ -288,7 +288,7 @@ CREATE TABLE Student
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
@@ -306,7 +306,7 @@ CREATE TABLE StudentOfClass
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
@@ -323,7 +323,7 @@ CREATE TABLE Observation
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
@@ -340,7 +340,7 @@ CREATE TABLE TeacherAssignment
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
@@ -354,7 +354,7 @@ CREATE TABLE Relationship
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
@@ -374,7 +374,7 @@ CREATE TABLE Relatives
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
@@ -391,7 +391,7 @@ CREATE TABLE Performance
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
@@ -405,7 +405,7 @@ CREATE TABLE ConductType
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
@@ -423,7 +423,7 @@ CREATE TABLE Conduct
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
@@ -438,7 +438,7 @@ CREATE TABLE ScoreType
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
@@ -458,7 +458,7 @@ CREATE TABLE Score
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
@@ -475,7 +475,7 @@ CREATE TABLE Regulation
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
