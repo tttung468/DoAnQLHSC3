@@ -11,6 +11,8 @@ import DAO.EthnicDAO;
 import DAO.StudentDAO;
 import connection.HibernateUtil;
 import java.util.List;
+import org.hibernate.engine.spi.ExecutableList;
+import org.hibernate.engine.spi.ExecutableList.Sorter;
 import pojos.Account;
 import pojos.Conducttype;
 import pojos.Ethnic;
@@ -27,19 +29,13 @@ public class main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        List<Student> list;
-        StudentDAO DAO = new StudentDAO();
-           
-        list = DAO.findAll();
-        for (Student t : list) {
-            System.out.println(t.getId() + " - " + t.getName());
-        }
-        
-        
+
+                
         
         
         //close sessionFactory
         HibernateUtil.close();
     }
 
+    
 }

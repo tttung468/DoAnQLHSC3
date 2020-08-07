@@ -11,6 +11,9 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.engine.spi.ExecutableList.Sorter;
+import pojos.Role;
+import qlhsc3.Pageable;
 
 /**
  *
@@ -164,6 +167,26 @@ public abstract class AbstractHibernateDAO< T extends Serializable> {
         final T entity = findOne(id);
         deleteOne(entity);
     }
+    
+    /**
+     * Lấy các dòng dữ liệu trong DB dựa vào pageable
+     * 
+     * @param pageable
+     * @return 
+     */
+    public List<T> find(Pageable<T> pageable){
+        return null;
+    }
+    
+    /**
+     * 
+     * @param pageable
+     * @return 
+     */
+    public Integer count(Pageable pageable){
+        return null;
+    }
+    
     
     
 }

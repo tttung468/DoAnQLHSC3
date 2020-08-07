@@ -5,7 +5,7 @@
  */
 package qlhsc3;
 
-import org.hibernate.engine.spi.ExecutableList.Sorter;
+import sort.Sorter;
 
 
 
