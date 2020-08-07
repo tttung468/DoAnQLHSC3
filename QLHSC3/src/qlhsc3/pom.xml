@@ -13,7 +13,7 @@
 		<maven.compiler.target.version>1.8</maven.compiler.target.version>
 		<exec.maven.plugin.version>1.2.1</exec.maven.plugin.version>
 		<javafx.version>11</javafx.version>
-		<mysql.version>8.0.13</mysql.version>
+		<mysql.version>8.0.16</mysql.version>
 		<hibernate.core.version>5.2.2.Final</hibernate.core.version>
 		<jbrypt.version>0.4</jbrypt.version>
 		<org.jfree.jfreechart.version>1.5.0</org.jfree.jfreechart.version>
