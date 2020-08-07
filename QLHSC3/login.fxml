@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="754.0" prefWidth="1382.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="200.0" fitWidth="200.0" layoutX="591.0" layoutY="45.0">
+         <image>
+            <Image url="@download.jpg" />
+         </image>
+      </ImageView>
+      <Label layoutX="588.0" layoutY="267.0" text="Đăng nhập" textFill="#b00707">
+         <font>
+            <Font name="System Bold" size="40.0" />
+         </font>
+      </Label>
+      <Label layoutX="427.0" layoutY="340.0" text="Tài khoản:" textFill="#b00707">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      <TextField layoutX="585.0" layoutY="341.0" prefHeight="44.0" prefWidth="300.0" style="-fx-background-radius: 20;">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </TextField>
+      <Label layoutX="427.0" layoutY="400.0" text="Mật khẩu:" textFill="#b00707">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      <PasswordField layoutX="585.0" layoutY="400.0" prefHeight="25.0" prefWidth="300.0" style="-fx-background-radius: 20;">
+         <font>
+            <Font size="20.0" />
+         </font>
+      </PasswordField>
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="908.0" layoutY="397.0">
+         <image>
+            <Image url="@password.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="50.0" fitWidth="50.0" layoutX="905.0" layoutY="338.0">
+         <image>
+            <Image url="@username.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="667.0" layoutY="459.0" text="Quên mật khẩu" textFill="#4f0d92" underline="true">
+         <font>
+            <Font name="System Italic" size="20.0" />
+         </font>
+      </Label>
+      <Button layoutX="810.0" layoutY="507.0" mnemonicParsing="false" style="-fx-background-color: #23DB1F; -fx-background-radius: 20;" text="Đăng nhập">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
