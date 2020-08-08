@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 5, 2020 10:41:29 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojos.Officestaff" table="officestaff" catalog="qlhsc3db" optimistic-lock="version">
+        <id name="id" type="java.lang.Long">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="account" class="pojos.Account" lazy="false" fetch="join">
+            <column name="accountid" />
+        </many-to-one>
+        <property name="code" type="string">
+            <column name="code" unique="true" />
+        </property>
+        <property name="name" type="string">
+            <column name="name" />
+        </property>
+        <property name="phone" type="string">
+            <column name="phone" />
+        </property>
+        <property name="avatarpath" type="string">
+            <column name="avatarpath" />
+        </property>
+        <property name="gender" type="string">
+            <column name="gender" />
+        </property>
+        <property name="birth" type="date">
+            <column name="birth" length="10" />
+        </property>
+        <property name="address" type="string">
+            <column name="address" />
+        </property>
+        <property name="salary" type="java.lang.Integer">
+            <column name="salary" />
+        </property>
+        <property name="isdeleted" type="java.lang.Boolean">
+            <column name="isdeleted" />
+        </property>
+        <property name="createddate" type="timestamp">
+            <column name="createddate" length="19" not-null="true" />
+        </property>
+        <property name="createdby" type="string">
+            <column name="createdby" />
+        </property>
+        <property name="modifieddate" type="timestamp">
+            <column name="modifieddate" length="19" />
+        </property>
+        <property name="modifiedby" type="string">
+            <column name="modifiedby" />
+        </property>
+    </class>
+</hibernate-mapping>

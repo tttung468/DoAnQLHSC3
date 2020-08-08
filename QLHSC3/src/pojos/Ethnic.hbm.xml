@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 5, 2020 10:41:29 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojos.Ethnic" table="ethnic" catalog="qlhsc3db" optimistic-lock="version">
+        <id name="id" type="java.lang.Long">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="code" type="string">
+            <column name="code" unique="true" />
+        </property>
+        <property name="name" type="string">
+            <column name="name" />
+        </property>
+        <property name="isdeleted" type="java.lang.Boolean">
+            <column name="isdeleted" />
+        </property>
+        <property name="createddate" type="timestamp">
+            <column name="createddate" length="19" not-null="true" />
+        </property>
+        <property name="createdby" type="string">
+            <column name="createdby" />
+        </property>
+        <property name="modifieddate" type="timestamp">
+            <column name="modifieddate" length="19" />
+        </property>
+        <property name="modifiedby" type="string">
+            <column name="modifiedby" />
+        </property>
+        <set name="students" table="student" inverse="true" lazy="false" fetch="join">
+            <key>
+                <column name="ethnicid" />
+            </key>
+            <one-to-many class="pojos.Student" />
+        </set>
+    </class>
+</hibernate-mapping>
