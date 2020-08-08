@@ -9,11 +9,11 @@ CREATE TABLE Role
 	id BIGINT AUTO_INCREMENT,
 	code VARCHAR(255) UNIQUE,
 	name NVARCHAR(255),
-    	priority INT,
+	priority INT,
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
@@ -28,7 +28,7 @@ CREATE TABLE Account
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
@@ -43,7 +43,7 @@ CREATE TABLE VerificationToken
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
@@ -54,10 +54,12 @@ CREATE TABLE Subject
 	id BIGINT AUTO_INCREMENT,
 	code VARCHAR(255) UNIQUE,
 	name NVARCHAR(255),
+    classHours INT,
+    factor INT,
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
@@ -79,7 +81,7 @@ CREATE TABLE Headmaster
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
@@ -100,7 +102,7 @@ CREATE TABLE HRStaff
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
@@ -121,7 +123,7 @@ CREATE TABLE OfficeStaff
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
@@ -143,7 +145,7 @@ CREATE TABLE Teacher
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
@@ -158,7 +160,7 @@ CREATE TABLE Semester
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
@@ -170,26 +172,11 @@ CREATE TABLE SchoolYear
     code VARCHAR(255) UNIQUE,
 	lowerbound INT,
     upperbound INT,
+    theme NVARCHAR(255),
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
-	modifiedby NVARCHAR(255),
-
-	PRIMARY KEY(id)
-);
--- BẢNG SubjectOfSchoolYear
-CREATE TABLE SubjectOfSchoolYear
-(
-	id BIGINT AUTO_INCREMENT,
-	classhours INT,
-    factor INT,
-    schoolyearid BIGINT,
-    subjectid BIGINT,
-	isdeleted BOOLEAN,
-	createddate TIMESTAMP,
-	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
@@ -203,7 +190,7 @@ CREATE TABLE Ethnic
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
@@ -217,7 +204,7 @@ CREATE TABLE Religion
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
@@ -231,7 +218,7 @@ CREATE TABLE Nationality
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
@@ -245,13 +232,13 @@ CREATE TABLE Grade
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
 );
--- BẢNG Class
-CREATE TABLE Class
+-- BẢNG SchoolClass
+CREATE TABLE SchoolClass
 (
 	id BIGINT AUTO_INCREMENT,
     code VARCHAR(255) UNIQUE,
@@ -260,7 +247,7 @@ CREATE TABLE Class
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
@@ -269,14 +256,14 @@ CREATE TABLE Class
 CREATE TABLE FormTeacherAssignment 
 (
 	id BIGINT AUTO_INCREMENT,
-    size INT,
+    capacity INT,
     schoolyearid BIGINT,
     formteacherid BIGINT,
     classid BIGINT,
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
@@ -301,7 +288,7 @@ CREATE TABLE Student
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
@@ -319,7 +306,7 @@ CREATE TABLE StudentOfClass
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
@@ -328,7 +315,7 @@ CREATE TABLE StudentOfClass
 CREATE TABLE Observation 
 (
 	id BIGINT AUTO_INCREMENT,
-    content INT,
+    content NVARCHAR(255),
     schoolyearid BIGINT,
     formteacherid BIGINT,
     studentid BIGINT,
@@ -336,7 +323,7 @@ CREATE TABLE Observation
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
@@ -353,7 +340,7 @@ CREATE TABLE TeacherAssignment
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
@@ -367,7 +354,7 @@ CREATE TABLE Relationship
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
@@ -387,7 +374,7 @@ CREATE TABLE Relatives
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
@@ -404,7 +391,7 @@ CREATE TABLE Performance
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
@@ -418,7 +405,7 @@ CREATE TABLE ConductType
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
@@ -436,7 +423,7 @@ CREATE TABLE Conduct
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
@@ -451,7 +438,7 @@ CREATE TABLE ScoreType
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
@@ -471,7 +458,7 @@ CREATE TABLE Score
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
@@ -488,7 +475,7 @@ CREATE TABLE Regulation
 	isdeleted BOOLEAN,
 	createddate TIMESTAMP,
 	createdby NVARCHAR(255),
-	modifieddate TIMESTAMP,
+	modifieddate TIMESTAMP NULL,
 	modifiedby NVARCHAR(255),
 
 	PRIMARY KEY(id)
@@ -524,21 +511,16 @@ ALTER TABLE Teacher ADD
 	CONSTRAINT FK_Teacher_Account FOREIGN KEY(accountid) REFERENCES Account(id);
 ALTER TABLE Teacher ADD 
 	CONSTRAINT CHK_Teacher_gender CHECK(gender IN(N'Nam', N'Nữ', N'Khác'));
--- BẢNG SubjectOfSchoolYear
-ALTER TABLE SubjectOfSchoolYear ADD 
-	CONSTRAINT FK_SubjectOfSchoolYear_SchoolYear FOREIGN KEY(schoolyearid) REFERENCES SchoolYear(id);
-ALTER TABLE SubjectOfSchoolYear ADD 
-	CONSTRAINT FK_SubjectOfSchoolYear_Subject FOREIGN KEY(subjectid) REFERENCES Subject(id);
--- BẢNG Class
-ALTER TABLE Class ADD 
-	CONSTRAINT FK_Class_Grade FOREIGN KEY(gradeid) REFERENCES Grade(id);
+-- BẢNG SchoolClass
+ALTER TABLE SchoolClass ADD 
+	CONSTRAINT FK_SchoolClass_Grade FOREIGN KEY(gradeid) REFERENCES Grade(id);
 -- BẢNG FormTeacherAssignment
 ALTER TABLE FormTeacherAssignment ADD 
 	CONSTRAINT FK_FormTeacherAssignment_SchoolYear FOREIGN KEY(schoolyearid) REFERENCES SchoolYear(id);
 ALTER TABLE FormTeacherAssignment ADD 
 	CONSTRAINT FK_FormTeacherAssignment_Teacher FOREIGN KEY(formteacherid) REFERENCES Teacher(id);
 ALTER TABLE FormTeacherAssignment ADD 
-	CONSTRAINT FK_FormTeacherAssignment_Class FOREIGN KEY(classid) REFERENCES Class(id);
+	CONSTRAINT FK_FormTeacherAssignment_SchoolClass FOREIGN KEY(classid) REFERENCES SchoolClass(id);
 -- BẢNG Student
 ALTER TABLE Student ADD 
 	CONSTRAINT FK_Student_Ethnic FOREIGN KEY(ethnicid) REFERENCES Ethnic(id);
@@ -558,7 +540,7 @@ ALTER TABLE StudentOfClass ADD
 ALTER TABLE StudentOfClass ADD 
 	CONSTRAINT FK_StudentOfClass_Student FOREIGN KEY(studentid) REFERENCES Student(id);
 ALTER TABLE StudentOfClass ADD 
-	CONSTRAINT FK_StudentOfClass_Class FOREIGN KEY(classid) REFERENCES Class(id);
+	CONSTRAINT FK_StudentOfClass_Class FOREIGN KEY(classid) REFERENCES SchoolClass(id);
 -- BẢNG Observation
 ALTER TABLE Observation ADD 
 	CONSTRAINT FK_Observation_SchoolYear FOREIGN KEY(schoolyearid) REFERENCES SchoolYear(id);
@@ -567,7 +549,7 @@ ALTER TABLE Observation ADD
 ALTER TABLE Observation ADD 
 	CONSTRAINT FK_Observation_Student FOREIGN KEY(studentid) REFERENCES Student(id);
 ALTER TABLE Observation ADD 
-	CONSTRAINT FK_Observation_Class FOREIGN KEY(classid) REFERENCES Class(id);
+	CONSTRAINT FK_Observation_SchoolClass FOREIGN KEY(classid) REFERENCES SchoolClass(id);
 -- BẢNG TeacherAssignment
 ALTER TABLE TeacherAssignment ADD 
 	CONSTRAINT FK_TeacherAssignment_Subject FOREIGN KEY(subjectid) REFERENCES Subject(id);
@@ -578,7 +560,7 @@ ALTER TABLE TeacherAssignment ADD
 ALTER TABLE TeacherAssignment ADD 
 	CONSTRAINT FK_TeacherAssignment_Teacher FOREIGN KEY(teacherid) REFERENCES Teacher(id);
 ALTER TABLE TeacherAssignment ADD 
-	CONSTRAINT FK_TeacherAssignment_Class FOREIGN KEY(classid) REFERENCES Class(id);
+	CONSTRAINT FK_TeacherAssignment_SchoolClass FOREIGN KEY(classid) REFERENCES SchoolClass(id);
 -- BẢNG Relatives
 ALTER TABLE Relatives ADD 
 	CONSTRAINT FK_Relatives_Relationship FOREIGN KEY(relationshipid) REFERENCES Relationship(id);
@@ -598,7 +580,7 @@ ALTER TABLE Conduct ADD
 ALTER TABLE Conduct ADD 
 	CONSTRAINT FK_Conduct_Student FOREIGN KEY(studentid) REFERENCES Student(id);
 ALTER TABLE Conduct ADD 
-	CONSTRAINT FK_Conduct_Class FOREIGN KEY(classid) REFERENCES Class(id);
+	CONSTRAINT FK_Conduct_SchoolClass FOREIGN KEY(classid) REFERENCES SchoolClass(id);
 -- BẢNG Score
 ALTER TABLE Score ADD 
 	CONSTRAINT FK_Score_ScoreType FOREIGN KEY(scoretypeid) REFERENCES ScoreType(id);
@@ -611,9 +593,8 @@ ALTER TABLE Score ADD
 ALTER TABLE Score ADD 
 	CONSTRAINT FK_Score_Student FOREIGN KEY(studentid) REFERENCES Student(id);
 ALTER TABLE Score ADD 
-	CONSTRAINT FK_Score_Class FOREIGN KEY(classid) REFERENCES Class(id);
+	CONSTRAINT FK_Score_SchoolClass FOREIGN KEY(classid) REFERENCES SchoolClass(id);
 -- 4/. Nhập dữ liệu -----------------------------------------------------------------------------------------------------------------------------------
-DELETE FROM qlhsc3DB.Role;
 -- BẢNG Role
 INSERT INTO Role(code, name, priority)
 VALUES('admin', N'Quản trị viên', 0);
@@ -627,46 +608,46 @@ INSERT INTO Role(code, name, priority)
 VALUES('teacher', N'Giáo viên', 3);
 -- BẢNG Account
 INSERT INTO Account(username, password, roleid)
-VALUES('admin@gmail.com', '123456', 0);
+VALUES('admin@gmail.com', '123456', 1);
 INSERT INTO Account(username, password, roleid)
-VALUES('headmaster@gmail.com', '123456', 1);
+VALUES('headmaster@gmail.com', '123456', 2);
 INSERT INTO Account(username, password, roleid)
-VALUES('hr@gmail.com', '123456', 2);
+VALUES('hr@gmail.com', '123456', 3);
 INSERT INTO Account(username, password, roleid)
-VALUES('office@gmail.com', '123456', 3);
+VALUES('office@gmail.com', '123456', 4);
 INSERT INTO Account(username, password, roleid)
-VALUES('teacher1@gmail.com', '123456', 4);
+VALUES('teacher1@gmail.com', '123456', 5);
 INSERT INTO Account(username, password, roleid)
-VALUES('teacher2@gmail.com', '123456', 4);
+VALUES('teacher2@gmail.com', '123456', 5);
 -- BẢNG Subject
-INSERT INTO Subject(code, name, factor)
-VALUES('math', 'Toán', 2);
-INSERT INTO Subject(code, name, factor)
-VALUES('literature', 'Ngữ Văn', 2);
-INSERT INTO Subject(code, name, factor)
-VALUES('english', 'Anh Văn', 1);
-INSERT INTO Subject(code, name, factor)
-VALUES('chemistry', 'Hóa Học', 1);
-INSERT INTO Subject(code, name, factor)
-VALUES('physics', 'Vật Lí', 1);
-INSERT INTO Subject(code, name, factor)
-VALUES('science', 'Sinh Học', 1);
-INSERT INTO Subject(code, name, factor)
-VALUES('history', 'Lịch Sử', 1);
-INSERT INTO Subject(code, name, factor)
-VALUES('geography', 'Địa Lí', 1);
-INSERT INTO Subject(code, name, factor)
-VALUES('technology', 'Công Nghệ', 1);
-INSERT INTO Subject(code, name, factor)
-VALUES('civic-education', 'Giáo Dục Công Dân', 1);
-INSERT INTO Subject(code, name, factor)
-VALUES('informatics', 'Tin Học', 1);
-INSERT INTO Subject(code, name, factor)
-VALUES('physical-education', 'Thể Dục', 1);
-INSERT INTO Subject(code, name, factor)
-VALUES('music', 'Âm Nhạc', 1);
-INSERT INTO Subject(code, name, factor)
-VALUES('act', 'Mỹ Thuật', 1);
+INSERT INTO Subject(code, name, classHours, factor)
+VALUES('math', 'Toán', 105, 2);
+INSERT INTO Subject(code, name, classHours, factor)
+VALUES('literature', 'Ngữ Văn', 105, 2);
+INSERT INTO Subject(code, name, classHours, factor)
+VALUES('english', 'Anh Văn', 105, 1);
+INSERT INTO Subject(code, name, classHours, factor)
+VALUES('chemistry', 'Hóa Học', 70, 1);
+INSERT INTO Subject(code, name, classHours, factor)
+VALUES('physics', 'Vật Lí', 70, 1);
+INSERT INTO Subject(code, name, classHours, factor)
+VALUES('science', 'Sinh Học', 70, 1);
+INSERT INTO Subject(code, name, classHours, factor)
+VALUES('history', 'Lịch Sử', 70, 1);
+INSERT INTO Subject(code, name, classHours, factor)
+VALUES('geography', 'Địa Lí', 70, 1);
+INSERT INTO Subject(code, name, classHours, factor)
+VALUES('technology', 'Công Nghệ', 70, 1);
+INSERT INTO Subject(code, name, classHours, factor)
+VALUES('civic-education', 'Giáo Dục Công Dân', 70, 1);
+INSERT INTO Subject(code, name, classHours, factor)
+VALUES('informatics', 'Tin Học', 70, 1);
+INSERT INTO Subject(code, name, classHours, factor)
+VALUES('physical-education', 'Thể Dục', 70, 1);
+INSERT INTO Subject(code, name, classHours, factor)
+VALUES('music', 'Âm Nhạc', 70, 1);
+INSERT INTO Subject(code, name, classHours, factor)
+VALUES('act', 'Mỹ Thuật', 70,  1);
 -- BẢNG Headmaster
 INSERT INTO Headmaster(code, name, phone, avatarpath, gender, birth, address, salary, subjectid, accountid)
 VALUES('headmaster-001', 'Nguyễn Văn Hiệu Trưởng', '0111111111', null, 'Nam', '1999-01-01', 'KTX khu B, TP HCM', 30000000, null, 2);
@@ -725,46 +706,46 @@ INSERT INTO Grade(code, name)
 VALUES('K11', 'Khối 11');
 INSERT INTO Grade(code, name)
 VALUES('K12', 'Khối 12');
--- BẢNG Class
-INSERT INTO Class(code, name, gradeid)
+-- BẢNG SchoolClass
+INSERT INTO SchoolClass(code, name, gradeid)
 VALUES('10A1', 'Lớp 10A1', 1);
-INSERT INTO Class(code, name, gradeid)
+INSERT INTO SchoolClass(code, name, gradeid)
 VALUES('10A2', 'Lớp 10A2', 1);
-INSERT INTO Class(code, name, gradeid)
+INSERT INTO SchoolClass(code, name, gradeid)
 VALUES('10A3', 'Lớp 10A3', 1);
-INSERT INTO Class(code, name, gradeid)
+INSERT INTO SchoolClass(code, name, gradeid)
 VALUES('10A4', 'Lớp 10A4', 1);
-INSERT INTO Class(code, name, gradeid)
+INSERT INTO SchoolClass(code, name, gradeid)
 VALUES('10A5', 'Lớp 10A5', 1);
-INSERT INTO Class(code, name, gradeid)
+INSERT INTO SchoolClass(code, name, gradeid)
 VALUES('10A6', 'Lớp 10A6', 1);
-INSERT INTO Class(code, name, gradeid)
+INSERT INTO SchoolClass(code, name, gradeid)
 VALUES('10A7', 'Lớp 10A7', 1);
-INSERT INTO Class(code, name, gradeid)
+INSERT INTO SchoolClass(code, name, gradeid)
 VALUES('10A8', 'Lớp 10A8', 1);
 
-INSERT INTO Class(code, name, gradeid)
+INSERT INTO SchoolClass(code, name, gradeid)
 VALUES('11A1', 'Lớp 11A1', 2);
-INSERT INTO Class(code, name, gradeid)
+INSERT INTO SchoolClass(code, name, gradeid)
 VALUES('11A2', 'Lớp 11A2', 2);
-INSERT INTO Class(code, name, gradeid)
+INSERT INTO SchoolClass(code, name, gradeid)
 VALUES('11A3', 'Lớp 11A3', 2);
-INSERT INTO Class(code, name, gradeid)
+INSERT INTO SchoolClass(code, name, gradeid)
 VALUES('11A4', 'Lớp 11A4', 2);
-INSERT INTO Class(code, name, gradeid)
+INSERT INTO SchoolClass(code, name, gradeid)
 VALUES('11A5', 'Lớp 11A5', 2);
 
-INSERT INTO Class(code, name, gradeid)
+INSERT INTO SchoolClass(code, name, gradeid)
 VALUES('12A1', 'Lớp 12A1', 3);
-INSERT INTO Class(code, name, gradeid)
+INSERT INTO SchoolClass(code, name, gradeid)
 VALUES('12A2', 'Lớp 12A2', 3);
-INSERT INTO Class(code, name, gradeid)
+INSERT INTO SchoolClass(code, name, gradeid)
 VALUES('12A3', 'Lớp 12A3', 3);
-INSERT INTO Class(code, name, gradeid)
+INSERT INTO SchoolClass(code, name, gradeid)
 VALUES('12A4', 'Lớp 12A4', 3);
-INSERT INTO Class(code, name, gradeid)
+INSERT INTO SchoolClass(code, name, gradeid)
 VALUES('12A5', 'Lớp 12A5', 3);
-INSERT INTO Class(code, name, gradeid)
+INSERT INTO SchoolClass(code, name, gradeid)
 VALUES('12A6', 'Lớp 12A6', 3);
 -- BẢNG Student
 INSERT INTO Student(code, name, phone, identifycard, email, avatarpath, gender, birth, address, status, ethnicid, religionid, nationalityid)
@@ -833,7 +814,7 @@ SELECT * FROM qlhsc3DB.Ethnic;
 SELECT * FROM qlhsc3DB.Religion;
 SELECT * FROM qlhsc3DB.Nationality;
 SELECT * FROM qlhsc3DB.Grade;
-SELECT * FROM qlhsc3DB.Class;
+SELECT * FROM qlhsc3DB.SchoolClass;
 SELECT * FROM qlhsc3DB.FormTeacherAssignment;
 SELECT * FROM qlhsc3DB.Student;
 SELECT * FROM qlhsc3DB.StudentOfClass;
@@ -861,7 +842,7 @@ DROP TABLE qlhsc3DB.Ethnic;
 DROP TABLE qlhsc3DB.Religion;
 DROP TABLE qlhsc3DB.Nationality;
 DROP TABLE qlhsc3DB.Grade;
-DROP TABLE qlhsc3DB.Class;
+DROP TABLE qlhsc3DB.SchoolClass;
 DROP TABLE qlhsc3DB.FormTeacherAssignment;
 DROP TABLE qlhsc3DB.Student;
 DROP TABLE qlhsc3DB.StudentOfClass;
