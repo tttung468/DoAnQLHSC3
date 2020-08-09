@@ -11,7 +11,7 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import pojos.Role;
-import qlhsc3.Pageable;
+import pagination.Pageable;
 import sort.Sorter;
 
 /**
@@ -34,6 +34,37 @@ public class RoleDAO extends AbstractHibernateDAO<Role>{
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
         Query query;
+
+        String hql = generateHQLForFind(pageable);
+
+        System.out.println(hql);
+        
+//        try {
+//            query = session.createQuery(sql.toString());
+//            query.setFirstResult(offset);
+//            query.setMaxResults(limit);
+//
+//            tx = session.beginTransaction();
+//            list = query.list();    //get all
+//            tx.commit();
+//        } catch (Exception e) {
+//            if (tx != null) {
+//                tx.rollback();
+//            }
+//            e.printStackTrace();
+//        } finally {
+//            session.close();
+//        }
+        
+        return null;
+    }
+    
+    public String generateHQLForFind(Pageable<Role> pageable){    
+        Integer offset = pageable.getOffset();
+        Integer limit = pageable.getLimit();
+        Sorter sorter = pageable.getSorter();
+        String searchKey = pageable.getSearchKey();
+        Role role = pageable.getFilterModel();
         
 //        Câu truy vấn:
 //        SELECT * FROM Role 
@@ -73,7 +104,7 @@ public class RoleDAO extends AbstractHibernateDAO<Role>{
             if (role.getPriority() != null) {
                 sql.append(" role.priority=:priority");
             }
-            if (role.getIsdeleted()!= null
+            if (role.getIsDeleted()!= null
                     && (role.getCode() != null
                     || role.getName() != null
                     || role.getPriority() != null)) {
@@ -81,14 +112,14 @@ public class RoleDAO extends AbstractHibernateDAO<Role>{
             }
             
             //isDeleted
-            if (role.getIsdeleted() != null) {
+            if (role.getIsDeleted() != null) {
                 sql.append(" role.isdeleted=:isdeleted");
             }
             if (searchKey != null
                     && (role.getCode() != null
                     || role.getName() != null
                     || role.getPriority() != null
-                    || role.getIsdeleted() != null)) {
+                    || role.getIsDeleted() != null)) {
                 sql.append(" AND");
             }
         }
@@ -113,25 +144,9 @@ public class RoleDAO extends AbstractHibernateDAO<Role>{
 //                && limit != null) {
 //            sql.append(" LIMIT " + offset + ", " + limit);
 //        }
-
-
-        try {
-            query = session.createQuery(sql.toString());
-            query.setFirstResult(offset);
-            query.setMaxResults(limit);
-
-            tx = session.beginTransaction();
-            list = query.list();    //get all
-            tx.commit();
-        } catch (Exception e) {
-            if (tx != null) {
-                tx.rollback();
-            }
-            e.printStackTrace();
-        } finally {
-            session.close();
-        }
         
-        return null;
+        return sql.toString();
     }
+    
+    
 }

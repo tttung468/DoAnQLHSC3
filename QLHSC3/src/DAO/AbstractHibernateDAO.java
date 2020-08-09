@@ -11,20 +11,18 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.hibernate.engine.spi.ExecutableList.Sorter;
-import pojos.Role;
-import qlhsc3.Pageable;
+import pagination.Pageable;
 
 /**
  *
  * @author ThanhTung
  * @param <T>
  */
-public abstract class AbstractHibernateDAO< T extends Serializable> {
+public abstract class AbstractHibernateDAO<T extends Serializable> {
 
-    private Class< T> clazz;
+    private Class<T> clazz;
 
-    public void setClazz(Class< T> clazzToSet) {
+    public void setClazz(Class<T> clazzToSet) {
         clazz = clazzToSet;
     }
 
@@ -183,7 +181,7 @@ public abstract class AbstractHibernateDAO< T extends Serializable> {
      * @param pageable
      * @return 
      */
-    public Integer count(Pageable pageable){
+    public Integer count(Pageable<T> pageable){
         return null;
     }
     
