@@ -17,44 +17,20 @@
         <property name="factor" type="java.lang.Integer">
             <column name="factor" />
         </property>
-        <property name="isdeleted" type="java.lang.Boolean">
+        <property name="isDeleted" type="java.lang.Boolean">
             <column name="isdeleted" />
         </property>
-        <property name="createddate" type="timestamp">
+        <property name="createdDate" type="timestamp">
             <column name="createddate" length="19" not-null="true" />
         </property>
-        <property name="createdby" type="string">
+        <property name="createdBy" type="string">
             <column name="createdby" />
         </property>
-        <property name="modifieddate" type="timestamp">
+        <property name="modifiedDate" type="timestamp">
             <column name="modifieddate" length="19" />
         </property>
-        <property name="modifiedby" type="string">
+        <property name="modifiedBy" type="string">
             <column name="modifiedby" />
         </property>
-        <set name="studentofclasses" table="studentofclass" inverse="true" lazy="false" fetch="join">
-            <key>
-                <column name="semesterid" />
-            </key>
-            <one-to-many class="pojos.Studentofclass" />
-        </set>
-        <set name="scores" table="score" inverse="true" lazy="false" fetch="join">
-            <key>
-                <column name="semesterid" />
-            </key>
-            <one-to-many class="pojos.Score" />
-        </set>
-        <set name="conducts" table="conduct" inverse="true" lazy="false" fetch="join">
-            <key>
-                <column name="semesterid" />
-            </key>
-            <one-to-many class="pojos.Conduct" />
-        </set>
-        <set name="teacherassignments" table="teacherassignment" inverse="true" lazy="false" fetch="join">
-            <key>
-                <column name="semesterid" />
-            </key>
-            <one-to-many class="pojos.Teacherassignment" />
-        </set>
     </class>
 </hibernate-mapping>

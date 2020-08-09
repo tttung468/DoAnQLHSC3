@@ -32,19 +32,19 @@
         <property name="address" type="string">
             <column name="address" />
         </property>
-        <property name="isdeleted" type="java.lang.Boolean">
+        <property name="isDeleted" type="java.lang.Boolean">
             <column name="isdeleted" />
         </property>
-        <property name="createddate" type="timestamp">
+        <property name="createdDate" type="timestamp">
             <column name="createddate" length="19" not-null="true" />
         </property>
-        <property name="createdby" type="string">
+        <property name="createdBy" type="string">
             <column name="createdby" />
         </property>
-        <property name="modifieddate" type="timestamp">
+        <property name="modifiedDate" type="timestamp">
             <column name="modifieddate" length="19" />
         </property>
-        <property name="modifiedby" type="string">
+        <property name="modifiedBy" type="string">
             <column name="modifiedby" />
         </property>
     </class>

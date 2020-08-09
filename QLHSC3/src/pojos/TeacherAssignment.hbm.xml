@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <!-- Generated Aug 5, 2020 10:41:29 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-  <class catalog="qlhsc3db" name="pojos.Observation" optimistic-lock="version" table="observation">
+  <class catalog="qlhsc3db" name="pojos.TeacherAssignment" optimistic-lock="version" table="teacherassignment">
     <id name="id" type="java.lang.Long">
       <column name="id"/>
       <generator class="identity"/>
@@ -13,15 +13,15 @@
     <many-to-one class="pojos.SchoolYear" fetch="join" lazy="false" name="schoolYear">
       <column name="schoolyearid"/>
     </many-to-one>
-    <many-to-one class="pojos.Student" fetch="join" lazy="false" name="student">
-      <column name="studentid"/>
+    <many-to-one class="pojos.Semester" fetch="join" lazy="false" name="semester">
+      <column name="semesterid"/>
+    </many-to-one>
+    <many-to-one class="pojos.Subject" fetch="join" lazy="false" name="subject">
+      <column name="subjectid"/>
     </many-to-one>
     <many-to-one class="pojos.Teacher" fetch="join" lazy="false" name="teacher">
-      <column name="formteacherid"/>
+      <column name="teacherid"/>
     </many-to-one>
-    <property name="content" type="string">
-      <column name="content"/>
-    </property>
     <property name="isDeleted" type="java.lang.Boolean">
       <column name="isdeleted"/>
     </property>
