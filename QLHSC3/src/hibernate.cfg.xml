@@ -53,26 +53,26 @@ Contributor(s):
     <mapping resource="pojos/Observation.hbm.xml"/>
     <mapping resource="pojos/Religion.hbm.xml"/>
     <mapping resource="pojos/Regulation.hbm.xml"/>
-    <mapping resource="pojos/Hrstaff.hbm.xml"/>
-    <mapping resource="pojos/Studentofclass.hbm.xml"/>
+    <mapping resource="pojos/HRStaff.hbm.xml"/>
+    <mapping resource="pojos/StudentOfClass.hbm.xml"/>
     <mapping resource="pojos/Subject.hbm.xml"/>
     <mapping resource="pojos/Relatives.hbm.xml"/>
     <mapping resource="pojos/Student.hbm.xml"/>
     <mapping resource="pojos/Performance.hbm.xml"/>
-    <mapping resource="pojos/Scoretype.hbm.xml"/>
+    <mapping resource="pojos/ScoreType.hbm.xml"/>
     <mapping resource="pojos/Conduct.hbm.xml"/>
-    <mapping resource="pojos/Officestaff.hbm.xml"/>
-    <mapping resource="pojos/Schoolyear.hbm.xml"/>
+    <mapping resource="pojos/OfficeStaff.hbm.xml"/>
+    <mapping resource="pojos/SchoolYear.hbm.xml"/>
     <mapping resource="pojos/Semester.hbm.xml"/>
     <mapping resource="pojos/Account.hbm.xml"/>
-    <mapping resource="pojos/Conducttype.hbm.xml"/>
-    <mapping resource="pojos/Formteacherassignment.hbm.xml"/>
+    <mapping resource="pojos/ConductType.hbm.xml"/>
+    <mapping resource="pojos/FormTeacherAssignment.hbm.xml"/>
     <mapping resource="pojos/Role.hbm.xml"/>
     <mapping resource="pojos/Ethnic.hbm.xml"/>
     <mapping resource="pojos/Relationship.hbm.xml"/>
-    <mapping resource="pojos/Teacherassignment.hbm.xml"/>
-    <mapping resource="pojos/Verificationtoken.hbm.xml"/>
-    <mapping resource="pojos/Schoolclass.hbm.xml"/>
+    <mapping resource="pojos/TeacherAssignment.hbm.xml"/>
+    <mapping resource="pojos/VerificationToken.hbm.xml"/>
+    <mapping resource="pojos/SchoolClass.hbm.xml"/>
     <mapping resource="pojos/Headmaster.hbm.xml"/>
   </session-factory>
 </hibernate-configuration>

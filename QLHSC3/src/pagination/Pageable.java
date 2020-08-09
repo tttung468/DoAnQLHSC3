@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package qlhsc3;
+package pagination;
 
+import java.io.Serializable;
 import sort.Sorter;
 
 
@@ -14,7 +15,7 @@ import sort.Sorter;
  * @author ThanhTung
  * @param <T>
  */
-public interface Pageable<T> {
+public interface Pageable<T extends Serializable> {
     public Integer getPage();
     public Integer getOffset();
     public Integer getLimit();
