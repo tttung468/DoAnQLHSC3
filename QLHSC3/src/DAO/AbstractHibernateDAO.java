@@ -7,6 +7,7 @@ package DAO;
 
 import connection.HibernateUtil;
 import java.io.Serializable;
+import java.util.Iterator;
 import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -166,25 +167,90 @@ public abstract class AbstractHibernateDAO<T extends Serializable> {
         deleteOne(entity);
     }
     
-    /**
-     * Lấy các dòng dữ liệu trong DB dựa vào pageable
-     * 
-     * @param pageable
-     * @return 
-     */
     public List<T> find(Pageable<T> pageable){
+        List<T> list = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        Query query;
+
+        //tạo câu truy vấn
+        String hql = generateHQLForFind(pageable);
+        
+        if (hql != null) {
+            try {
+                //create query
+                query = setValueForHQL(pageable, session, hql);
+
+                //query
+                tx = session.beginTransaction();
+                
+                if (query != null) {
+                    list = query.list();    //get all
+                }
+                
+                tx.commit();
+            } catch (Exception e) {
+                if (tx != null) {
+                    tx.rollback();
+                }
+                e.printStackTrace();
+            } finally {
+                session.close();
+            }
+        }
+        
+        return list;
+    }
+    
+    public Long count(Pageable<T> pageable){
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        Query query;
+        Long count = new Long(-1);
+
+        //tạo câu truy vấn
+        String hql = generateHQLForCount(pageable);
+        
+        if (hql != null) {
+            try {
+                //create query
+                query = setValueForHQL(pageable, session, hql);
+
+                //query
+                tx = session.beginTransaction();
+                
+                if (query != null) {
+                    Iterator iterator = query.iterate();
+                    count = (Long) iterator.next();  //count
+                }
+                
+                tx.commit();
+            } catch (Exception e) {
+                if (tx != null) {
+                    tx.rollback();
+                }
+                e.printStackTrace();
+            } finally {
+                session.close();
+            }
+        }
+        
+        return count;
+    }
+    
+    public String generateHQL(Pageable<T> pageable){
         return null;
     }
     
-    /**
-     * 
-     * @param pageable
-     * @return 
-     */
-    public Integer count(Pageable<T> pageable){
+    public String generateHQLForFind(Pageable<T> pageable){
         return null;
     }
     
+    public String generateHQLForCount(Pageable<T> pageable){
+        return null;
+    }
     
-    
+    public Query setValueForHQL(Pageable<T> pageable, Session session, String hql){
+        return null;
+    }
 }

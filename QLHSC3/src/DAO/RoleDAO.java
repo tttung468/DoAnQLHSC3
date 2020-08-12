@@ -5,11 +5,10 @@
  */
 package DAO;
 
-import connection.HibernateUtil;
-import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
+import org.hibernate.type.StringNVarcharType;
+import org.hibernate.type.StringType;
 import pojos.Role;
 import pagination.Pageable;
 import sort.Sorter;
@@ -24,128 +23,149 @@ public class RoleDAO extends AbstractHibernateDAO<Role>{
     }
     
     @Override
-    public List<Role> find(Pageable<Role> pageable) {
-        Integer offset = pageable.getOffset();
-        Integer limit = pageable.getLimit();
+    public String generateHQL(Pageable<Role> pageable){    
         Sorter sorter = pageable.getSorter();
         String searchKey = pageable.getSearchKey();
         Role role = pageable.getFilterModel();
-        List<Role> list = null;
-        Session session = HibernateUtil.getSessionFactory().openSession();
-        Transaction tx = null;
-        Query query;
+        StringBuilder sql = new StringBuilder();
 
-        String hql = generateHQLForFind(pageable);
-
-        System.out.println(hql);
-        
-//        try {
-//            query = session.createQuery(sql.toString());
-//            query.setFirstResult(offset);
-//            query.setMaxResults(limit);
-//
-//            tx = session.beginTransaction();
-//            list = query.list();    //get all
-//            tx.commit();
-//        } catch (Exception e) {
-//            if (tx != null) {
-//                tx.rollback();
-//            }
-//            e.printStackTrace();
-//        } finally {
-//            session.close();
-//        }
-        
-        return null;
-    }
-    
-    public String generateHQLForFind(Pageable<Role> pageable){    
-        Integer offset = pageable.getOffset();
-        Integer limit = pageable.getLimit();
-        Sorter sorter = pageable.getSorter();
-        String searchKey = pageable.getSearchKey();
-        Role role = pageable.getFilterModel();
-        
-//        Câu truy vấn:
-//        SELECT * FROM Role 
-//        WHERE code = ? AND name = ? AND priority = ? AND isdeleted = ?
-//        AND (code LIKE ? OR name LIKE ? OR priority LIKE ?)
-//        ORDER BY ?, ?
-//        LIMIT ?, ?
-
-        //Dòng 1: SELECT * FROM Role 
-        StringBuilder sql = new StringBuilder("from Role role");
+        //Dòng 1: SELECT * FROM Role
 
         //Dòng 2: WHERE code = ? AND name = ? AND priority = ? AND isdeleted = ?
         if (role != null || searchKey != null) {
-            sql.append(" WHERE");
+            sql.append(" where");
         }
         if (role != null) {
             //code
             if (role.getCode() != null) {
-                sql.append(" role.code=:code");
+                sql.append(" role.code = :code");
             }
             if (role.getCode() != null
                     && role.getName() != null) {
-                sql.append(" AND");
+                sql.append(" and");
             }
             
             //name
             if (role.getName() != null) {
-                sql.append(" role.name=:name");
+                sql.append(" role.name = :name");
             }
             if (role.getPriority() != null
                     && (role.getCode() != null
                     || role.getName() != null)) {
-                sql.append(" AND");
+                sql.append(" and");
             }
             
             //priority
             if (role.getPriority() != null) {
-                sql.append(" role.priority=:priority");
+                sql.append(" role.priority = :priority");
             }
             if (role.getIsDeleted()!= null
                     && (role.getCode() != null
                     || role.getName() != null
                     || role.getPriority() != null)) {
-                sql.append(" AND");
+                sql.append(" and");
             }
             
             //isDeleted
             if (role.getIsDeleted() != null) {
-                sql.append(" role.isdeleted=:isdeleted");
+                sql.append(" role.isDeleted = :isDeleted");
             }
             if (searchKey != null
                     && (role.getCode() != null
                     || role.getName() != null
                     || role.getPriority() != null
                     || role.getIsDeleted() != null)) {
-                sql.append(" AND");
+                sql.append(" and");
             }
         }
         
         //Dòng 3: AND (code LIKE ? OR name LIKE ? OR priority LIKE ?)
         if (searchKey != null) {
-            sql.append(" code LIKE :searchKey");
-            sql.append(" OR name LIKE :searchKey");
-            sql.append(" OR priority LIKE :searchKey");
+            sql.append(" (role.code like :searchKey");
+            sql.append(" or role.name like :searchKey");
+            sql.append(" or role.priority like :searchKey)");
         }
         
         //Dòng 4: ORDER BY ?, ?
         if (sorter != null
                 && sorter.getSortBy() != null
                 && sorter.getSortName() != null) {
-            sql.append(" ORDER BY ").append(sorter.getSortBy()).append(" ");
-            sql.append(sorter.getSortName());
+            sql.append(" order by " + sorter.getSortBy() + " " + sorter.getSortName());
         }
         
-        //Dòng 5: LIMIT ?, ?
-//        if (offset != null
-//                && limit != null) {
-//            sql.append(" LIMIT " + offset + ", " + limit);
-//        }
-        
         return sql.toString();
+    }
+
+    @Override
+    public String generateHQLForFind(Pageable<Role> pageable) {
+//        Câu truy vấn:
+//        SELECT * FROM Role
+//        WHERE code = ? AND name = ? AND priority = ? AND isdeleted = ?
+//        AND (code LIKE ? OR name LIKE ? OR priority LIKE ?)
+//        ORDER BY ? ?
+//        LIMIT ?, ?
+
+        //Dòng 1: SELECT * FROM Role    
+        String hql = "from Role role";
+        
+        //Các dòng còn lại
+        hql += generateHQL(pageable);
+        
+        //test
+        //System.out.println("\n" + hql);
+        
+        return hql;
+    }
+
+    @Override
+    public String generateHQLForCount(Pageable<Role> pageable) {
+        //        Câu truy vấn:
+//        SELECT COUNT(*) FROM Role 
+//        WHERE code = ? AND name = ? AND priority = ? AND isdeleted = ?
+//        AND (code LIKE ? OR name LIKE ? OR priority LIKE ?)
+//        ORDER BY ? ?
+//        LIMIT ?, ?
+
+        //Dòng 1: SELECT COUNT(*) FROM Role    
+        String hql = "select count(*) from Role role";
+        
+        //Các dòng còn lại
+        hql += generateHQL(pageable);
+        
+        //test
+        //System.out.println("\n" + hql);
+        
+        return hql;
+    }
+    
+    @Override
+    public Query setValueForHQL(Pageable<Role> pageable, Session session, String hql) {
+        Query query = session.createQuery(hql);
+        Role role = pageable.getFilterModel();
+        
+        if (role != null) {
+            if(role.getCode() != null) {
+                query.setParameter("code", role.getCode(), StringType.INSTANCE);
+            }
+            if(role.getName() != null){
+                query.setParameter("name", role.getName(), StringNVarcharType.INSTANCE);
+            }
+            if(role.getPriority() != null){
+                query.setParameter("priority", role.getPriority());
+            }
+            if(role.getIsDeleted() != null){
+                query.setParameter("isDeleted", role.getIsDeleted());
+            }
+        }
+        if (pageable.getSearchKey() != null) {
+            query.setString("searchKey", "%"+pageable.getSearchKey()+"%");
+        }
+        if (pageable.getOffset() != null && pageable.getLimit() != null) {
+            query.setFirstResult(pageable.getOffset());
+            query.setMaxResults(pageable.getLimit());
+        }  
+        
+        return query;
     }
     
     

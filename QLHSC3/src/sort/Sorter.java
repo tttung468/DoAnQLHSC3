@@ -13,7 +13,7 @@ public class Sorter {
 
     public static final String ASC = "asc";
     public static final String DESC = "desc";
-    private String sortBy;      //role.name, role.priority
+    private String sortBy;      //role.code, schoolClass.grade.id, hrStaff.id
     private String sortName;
 
     public Sorter(String sortBy, String sortName) {
