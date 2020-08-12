@@ -1,0 +1,163 @@
+<<<<<<< HEAD
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 5, 2020 10:41:29 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojos.Student" table="student" catalog="qlhsc3db" optimistic-lock="version">
+        <id name="id" type="java.lang.Long">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="ethnic" class="pojos.Ethnic" lazy="false" fetch="join">
+            <column name="ethnicid" />
+        </many-to-one>
+        <many-to-one name="nationality" class="pojos.Nationality" lazy="false" fetch="join">
+            <column name="nationalityid" />
+        </many-to-one>
+        <many-to-one name="religion" class="pojos.Religion" lazy="false" fetch="join">
+            <column name="religionid" />
+        </many-to-one>
+        <property name="code" type="string">
+            <column name="code" unique="true" />
+        </property>
+        <property name="name" type="string">
+            <column name="name" />
+        </property>
+        <property name="phone" type="string">
+            <column name="phone" />
+        </property>
+        <property name="identifycard" type="string">
+            <column name="identifycard" unique="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" unique="true" />
+        </property>
+        <property name="avatarpath" type="string">
+            <column name="avatarpath" />
+        </property>
+        <property name="gender" type="string">
+            <column name="gender" />
+        </property>
+        <property name="birth" type="date">
+            <column name="birth" length="10" />
+        </property>
+        <property name="address" type="string">
+            <column name="address" />
+        </property>
+        <property name="status" type="string">
+            <column name="status" />
+        </property>
+        <property name="isdeleted" type="java.lang.Boolean">
+            <column name="isdeleted" />
+        </property>
+        <property name="createddate" type="timestamp">
+            <column name="createddate" length="19" not-null="true" />
+        </property>
+        <property name="createdby" type="string">
+            <column name="createdby" />
+        </property>
+        <property name="modifieddate" type="timestamp">
+            <column name="modifieddate" length="19" />
+        </property>
+        <property name="modifiedby" type="string">
+            <column name="modifiedby" />
+        </property>
+        <set name="conducts" table="conduct" inverse="true" lazy="false" fetch="join">
+            <key>
+                <column name="studentid" />
+            </key>
+            <one-to-many class="pojos.Conduct" />
+        </set>
+        <set name="observations" table="observation" inverse="true" lazy="false" fetch="join">
+            <key>
+                <column name="studentid" />
+            </key>
+            <one-to-many class="pojos.Observation" />
+        </set>
+        <set name="relativeses" table="relatives" inverse="true" lazy="false" fetch="join">
+            <key>
+                <column name="studentid" />
+            </key>
+            <one-to-many class="pojos.Relatives" />
+        </set>
+        <set name="studentofclasses" table="studentofclass" inverse="true" lazy="false" fetch="join">
+            <key>
+                <column name="studentid" />
+            </key>
+            <one-to-many class="pojos.Studentofclass" />
+        </set>
+        <set name="scores" table="score" inverse="true" lazy="false" fetch="join">
+            <key>
+                <column name="studentid" />
+            </key>
+            <one-to-many class="pojos.Score" />
+        </set>
+    </class>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 5, 2020 10:41:29 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="qlhsc3db" name="pojos.Student" optimistic-lock="version" table="student">
+    <id name="id" type="java.lang.Long">
+      <column name="id"/>
+      <generator class="identity"/>
+    </id>
+    <many-to-one class="pojos.Ethnic" fetch="join" lazy="false" name="ethnic">
+      <column name="ethnicid"/>
+    </many-to-one>
+    <many-to-one class="pojos.Nationality" fetch="join" lazy="false" name="nationality">
+      <column name="nationalityid"/>
+    </many-to-one>
+    <many-to-one class="pojos.Religion" fetch="join" lazy="false" name="religion">
+      <column name="religionid"/>
+    </many-to-one>
+    <property name="code" type="string">
+      <column name="code" unique="true"/>
+    </property>
+    <property name="name" type="string">
+      <column name="name"/>
+    </property>
+    <property name="phone" type="string">
+      <column name="phone"/>
+    </property>
+    <property name="identifyCard" type="string">
+      <column name="identifycard" unique="true"/>
+    </property>
+    <property name="email" type="string">
+      <column name="email" unique="true"/>
+    </property>
+    <property name="avatarpath" type="string">
+      <column name="avatarpath"/>
+    </property>
+    <property name="gender" type="string">
+      <column name="gender"/>
+    </property>
+    <property name="birth" type="date">
+      <column length="10" name="birth"/>
+    </property>
+    <property name="address" type="string">
+      <column name="address"/>
+    </property>
+    <property name="status" type="string">
+      <column name="status"/>
+    </property>
+    <property name="isDeleted" type="java.lang.Boolean">
+      <column name="isdeleted"/>
+    </property>
+    <property name="createdDate" type="timestamp">
+      <column length="19" name="createddate" not-null="true"/>
+    </property>
+    <property name="createdBy" type="string">
+      <column name="createdby"/>
+    </property>
+    <property name="modifiedDate" type="timestamp">
+      <column length="19" name="modifieddate"/>
+    </property>
+    <property name="modifiedBy" type="string">
+      <column name="modifiedby"/>
+    </property>
+  </class>
+>>>>>>> Dev_TungThai
+</hibernate-mapping>
