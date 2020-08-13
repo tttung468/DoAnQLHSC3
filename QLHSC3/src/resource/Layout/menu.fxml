@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="1382.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <MenuBar layoutY="-4.0" prefHeight="50.0" prefWidth="1382.0">
+        <menus>
+          <Menu mnemonicParsing="false" style="-fx-font-size: 14; -fx-font-weight: bold;" text="Quản lý CBNV-HS">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Quản lý giáo viên">
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="50.0">
+                           <image>
+                              <Image url="@../Image/teacher.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MenuItem>
+                  <MenuItem mnemonicParsing="false" text="Quản lý giáo vụ">
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="50.0">
+                           <image>
+                              <Image url="@../Image/office.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MenuItem>
+                  <MenuItem mnemonicParsing="false" text="Quản lý nhân sự">
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="50.0">
+                           <image>
+                              <Image url="@../Image/staff.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MenuItem>
+                  <MenuItem mnemonicParsing="false" text="Quản lý học sinh">
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="50.0">
+                           <image>
+                              <Image url="@../Image/student.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MenuItem>
+            </items>
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="50.0">
+                     <image>
+                        <Image url="@../Image/teacherandstudent.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+          </Menu>
+          <Menu mnemonicParsing="false" style="-fx-font-size: 14; -fx-font-weight: bold;" text="Quản lý chương trình giáo dục">
+            <items>
+                  <MenuItem mnemonicParsing="false" text="Quản lý môn học">
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="50.0">
+                           <image>
+                              <Image url="@../Image/subject.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MenuItem>
+              <MenuItem mnemonicParsing="false" text="Quản lý năm học">
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="50.0">
+                           <image>
+                              <Image url="@../Image/schoolyear.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MenuItem>
+                  <MenuItem mnemonicParsing="false" text="Quản lý lớp học">
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="50.0">
+                           <image>
+                              <Image url="@../Image/classroom.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MenuItem>
+                  <MenuItem mnemonicParsing="false" text="Phân lớp &amp; Chuyển lớp">
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="50.0">
+                           <image>
+                              <Image url="@../Image/exchange.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MenuItem>
+            </items>
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="50.0">
+                     <image>
+                        <Image url="@../Image/educationalprogram.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+          </Menu>
+          <Menu mnemonicParsing="false" style="-fx-font-size: 14; -fx-font-weight: bold;" text="Tra cứu &amp; Thống kê">
+            <items>
+              <MenuItem mnemonicParsing="false" text="Bảng điểm">
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="50.0">
+                           <image>
+                              <Image url="@../Image/score.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MenuItem>
+                  <Menu mnemonicParsing="false" text="Thống kê">
+                    <items>
+                        <MenuItem mnemonicParsing="false" text="Cán bộ - Nhân viên">
+                           <graphic>
+                              <ImageView fitHeight="50.0" fitWidth="50.0">
+                                 <image>
+                                    <Image url="@../Image/office.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </MenuItem>
+                        <Menu mnemonicParsing="false" text="Học sinh">
+                          <items>
+                            <MenuItem mnemonicParsing="false" text="Số lượng" />
+                              <MenuItem mnemonicParsing="false" text="Hạnh kiểm" />
+                              <MenuItem mnemonicParsing="false" text="Học lực" />
+                          </items>
+                           <graphic>
+                              <ImageView fitHeight="50.0" fitWidth="50.0">
+                                 <image>
+                                    <Image url="@../Image/result.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Menu>
+                    </items>
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="50.0">
+                           <image>
+                              <Image url="@../Image/statistics.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Menu>
+                  <MenuItem mnemonicParsing="false" text="Tra cứu">
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="50.0">
+                           <image>
+                              <Image url="@../Image/search.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MenuItem>
+            </items>
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="50.0">
+                     <image>
+                        <Image url="@../Image/searchandstatistics.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+          </Menu>
+            <Menu mnemonicParsing="false" style="-fx-font-size: 14; -fx-font-weight: bold;" text="Phân công">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Phân công giáo viên">
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="50.0">
+                           <image>
+                              <Image url="@../Image/assignment.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MenuItem>
+              </items>
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="50.0">
+                     <image>
+                        <Image url="@../Image/assignment2.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Menu>
+            <Menu mnemonicParsing="false" style="-fx-font-size: 14; -fx-font-weight: bold;" text="Quy định">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Quản lý quy định">
+                     <graphic>
+                        <ImageView fitHeight="50.0" fitWidth="50.0">
+                           <image>
+                              <Image url="@../Image/rules.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </MenuItem>
+              </items>
+               <graphic>
+                  <ImageView fitHeight="50.0" fitWidth="50.0">
+                     <image>
+                        <Image url="@../Image/rules.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Menu>
+        </menus>
+      </MenuBar>
+   </children>
+</AnchorPane>
