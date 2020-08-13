@@ -1,0 +1,85 @@
+<<<<<<< HEAD
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 5, 2020 10:41:29 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojos.Regulation" table="regulation" catalog="qlhsc3db" optimistic-lock="version">
+        <id name="id" type="java.lang.Long">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="maximumscore" type="java.lang.Float">
+            <column name="maximumscore" precision="12" scale="0" />
+        </property>
+        <property name="minimumcapacity" type="java.lang.Integer">
+            <column name="minimumcapacity" />
+        </property>
+        <property name="maximumcapacity" type="java.lang.Integer">
+            <column name="maximumcapacity" />
+        </property>
+        <property name="minimumage" type="java.lang.Integer">
+            <column name="minimumage" />
+        </property>
+        <property name="maximumage" type="java.lang.Integer">
+            <column name="maximumage" />
+        </property>
+        <property name="isdeleted" type="java.lang.Boolean">
+            <column name="isdeleted" />
+        </property>
+        <property name="createddate" type="timestamp">
+            <column name="createddate" length="19" not-null="true" />
+        </property>
+        <property name="createdby" type="string">
+            <column name="createdby" />
+        </property>
+        <property name="modifieddate" type="timestamp">
+            <column name="modifieddate" length="19" />
+        </property>
+        <property name="modifiedby" type="string">
+            <column name="modifiedby" />
+        </property>
+    </class>
+=======
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 5, 2020 10:41:29 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+  <class catalog="qlhsc3db" name="pojos.Regulation" optimistic-lock="version" table="regulation">
+    <id name="id" type="java.lang.Long">
+      <column name="id"/>
+      <generator class="identity"/>
+    </id>
+    <property name="maximumScore" type="java.lang.Float">
+      <column name="maximumscore" precision="12" scale="0"/>
+    </property>
+    <property name="minimumCapacity" type="java.lang.Integer">
+      <column name="minimumcapacity"/>
+    </property>
+    <property name="maximumCapacity" type="java.lang.Integer">
+      <column name="maximumcapacity"/>
+    </property>
+    <property name="minimumAge" type="java.lang.Integer">
+      <column name="minimumage"/>
+    </property>
+    <property name="maximumAge" type="java.lang.Integer">
+      <column name="maximumage"/>
+    </property>
+    <property name="isDeleted" type="java.lang.Boolean">
+      <column name="isdeleted"/>
+    </property>
+    <property name="createdDate" type="timestamp">
+      <column length="19" name="createddate" not-null="true"/>
+    </property>
+    <property name="createdBy" type="string">
+      <column name="createdby"/>
+    </property>
+    <property name="modifiedDate" type="timestamp">
+      <column length="19" name="modifieddate"/>
+    </property>
+    <property name="modifiedBy" type="string">
+      <column name="modifiedby"/>
+    </property>
+  </class>
+>>>>>>> Dev_TungThai
+</hibernate-mapping>
