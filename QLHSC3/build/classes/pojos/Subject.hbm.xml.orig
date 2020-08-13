@@ -1,0 +1,81 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 5, 2020 10:41:29 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="pojos.Subject" table="subject" catalog="qlhsc3db" optimistic-lock="version">
+        <id name="id" type="java.lang.Long">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="code" type="string">
+            <column name="code" unique="true" />
+        </property>
+        <property name="name" type="string">
+            <column name="name" />
+        </property>
+        <property name="classHours" type="java.lang.Integer">
+            <column name="classHours" />
+        </property>
+        <property name="factor" type="java.lang.Integer">
+            <column name="factor" />
+        </property>
+<<<<<<< HEAD
+        <property name="isdeleted" type="java.lang.Boolean">
+            <column name="isdeleted" />
+        </property>
+        <property name="createddate" type="timestamp">
+            <column name="createddate" length="19" not-null="true" />
+        </property>
+        <property name="createdby" type="string">
+            <column name="createdby" />
+        </property>
+        <property name="modifieddate" type="timestamp">
+            <column name="modifieddate" length="19" />
+        </property>
+        <property name="modifiedby" type="string">
+            <column name="modifiedby" />
+        </property>
+        <set name="scores" table="score" inverse="true" lazy="false" fetch="join">
+            <key>
+                <column name="subjectid" />
+            </key>
+            <one-to-many class="pojos.Score" />
+        </set>
+        <set name="teachers" table="teacher" inverse="true" lazy="false" fetch="join">
+            <key>
+                <column name="subjectid" />
+            </key>
+            <one-to-many class="pojos.Teacher" />
+        </set>
+        <set name="teacherassignments" table="teacherassignment" inverse="true" lazy="false" fetch="join">
+            <key>
+                <column name="subjectid" />
+            </key>
+            <one-to-many class="pojos.Teacherassignment" />
+        </set>
+        <set name="headmasters" table="headmaster" inverse="true" lazy="false" fetch="join">
+            <key>
+                <column name="subjectid" />
+            </key>
+            <one-to-many class="pojos.Headmaster" />
+        </set>
+=======
+        <property name="isDeleted" type="java.lang.Boolean">
+            <column name="isdeleted" />
+        </property>
+        <property name="createdDate" type="timestamp">
+            <column name="createddate" length="19" not-null="true" />
+        </property>
+        <property name="createdBy" type="string">
+            <column name="createdby" />
+        </property>
+        <property name="modifiedDate" type="timestamp">
+            <column name="modifieddate" length="19" />
+        </property>
+        <property name="modifiedBy" type="string">
+            <column name="modifiedby" />
+        </property>
+>>>>>>> Dev_TungThai
+    </class>
+</hibernate-mapping>
