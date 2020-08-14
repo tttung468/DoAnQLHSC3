@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<GridPane prefHeight="90.0" style="-fx-background-color: #2F80ED;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.toanhuuvuong.controller.common.HeaderController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <HBox alignment="CENTER_RIGHT" GridPane.columnIndex="2">
+         <children>
+            <MenuButton fx:id="optionMenuButton" mnemonicParsing="false" prefHeight="50.0" style="-fx-background-radius: 50; -fx-background-color: #23DB1F;" text="Taylor Swift" textAlignment="CENTER">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#updateProfileMenuItemOnAction" style="-fx-font-size: 20; -fx-background-color: #23DB1F; -fx-font-weight: bold; -fx-pref-width: 304; -fx-pref-height: 50; -fx-alignment: center;" text="Cập nhật profile" />
+                  <MenuItem mnemonicParsing="false" onAction="#logoutMenuItemOnAction" style="-fx-font-size: 20; -fx-background-color: #23DB1F; -fx-font-weight: bold; -fx-pref-width: 304; -fx-pref-height: 50; -fx-alignment: center;" text="Đăng xuất" />
+               </items>
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+               <graphic>
+                  <Circle fx:id="avatarCircle" fill="WHITE" radius="20.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+               </graphic>
+            </MenuButton>
+         </children></HBox>
+      <HBox alignment="CENTER" GridPane.columnIndex="1">
+         <children>
+            <Label fx:id="titleLabel" text="TITLE" textFill="#be2626">
+               <font>
+                  <Font name="System Bold" size="48.0" />
+               </font>
+            </Label>
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT">
+         <children>
+            <Circle fx:id="logoCircle" fill="WHITE" radius="40.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" />
+         </children>
+      </HBox>
+   </children>
+   <padding>
+      <Insets bottom="5.0" left="10.0" right="10.0" top="5.0" />
+   </padding>
+</GridPane>
