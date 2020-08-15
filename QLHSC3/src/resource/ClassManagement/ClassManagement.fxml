@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Pagination?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="574.0" prefWidth="1382.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView layoutX="404.0" layoutY="62.0" prefHeight="450.0" prefWidth="610.0">
+         <columns>
+            <TableColumn prefWidth="182.0" text="Mã Lớp" />
+            <TableColumn prefWidth="236.0" text="Khối" />
+            <TableColumn prefWidth="191.0" text="Lớp" />
+         </columns>
+      </TableView>
+      <Label layoutX="427.0" layoutY="19.0" text="Khối:">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <ComboBox layoutX="466.0" layoutY="17.0" prefHeight="25.0" prefWidth="120.0" />
+      <Pagination layoutX="688.0" layoutY="515.0" pageCount="100" prefHeight="25.0" prefWidth="82.0" />
+      <Button layoutX="912.0" layoutY="14.0" mnemonicParsing="false" style="-fx-background-color: #23DB1F; -fx-background-radius: 20;" text="Tạo mới">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
