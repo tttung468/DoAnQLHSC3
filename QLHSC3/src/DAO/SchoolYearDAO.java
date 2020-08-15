@@ -122,10 +122,10 @@ public class SchoolYearDAO extends AbstractHibernateDAO<SchoolYear>{
 //        ORDER BY ? ?
 //        LIMIT ?, ?
 
-        //Dòng 1: SELECT * FROM SchoolYear    
+        //SELECT * FROM SchoolYear    
         String hql = "from SchoolYear schoolYear";
         
-        //Các dòng còn lại
+        //Cac dong con lai
         hql += generateHQL(pageable);
         
         //test
@@ -145,10 +145,10 @@ public class SchoolYearDAO extends AbstractHibernateDAO<SchoolYear>{
 //        ORDER BY ? ?
 //        LIMIT ?, ?
 
-        //Dòng 1: SELECT COUNT(*) FROM SchoolYear schoolYear
+        //SELECT COUNT(*) FROM SchoolYear schoolYear
         String hql = "select count(*) from SchoolYear schoolYear";
         
-        //Các dòng còn lại
+        //Cac dong con lai
         hql += generateHQL(pageable);
         
         //test

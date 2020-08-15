@@ -212,7 +212,7 @@ public class OfficeStaffDAO extends AbstractHibernateDAO<OfficeStaff>{
         //SELECT * FROM OfficeStaff officeStaff   
         String hql = "from OfficeStaff officeStaff";
         
-        //Các dòng còn lại
+        //Cac dong con lai
         hql += generateHQL(pageable);
         
         //test
@@ -236,7 +236,7 @@ public class OfficeStaffDAO extends AbstractHibernateDAO<OfficeStaff>{
         //SELECT COUNT(*) FROM OfficeStaff officeStaff   
         String hql = "select count(*) from OfficeStaff officeStaff";
         
-        //Các dòng còn lại
+        //Cac dong con lai
         hql += generateHQL(pageable);
         
         //test

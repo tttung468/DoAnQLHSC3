@@ -212,7 +212,7 @@ public class HRStaffDAO extends AbstractHibernateDAO<HRStaff>{
         //SELECT * FROM HRStaff hrStaff
         String hql = "from HRStaff hrStaff";
         
-        //Các dòng còn lại
+        //Cac dong con lai
         hql += generateHQL(pageable);
         
         //test
@@ -236,7 +236,7 @@ public class HRStaffDAO extends AbstractHibernateDAO<HRStaff>{
         //SELECT COUNT(*) FROM HRStaff hrStaff
         String hql = "select count(*) from HRStaff hrStaff";
         
-        //Các dòng còn lại
+        //Cac dong con lai
         hql += generateHQL(pageable);
         
         //test

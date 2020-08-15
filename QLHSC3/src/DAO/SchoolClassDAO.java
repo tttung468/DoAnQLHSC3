@@ -29,9 +29,9 @@ public class SchoolClassDAO extends AbstractHibernateDAO<SchoolClass>{
         SchoolClass schoolClass = pageable.getFilterModel();
         StringBuilder sql = new StringBuilder();
 
-        //Dòng 1: SELECT * FROM SchoolClass
+        //SELECT * FROM SchoolClass
 
-        //Dòng 2: WHERE code = ? AND name = ? AND gradeid = ? AND isdeleted = ?
+        //WHERE code = ? AND name = ? AND gradeid = ? AND isdeleted = ?
         if (schoolClass != null || searchKey != null) {
             sql.append(" where");
         }
@@ -104,10 +104,10 @@ public class SchoolClassDAO extends AbstractHibernateDAO<SchoolClass>{
 //        ORDER BY ? ?
 //        LIMIT ?, ?
 
-        //Dòng 1: SELECT * FROM SchoolClass    
+        //SELECT * FROM SchoolClass    
         String hql = " from SchoolClass schoolClass";
         
-        //Các dòng còn lại
+        //Cac dong con lai
         hql += generateHQL(pageable);
         
         //test
@@ -124,10 +124,10 @@ public class SchoolClassDAO extends AbstractHibernateDAO<SchoolClass>{
 //        ORDER BY ? ?
 //        LIMIT ?, ?
 
-        //Dòng 1: SELECT * FROM SchoolClass    
+        //SELECT * FROM SchoolClass    
         String hql = " select count(*) from SchoolClass schoolClass";
         
-        //Các dòng còn lại
+        //Cac dong con lai
         hql += generateHQL(pageable);
         
         //test

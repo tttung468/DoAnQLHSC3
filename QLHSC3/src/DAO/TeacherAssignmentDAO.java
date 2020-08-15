@@ -140,7 +140,7 @@ public class TeacherAssignmentDAO extends AbstractHibernateDAO<TeacherAssignment
         //SELECT * FROM TeacherAssignment teacherAssignment    
         String hql = "from TeacherAssignment teacherAssignment";
         
-        //Các dòng còn lại
+        //Cac dong con lai
         hql += generateHQL(pageable);
         
         //test
@@ -164,7 +164,7 @@ public class TeacherAssignmentDAO extends AbstractHibernateDAO<TeacherAssignment
         //SELECT COUNT(*) FROM TeacherAssignment teacherAssignment    
         String hql = "select count(*) from TeacherAssignment teacherAssignment";
         
-        //Các dòng còn lại
+        //Cac dong con lai
         hql += generateHQL(pageable);
         
         //test

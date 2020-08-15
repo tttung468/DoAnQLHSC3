@@ -129,7 +129,7 @@ public class SubjectDAO extends AbstractHibernateDAO<Subject>{
         hql += generateHQL(pageable);
         
         //test
-        System.out.println("\n" + hql);
+        //System.out.println("\n" + hql);
         
         return hql;
     }
@@ -152,7 +152,7 @@ public class SubjectDAO extends AbstractHibernateDAO<Subject>{
         hql += generateHQL(pageable);
         
         //test
-        System.out.println("\n" + hql);
+        //System.out.println("\n" + hql);
         
         return hql;
     }

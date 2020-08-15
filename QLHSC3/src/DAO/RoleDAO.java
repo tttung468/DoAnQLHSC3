@@ -98,17 +98,16 @@ public class RoleDAO extends AbstractHibernateDAO<Role>{
 
     @Override
     public String generateHQLForFind(Pageable<Role> pageable) {
-//        Câu truy vấn:
 //        SELECT * FROM Role
 //        WHERE code = ? AND name = ? AND priority = ? AND isdeleted = ?
 //        AND (code LIKE ? OR name LIKE ? OR priority LIKE ?)
 //        ORDER BY ? ?
 //        LIMIT ?, ?
 
-        //Dòng 1: SELECT * FROM Role    
+        //SELECT * FROM Role    
         String hql = "from Role role";
         
-        //Các dòng còn lại
+        //Cac dong con lai
         hql += generateHQL(pageable);
         
         //test
@@ -119,7 +118,6 @@ public class RoleDAO extends AbstractHibernateDAO<Role>{
 
     @Override
     public String generateHQLForCount(Pageable<Role> pageable) {
-        //        Câu truy vấn:
 //        SELECT COUNT(*) FROM Role 
 //        WHERE code = ? AND name = ? AND priority = ? AND isdeleted = ?
 //        AND (code LIKE ? OR name LIKE ? OR priority LIKE ?)
@@ -129,7 +127,7 @@ public class RoleDAO extends AbstractHibernateDAO<Role>{
         //Dòng 1: SELECT COUNT(*) FROM Role    
         String hql = "select count(*) from Role role";
         
-        //Các dòng còn lại
+        //Cac dong con lai
         hql += generateHQL(pageable);
         
         //test

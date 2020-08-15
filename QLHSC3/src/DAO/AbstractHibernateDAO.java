@@ -27,12 +27,6 @@ public abstract class AbstractHibernateDAO<T extends Serializable> {
         clazz = clazzToSet;
     }
 
-    /**
-     * Lấy 1 dòng dữ liệu dựa vào id, trả về object T đã được mapping
-     * 
-     * @param id
-     * @return 
-     */
     public T findOne(long id) {
         T entity = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -41,7 +35,6 @@ public abstract class AbstractHibernateDAO<T extends Serializable> {
         try {
             tx = session.beginTransaction();
             entity = (T) session.get(clazz, id);     //get
-            tx.commit();
         } catch (Exception e) {
             if (tx != null) {
                 tx.rollback();
@@ -53,13 +46,7 @@ public abstract class AbstractHibernateDAO<T extends Serializable> {
         
         return entity;
     }
-
-    /**
-     * Lấy tất cả các dòng trong table clazz
-     * Trả về DS các objects được mapping
-     * 
-     * @return 
-     */
+    
     public List<T> findAll() {
         List<T> list = null;
         Session session = HibernateUtil.getSessionFactory().openSession();
@@ -84,13 +71,6 @@ public abstract class AbstractHibernateDAO<T extends Serializable> {
         return list;
    }
 
-    /**
-     * Thêm 1 dòng dữ liệu vào DB
-     * Trả về id trên table, nếu thất bại trả về -1, và ngược lại
-     * 
-     * @param entity
-     * @return 
-     */
     public long insertOne(T entity) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
@@ -112,11 +92,6 @@ public abstract class AbstractHibernateDAO<T extends Serializable> {
         return id;
     }
 
-    /**
-     * Cập nhật lại dữ liệu của 1 dòng trong DB
-     * 
-     * @param entity 
-     */
     public void updateOne(T entity) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
@@ -135,11 +110,6 @@ public abstract class AbstractHibernateDAO<T extends Serializable> {
         }
     }
 
-    /**
-     * Xóa 1 dòng dữ liệu trong DB
-     * 
-     * @param entity 
-     */
     public void deleteOne(T entity) {
         Session session = HibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
@@ -158,10 +128,6 @@ public abstract class AbstractHibernateDAO<T extends Serializable> {
         }
     }
 
-    /**
-     * Xóa 1 dòng dữ liệu trong DB dựa vào id
-     * @param id 
-     */
     public void deleteById(long id) {
         final T entity = findOne(id);
         deleteOne(entity);
@@ -253,4 +219,7 @@ public abstract class AbstractHibernateDAO<T extends Serializable> {
     public Query setValueForHQL(Pageable<T> pageable, Session session, String hql){
         return null;
     }
+    
+
+
 }
