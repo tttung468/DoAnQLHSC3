@@ -140,4 +140,16 @@ public class RoleDAO extends AbstractHibernateDAO<Role> implements IRoleDAO
 
 		return query;
 	}
+	@Override
+	public Role findByCode(String code) 
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public Role findByName(String name) 
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

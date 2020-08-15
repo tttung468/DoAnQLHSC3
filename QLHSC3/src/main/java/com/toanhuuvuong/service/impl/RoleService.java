@@ -3,7 +3,6 @@ package com.toanhuuvuong.service.impl;
 import java.util.Hashtable;
 import java.util.Map;
 
-import com.toanhuuvuong.dao.IRoleDAO;
 import com.toanhuuvuong.dao.impl.AbstractHibernateDAO;
 import com.toanhuuvuong.dao.impl.RoleDAO;
 import com.toanhuuvuong.model.Role;
@@ -11,7 +10,7 @@ import com.toanhuuvuong.service.IRoleService;
 
 public class RoleService extends GenericService<Role> implements IRoleService
 { 
-	private IRoleDAO roleDAO = new RoleDAO();
+	private RoleDAO roleDAO = new RoleDAO();
 	
 	@Override
 	public Map<String, String> validate(Role model)
@@ -34,6 +33,16 @@ public class RoleService extends GenericService<Role> implements IRoleService
 	@Override
 	public AbstractHibernateDAO<Role> getDAO() 
 	{
-		return (RoleDAO)roleDAO;
+		return roleDAO;
+	}
+	@Override
+	public Role findByCode(String code)
+	{
+		return null;
+	}
+	@Override
+	public Role findByName(String name)
+	{
+		return null;
 	}
 }

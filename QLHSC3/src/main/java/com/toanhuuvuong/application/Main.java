@@ -13,8 +13,8 @@ public class Main extends Application
 	@Override
 	public void start(Stage primaryStage) 
 	{
-		URL url = getClass().getResource("views/ontap/copy.fxml");
-		String title = "Copy file";
+		URL url = getClass().getResource("views/student/list.fxml");
+		String title = "Danh sách giáo vụ";
 		
 		SceneUtils.changeSceneWithoutLostFocus(url, primaryStage, title, SystemConstant.FRAME_WIDTH, SystemConstant.FRAME_HEIGHT);
 	}

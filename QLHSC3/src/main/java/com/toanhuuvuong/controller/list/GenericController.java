@@ -6,7 +6,7 @@ import java.util.ResourceBundle;
 
 import com.toanhuuvuong.constant.SystemConstant;
 import com.toanhuuvuong.controller.common.HeaderController;
-import com.toanhuuvuong.model.GenericModel;
+import com.toanhuuvuong.model.Generic;
 import com.toanhuuvuong.pagination.PageRequest;
 import com.toanhuuvuong.pagination.Pageable;
 import com.toanhuuvuong.utils.SceneUtils;
@@ -27,14 +27,10 @@ import javafx.scene.control.ListView;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.Pagination;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.SelectionMode;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ToggleGroup;
-import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 
@@ -168,9 +164,8 @@ public abstract class GenericController<T> implements Initializable
 		isDeletedCol.setCellValueFactory(cell ->
 		{
 			ObjectProperty<String> prop = new SimpleObjectProperty<String>();
-			@SuppressWarnings("unchecked")
-			GenericModel<T> value = (GenericModel<T>)(cell.getValue());
-			prop.set(value.getIsDeleted() ? "Khóa" : "Mở");
+			Generic value = (Generic)(cell.getValue());
+			prop.set(value.getIsDeleted() != null && value.getIsDeleted() ? "Khóa" : "Mở");
 			return prop;
 		});
 	}

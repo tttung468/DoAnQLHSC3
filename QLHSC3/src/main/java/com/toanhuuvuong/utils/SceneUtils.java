@@ -10,7 +10,7 @@ import javafx.stage.Stage;
 
 public class SceneUtils 
 {
-	public static FXMLLoader changeScene(URL url, Stage stage, String title, Integer width, Integer height)
+	public static FXMLLoader changeScene(URL url, Stage stage, String title, Double width, Double height)
 	{
 		if(url == null)
 			return null;
@@ -35,7 +35,7 @@ public class SceneUtils
 		
 		return loader;
 	}
-	public static FXMLLoader changeSceneWithoutLostFocus(URL url, Stage stage, String title, Integer width, Integer height)
+	public static FXMLLoader changeSceneWithoutLostFocus(URL url, Stage stage, String title, Double width, Double height)
 	{
 		if(url == null)
 			return null;

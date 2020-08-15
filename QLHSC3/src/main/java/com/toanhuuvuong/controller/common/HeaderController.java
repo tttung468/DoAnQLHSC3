@@ -3,7 +3,7 @@ package com.toanhuuvuong.controller.common;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.toanhuuvuong.model.AccountModel;
+import com.toanhuuvuong.model.Account;
 import com.toanhuuvuong.utils.SessionUtils;
 
 import javafx.event.ActionEvent;
@@ -27,7 +27,7 @@ public class HeaderController implements Initializable
 	@FXML
 	private MenuButton optionMenuButton;
 	
-	private AccountModel accountModel = (AccountModel)SessionUtils.getInstance().getValue("accountModel");
+	private Account accountModel = (Account)SessionUtils.getInstance().getValue("accountModel");
 	// ------------------------------------------- Methods
 	@Override
 	public void initialize(URL location, ResourceBundle resources) 

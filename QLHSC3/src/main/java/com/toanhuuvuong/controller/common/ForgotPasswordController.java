@@ -7,7 +7,6 @@ import javax.mail.MessagingException;
 
 import com.toanhuuvuong.constant.SystemConstant;
 import com.toanhuuvuong.model.Account;
-import com.toanhuuvuong.service.IAccountService;
 import com.toanhuuvuong.service.impl.AccountService;
 import com.toanhuuvuong.utils.MailUtils;
 import com.toanhuuvuong.utils.SceneUtils;
@@ -40,7 +39,7 @@ public class ForgotPasswordController implements Initializable
 	@FXML
 	private Button sendButton;
 	
-	private IAccountService accountService = new AccountService();
+	private AccountService accountService = new AccountService();
 	private ResourceBundle messageBundle = ResourceBundle.getBundle("message");
 	private ResourceBundle mailBundle = ResourceBundle.getBundle("mail");
 	

@@ -2,11 +2,16 @@ package com.toanhuuvuong.dao;
 
 import java.util.List;
 
-import com.toanhuuvuong.mapper.IRowMapper;
+import com.toanhuuvuong.pagination.Pageable;
 
 public interface IGenericDAO<T>
 {
-	public List<T> find(String sql, IRowMapper<T> rowMapper, Object... parameters); // SELECT 
-	public void update(String sql, Object... parameters); // UPDATE/DELETE
-	public Long insert(String sql, Object... parameters); // INSERT
+	public T findOne(Long id);
+	public List<T> findAll();
+	public Long insertOne(T entity);
+	public void updateOne(T entity);
+	public void deleteOne(T entity);
+	public void deleteById(Long id);
+	public List<T> find(Pageable<T> pageable);
+	public Long count(Pageable<T> pageable);
 }

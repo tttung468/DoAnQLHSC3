@@ -10,28 +10,35 @@
 		<property name="hibernate.connection.password">1234</property>
 		
 		<mapping resource="com/toanhuuvuong/model/Role.hbm.xml" />
+		<mapping resource="com/toanhuuvuong/model/Account.hbm.xml" />
+		<mapping resource="com/toanhuuvuong/model/HRStaff.hbm.xml" />
+		<mapping resource="com/toanhuuvuong/model/OfficeStaff.hbm.xml" />
+		<mapping resource="com/toanhuuvuong/model/Subject.hbm.xml" />
+		<mapping resource="com/toanhuuvuong/model/Teacher.hbm.xml" />
+		<mapping resource="com/toanhuuvuong/model/Ethnic.hbm.xml" />
+		<mapping resource="com/toanhuuvuong/model/Religion.hbm.xml" />		
+		<mapping resource="com/toanhuuvuong/model/Nationality.hbm.xml" />
+		<mapping resource="com/toanhuuvuong/model/Student.hbm.xml" />
 		<!--<mapping resource="model/Grade.hbm.xml" />
-		<mapping resource="model/Nationality.hbm.xml" />
+		
+		
 		<mapping resource="model/Score.hbm.xml" />
-		<mapping resource="model/Teacher.hbm.xml" />
+		
 		<mapping resource="model/Observation.hbm.xml" />
-		<mapping resource="model/Religion.hbm.xml" />
 		<mapping resource="model/Regulation.hbm.xml" />
-		<mapping resource="model/HRStaff.hbm.xml" />
 		<mapping resource="model/StudentOfClass.hbm.xml" />
 		<mapping resource="model/Subject.hbm.xml" />
 		<mapping resource="model/Relatives.hbm.xml" />
-		<mapping resource="model/Student.hbm.xml" />
+		
 		<mapping resource="model/Performance.hbm.xml" />
 		<mapping resource="model/ScoreType.hbm.xml" />
 		<mapping resource="model/Conduct.hbm.xml" />
-		<mapping resource="model/OfficeStaff.hbm.xml" />
+		
 		<mapping resource="model/SchoolYear.hbm.xml" />
 		<mapping resource="model/Semester.hbm.xml" />
-		<mapping resource="model/Account.hbm.xml" />
 		<mapping resource="model/ConductType.hbm.xml" />
 		<mapping resource="model/FormTeacherAssignment.hbm.xml" />
-		<mapping resource="model/Ethnic.hbm.xml" />
+		
 		<mapping resource="model/Relationship.hbm.xml" />
 		<mapping resource="model/TeacherAssignment.hbm.xml" />
 		<mapping resource="model/VerificationToken.hbm.xml" />

@@ -3,14 +3,16 @@ package com.toanhuuvuong.dao.impl;
 import java.io.Serializable;
 import java.util.Iterator;
 import java.util.List;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
+import com.toanhuuvuong.dao.IGenericDAO;
 import com.toanhuuvuong.pagination.Pageable;
 import com.toanhuuvuong.utils.HibernateUtil;
 
-public abstract class AbstractHibernateDAO<T extends Serializable>
+public abstract class AbstractHibernateDAO<T extends Serializable> implements IGenericDAO<T>
 {
 	private Class<T> clazz;
 
@@ -18,6 +20,7 @@ public abstract class AbstractHibernateDAO<T extends Serializable>
 	{
 		clazz = clazzToSet;
 	}
+	@Override
 	public T findOne(Long id) 
 	{
 		T entity = null;
@@ -27,7 +30,7 @@ public abstract class AbstractHibernateDAO<T extends Serializable>
 		try
 		{
 			tx = session.beginTransaction();
-			entity = (T) session.get(clazz, id);
+			entity = (T)session.get(clazz, id);
 			tx.commit();
 		} 
 		catch(Exception e) 
@@ -44,6 +47,7 @@ public abstract class AbstractHibernateDAO<T extends Serializable>
 
 		return entity;
 	}
+	@Override
 	public List<T> findAll()
 	{
 		List<T> list = null;
@@ -73,6 +77,7 @@ public abstract class AbstractHibernateDAO<T extends Serializable>
 
 		return list;
 	}
+	@Override
 	public Long insertOne(T entity) 
 	{
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -99,6 +104,7 @@ public abstract class AbstractHibernateDAO<T extends Serializable>
 
 		return id;
 	}
+	@Override
 	public void updateOne(T entity) 
 	{
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -122,6 +128,7 @@ public abstract class AbstractHibernateDAO<T extends Serializable>
 			session.close();
 		}
 	}
+	@Override
 	public void deleteOne(T entity)
 	{
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -145,11 +152,13 @@ public abstract class AbstractHibernateDAO<T extends Serializable>
 			session.close();
 		}
 	}
+	@Override
 	public void deleteById(Long id) 
 	{
 		final T entity = findOne(id);
 		deleteOne(entity);
 	}
+	@Override
 	public List<T> find(Pageable<T> pageable) 
 	{
 		List<T> list = null;
@@ -190,6 +199,7 @@ public abstract class AbstractHibernateDAO<T extends Serializable>
 
 		return list;
 	}
+	@Override
 	public Long count(Pageable<T> pageable) 
 	{
 		Session session = HibernateUtil.getSessionFactory().openSession();
@@ -210,7 +220,7 @@ public abstract class AbstractHibernateDAO<T extends Serializable>
 
 				if (query != null) 
 				{
-					Iterator iterator = query.iterate();
+					Iterator<?> iterator = query.iterate();
 					count = (Long) iterator.next(); // count
 				}
 

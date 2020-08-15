@@ -11,6 +11,6 @@ public class SystemConstant
 	public static final String CARD_VIEW_MODE = "Card view";
 	public static final Integer DEFAULT_PAGE = 1;  
 	public static final Integer DEFAULT_PERPAGE = 4;
-	public static final Integer FRAME_WIDTH = 1600;
-	public static final Integer FRAME_HEIGHT = 800;
+	public static final Double FRAME_WIDTH = 1600.0;
+	public static final Double FRAME_HEIGHT = 900.0;
 }

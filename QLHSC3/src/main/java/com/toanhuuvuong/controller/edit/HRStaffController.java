@@ -2,7 +2,6 @@ package com.toanhuuvuong.controller.edit;
 
 import java.io.File;
 import java.net.URL;
-import java.time.format.DateTimeFormatter;
 import java.util.Collection;
 import java.util.Date;
 import java.util.Map;
@@ -10,19 +9,15 @@ import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 import com.jfoenix.controls.JFXDatePicker;
-import com.jfoenix.controls.JFXTimePicker;
 import com.toanhuuvuong.constant.SystemConstant;
+import com.toanhuuvuong.model.Account;
 import com.toanhuuvuong.model.AccountModel;
-import com.toanhuuvuong.model.ConferenceModel;
+import com.toanhuuvuong.model.HRStaff;
 import com.toanhuuvuong.model.HRStaffModel;
-import com.toanhuuvuong.model.PlaceModel;
-import com.toanhuuvuong.service.IConferenceService;
+import com.toanhuuvuong.model.Role;
 import com.toanhuuvuong.service.IHRStaffService;
-import com.toanhuuvuong.service.IPlaceService;
 import com.toanhuuvuong.service.IRoleService;
-import com.toanhuuvuong.service.impl.ConferenceService;
 import com.toanhuuvuong.service.impl.HRStaffService;
-import com.toanhuuvuong.service.impl.PlaceService;
 import com.toanhuuvuong.service.impl.RoleService;
 import com.toanhuuvuong.utils.AutoCompleteComboBoxListener;
 import com.toanhuuvuong.utils.DateTimeUtils;
@@ -37,18 +32,16 @@ import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 
-public class HRStaffController extends GenericController<HRStaffModel> implements Initializable
+public class HRStaffController extends GenericController<HRStaff> implements Initializable
 {	
 	// ------------------------------------------- Attributes
 	@FXML
@@ -90,12 +83,11 @@ public class HRStaffController extends GenericController<HRStaffModel> implement
 	@FXML
 	private Label roleErrorLabel;
 	
-	private IHRStaffService hrStaffService = new HRStaffService();
-	private ISubjectService subjectService = new SubjectService();
+	private HRStaffService hrStaffService = new HRStaffService();
 	private IRoleService roleService = new RoleService();
 	
 	private File avatarFile;
-	private AccountModel accountModel = (AccountModel)SessionUtils.getInstance().getValue("accountModel");
+	private Account accountModel = (Account)SessionUtils.getInstance().getValue("accountModel");
 	// ------------------------------------------- Methods
 	@Override
 	public void initialize(URL location, ResourceBundle resources) 
@@ -151,7 +143,7 @@ public class HRStaffController extends GenericController<HRStaffModel> implement
 	{		
 		if(model != null)
 		{
-			String path = model.getAvatarPath();
+			String path = model.getAvatarpath();
 			Image image = path != null ? new Image(path) : null;
 			avatarCircle.setFill(new ImagePattern(image));
 			codeTextField.setText(model.getCode());
@@ -180,7 +172,7 @@ public class HRStaffController extends GenericController<HRStaffModel> implement
 	public void mappingForm() 
 	{	
 		if(model == null)
-			model = new HRStaffModel();
+			model = new HRStaff();
 		
 		model.setCode(codeTextField.getText().trim());
 		model.setName(nameTextField.getText().trim());
@@ -207,18 +199,12 @@ public class HRStaffController extends GenericController<HRStaffModel> implement
 		}
 		if(roleComboBox.getValue() != null)
 		{
-			RoleModel roleModel = roleService.findByName(roleComboBox.getValue());
+			Role roleModel = roleService.findByName(roleComboBox.getValue());
 			
 			if(roleModel != null)
-			{
-				model.setRoleId(roleModel.getId());
 				model.setRole(roleModel);
-			}
 			else
-			{
-				model.setRoleId(null);
 				model.setRole(null);
-			}
 		}
 		model.setIsDeleted(((RadioButton)(isDeletedToggleGroup.getSelectedToggle())).getText().trim().equals("Khóa"));
 	}

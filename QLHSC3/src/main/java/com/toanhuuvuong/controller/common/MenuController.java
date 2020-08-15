@@ -3,9 +3,7 @@ package com.toanhuuvuong.controller.common;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.toanhuuvuong.constant.SystemConstant;
-import com.toanhuuvuong.model.AccountModel;
-import com.toanhuuvuong.service.IAccountService;
+import com.toanhuuvuong.model.Account;
 import com.toanhuuvuong.service.impl.AccountService;
 import com.toanhuuvuong.utils.SceneUtils;
 import com.toanhuuvuong.utils.SessionUtils;
@@ -65,9 +63,9 @@ public class MenuController implements Initializable
 	private MenuItem regulationMenuItem;
 	
 	
-	private IAccountService accountService = new AccountService();
+	private AccountService accountService = new AccountService();
 	
-	private AccountModel accountModel = (AccountModel)SessionUtils.getInstance().getValue("accountModel");
+	private Account accountModel = (Account)SessionUtils.getInstance().getValue("accountModel");
 	// ------------------------------------------- Methods
 	@Override
 	public void initialize(URL location, ResourceBundle resources) 
@@ -76,7 +74,7 @@ public class MenuController implements Initializable
 	}
 	private void applyUI()
 	{
-		if(accountModel == null || accountService.isUserRole(accountModel))
+		if(accountModel == null)
 		{
 			
 		}
@@ -87,17 +85,21 @@ public class MenuController implements Initializable
 		URL url = getClass().getResource("../../application/views/teacher/list.fxml");
 		Stage stage = (Stage)(menuBar.getScene().getWindow());
 		String title = "Danh sách giáo viên";
+		Double width = menuBar.getScene().getWidth();
+		Double height = menuBar.getScene().getHeight();
 		
-		SceneUtils.changeScene(url, stage, title, SystemConstant.FRAME_WIDTH, SystemConstant.FRAME_HEIGHT);
+		SceneUtils.changeScene(url, stage, title, width, height);
 	}
 	@FXML
 	public void officeStaffListMenuItemOnAction(ActionEvent event)
 	{
-		URL url = getClass().getResource("../../application/views/office-staff/list.fxml");
+		URL url = getClass().getResource("../../application/views/officestaff/list.fxml");
 		Stage stage = (Stage)(menuBar.getScene().getWindow());
 		String title = "Danh sách giáo vụ";
+		Double width = menuBar.getScene().getWidth();
+		Double height = menuBar.getScene().getHeight();
 		
-		SceneUtils.changeScene(url, stage, title, SystemConstant.FRAME_WIDTH, SystemConstant.FRAME_HEIGHT);
+		SceneUtils.changeScene(url, stage, title, width, height);
 	}
 	@FXML
 	public void hrStaffListMenuItemOnAction(ActionEvent event)
@@ -105,8 +107,10 @@ public class MenuController implements Initializable
 		URL url = getClass().getResource("../../application/views/hrstaff/list.fxml");
 		Stage stage = (Stage)(menuBar.getScene().getWindow());
 		String title = "Danh sách nhân sự";
+		Double width = menuBar.getScene().getWidth();
+		Double height = menuBar.getScene().getHeight();
 		
-		SceneUtils.changeScene(url, stage, title, SystemConstant.FRAME_WIDTH, SystemConstant.FRAME_HEIGHT);
+		SceneUtils.changeScene(url, stage, title, width, height);
 	}
 	@FXML
 	public void studentListMenuItemOnAction(ActionEvent event)
@@ -114,8 +118,10 @@ public class MenuController implements Initializable
 		URL url = getClass().getResource("../../application/views/student/list.fxml");
 		Stage stage = (Stage)(menuBar.getScene().getWindow());
 		String title = "Danh sách học sinh";
+		Double width = menuBar.getScene().getWidth();
+		Double height = menuBar.getScene().getHeight();
 		
-		SceneUtils.changeScene(url, stage, title, SystemConstant.FRAME_WIDTH, SystemConstant.FRAME_HEIGHT);
+		SceneUtils.changeScene(url, stage, title, width, height);
 	}
 	@FXML
 	public void subjectListMenuItemOnAction(ActionEvent event)
@@ -123,8 +129,10 @@ public class MenuController implements Initializable
 		URL url = getClass().getResource("../../application/views/subject/list.fxml");
 		Stage stage = (Stage)(menuBar.getScene().getWindow());
 		String title = "Danh sách môn học";
+		Double width = menuBar.getScene().getWidth();
+		Double height = menuBar.getScene().getHeight();
 		
-		SceneUtils.changeScene(url, stage, title, SystemConstant.FRAME_WIDTH, SystemConstant.FRAME_HEIGHT);
+		SceneUtils.changeScene(url, stage, title, width, height);
 	}
 	@FXML
 	public void schoolYearListMenuItemOnAction(ActionEvent event)
@@ -132,8 +140,10 @@ public class MenuController implements Initializable
 		URL url = getClass().getResource("../../application/views/schoolyear/list.fxml");
 		Stage stage = (Stage)(menuBar.getScene().getWindow());
 		String title = "Danh sách năm học";
+		Double width = menuBar.getScene().getWidth();
+		Double height = menuBar.getScene().getHeight();
 		
-		SceneUtils.changeScene(url, stage, title, SystemConstant.FRAME_WIDTH, SystemConstant.FRAME_HEIGHT);
+		SceneUtils.changeScene(url, stage, title, width, height);
 	}
 	@FXML
 	public void classListMenuItemOnAction(ActionEvent event)
@@ -141,8 +151,10 @@ public class MenuController implements Initializable
 		URL url = getClass().getResource("../../application/views/class/list.fxml");
 		Stage stage = (Stage)(menuBar.getScene().getWindow());
 		String title = "Danh sách lớp học";
+		Double width = menuBar.getScene().getWidth();
+		Double height = menuBar.getScene().getHeight();
 		
-		SceneUtils.changeScene(url, stage, title, SystemConstant.FRAME_WIDTH, SystemConstant.FRAME_HEIGHT);
+		SceneUtils.changeScene(url, stage, title, width, height);
 	}
 	@FXML
 	public void exchangeClassMenuItemOnAction(ActionEvent event)
@@ -150,8 +162,10 @@ public class MenuController implements Initializable
 		URL url = getClass().getResource("../../application/views/common/exchangeclass.fxml");
 		Stage stage = (Stage)(menuBar.getScene().getWindow());
 		String title = "Phân lớp & chuyển lớp";
+		Double width = menuBar.getScene().getWidth();
+		Double height = menuBar.getScene().getHeight();
 		
-		SceneUtils.changeScene(url, stage, title, SystemConstant.FRAME_WIDTH, SystemConstant.FRAME_HEIGHT);
+		SceneUtils.changeScene(url, stage, title, width, height);
 	}
 	@FXML
 	public void subjectScoreMenuItemOnAction(ActionEvent event)
@@ -159,8 +173,10 @@ public class MenuController implements Initializable
 		URL url = getClass().getResource("../../application/views/common/subjectscore.fxml");
 		Stage stage = (Stage)(menuBar.getScene().getWindow());
 		String title = "Bảng điểm";
+		Double width = menuBar.getScene().getWidth();
+		Double height = menuBar.getScene().getHeight();
 		
-		SceneUtils.changeScene(url, stage, title, SystemConstant.FRAME_WIDTH, SystemConstant.FRAME_HEIGHT);
+		SceneUtils.changeScene(url, stage, title, width, height);
 	}
 	@FXML
 	public void officerStatisticsMenuItemOnAction(ActionEvent event)
@@ -168,8 +184,10 @@ public class MenuController implements Initializable
 		URL url = getClass().getResource("../../application/views/common/officerstatistics.fxml");
 		Stage stage = (Stage)(menuBar.getScene().getWindow());
 		String title = "Thống kê CB & NV";
+		Double width = menuBar.getScene().getWidth();
+		Double height = menuBar.getScene().getHeight();
 		
-		SceneUtils.changeScene(url, stage, title, SystemConstant.FRAME_WIDTH, SystemConstant.FRAME_HEIGHT);
+		SceneUtils.changeScene(url, stage, title, width, height);
 	}
 	@FXML
 	public void resultStatisticsMenuItemOnAction(ActionEvent event)
@@ -177,8 +195,10 @@ public class MenuController implements Initializable
 		URL url = getClass().getResource("../../application/views/common/resultstatistics.fxml");
 		Stage stage = (Stage)(menuBar.getScene().getWindow());
 		String title = "Thống kê kết quả học tập";
+		Double width = menuBar.getScene().getWidth();
+		Double height = menuBar.getScene().getHeight();
 		
-		SceneUtils.changeScene(url, stage, title, SystemConstant.FRAME_WIDTH, SystemConstant.FRAME_HEIGHT);
+		SceneUtils.changeScene(url, stage, title, width, height);
 	}
 	@FXML
 	public void lookUpResultMenuItemOnAction(ActionEvent event)
@@ -186,8 +206,10 @@ public class MenuController implements Initializable
 		URL url = getClass().getResource("../../application/views/common/lookupresult.fxml");
 		Stage stage = (Stage)(menuBar.getScene().getWindow());
 		String title = "Tra cứu kết quả học tập";
+		Double width = menuBar.getScene().getWidth();
+		Double height = menuBar.getScene().getHeight();
 		
-		SceneUtils.changeScene(url, stage, title, SystemConstant.FRAME_WIDTH, SystemConstant.FRAME_HEIGHT);
+		SceneUtils.changeScene(url, stage, title, width, height);
 	}
 	@FXML
 	public void teacherAssignmentMenuItemOnAction(ActionEvent event)
@@ -195,8 +217,10 @@ public class MenuController implements Initializable
 		URL url = getClass().getResource("../../application/views/common/teacherassignment.fxml");
 		Stage stage = (Stage)(menuBar.getScene().getWindow());
 		String title = "Phân công giáo viên";
+		Double width = menuBar.getScene().getWidth();
+		Double height = menuBar.getScene().getHeight();
 		
-		SceneUtils.changeScene(url, stage, title, SystemConstant.FRAME_WIDTH, SystemConstant.FRAME_HEIGHT);
+		SceneUtils.changeScene(url, stage, title, width, height);
 	}
 	@FXML
 	public void regulationMenuItemOnAction(ActionEvent event)
@@ -204,7 +228,9 @@ public class MenuController implements Initializable
 		URL url = getClass().getResource("../../application/views/common/regulation.fxml");
 		Stage stage = (Stage)(menuBar.getScene().getWindow());
 		String title = "Thay đổi quy định";
+		Double width = menuBar.getScene().getWidth();
+		Double height = menuBar.getScene().getHeight();
 		
-		SceneUtils.changeScene(url, stage, title, SystemConstant.FRAME_WIDTH, SystemConstant.FRAME_HEIGHT);
+		SceneUtils.changeScene(url, stage, title, width, height);
 	}
 }

@@ -9,10 +9,10 @@ import java.util.stream.Collectors;
 
 import com.toanhuuvuong.constant.SystemConstant;
 import com.toanhuuvuong.converter.HRStaffConverter;
-import com.toanhuuvuong.model.HRStaffModel;
+import com.toanhuuvuong.model.Account;
+import com.toanhuuvuong.model.HRStaff;
 import com.toanhuuvuong.pagination.PageRequest;
 import com.toanhuuvuong.pagination.Pageable;
-import com.toanhuuvuong.service.IHRStaffService;
 import com.toanhuuvuong.service.impl.HRStaffService;
 import com.toanhuuvuong.utils.AutoCompleteComboBoxListener;
 import com.toanhuuvuong.utils.CSVUtils;
@@ -25,13 +25,11 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
-import javafx.scene.control.TextFormatter;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.util.converter.NumberStringConverter;
 
-public class HRStaffController extends GenericController<HRStaffModel> implements Initializable
+public class HRStaffController extends GenericController<HRStaff> implements Initializable
 {
 	// ------------------------------------------- Attributes
 	@FXML
@@ -47,23 +45,25 @@ public class HRStaffController extends GenericController<HRStaffModel> implement
 	@FXML
 	private TextField salaryFilterTextField;
 	@FXML
-	private TableColumn<HRStaffModel, ImageView> avatarPathCol;
+	private TableColumn<HRStaff, ImageView> avatarPathCol;
 	@FXML
-	private TableColumn<HRStaffModel, String> codeCol;
+	private TableColumn<HRStaff, String> codeCol;
 	@FXML
-	private TableColumn<HRStaffModel, String> nameCol;
+	private TableColumn<HRStaff, String> nameCol;
 	@FXML
-	private TableColumn<HRStaffModel, String> phoneCol;
+	private TableColumn<HRStaff, String> phoneCol;
 	@FXML
-	private TableColumn<HRStaffModel, String> genderCol;
+	private TableColumn<HRStaff, String> genderCol;
 	@FXML
-	private TableColumn<HRStaffModel, Date> birthCol;
+	private TableColumn<HRStaff, Date> birthCol;
 	@FXML
-	private TableColumn<HRStaffModel, String> addressCol;
+	private TableColumn<HRStaff, String> addressCol;
 	@FXML
-	private TableColumn<HRStaffModel, Integer> salaryCol;
+	private TableColumn<HRStaff, Integer> salaryCol;
+	@FXML
+	private TableColumn<HRStaff, String> accountUsernameCol;
 	
-	private IHRStaffService hrStaffService = new HRStaffService();
+	private HRStaffService hrStaffService = new HRStaffService();
 	// ------------------------------------------- Methods
 	@Override
 	public void initialize(URL location, ResourceBundle resources) 
@@ -73,8 +73,6 @@ public class HRStaffController extends GenericController<HRStaffModel> implement
 		initGenderFilterComboBox();
 		
 		initAddressFilterComboBox();
-		
-		initSalaryFilterTextField();
 		
 		initTableView();
 		
@@ -89,7 +87,7 @@ public class HRStaffController extends GenericController<HRStaffModel> implement
 	}
 	private void initAddressFilterComboBox()
 	{
-		Collection<HRStaffModel> models = hrStaffService.findAll();
+		Collection<HRStaff> models = hrStaffService.findAll();
 		Collection<String> addresses = (models == null) ? null
 		: models.stream().map(item ->
 		{
@@ -102,17 +100,14 @@ public class HRStaffController extends GenericController<HRStaffModel> implement
 		
 		new AutoCompleteComboBoxListener<String>(addressFilterComboBox);
 	}
-	private void initSalaryFilterTextField()
-	{
-		salaryFilterTextField.setTextFormatter(new TextFormatter<>(new NumberStringConverter()));
-	}
 	private void initTableView()
 	{
 		avatarPathCol.setCellValueFactory(cell ->
 		{
 			ObjectProperty<ImageView> prop = new SimpleObjectProperty<ImageView>();
 			
-			URL url = getClass().getResource(cell.getValue().getAvatarPath());
+			String avatarpath = cell.getValue().getAvatarpath();
+			URL url = avatarpath != null ? getClass().getResource(avatarpath) : null;
 			String path = url != null ? url.toString() : null;
 			Image image = path != null ? new Image(path) : null;
 			
@@ -123,13 +118,23 @@ public class HRStaffController extends GenericController<HRStaffModel> implement
 			
 			return prop;
 		});
-		codeCol.setCellValueFactory(new PropertyValueFactory<HRStaffModel, String>("code"));
-		nameCol.setCellValueFactory(new PropertyValueFactory<HRStaffModel, String>("name"));
-		phoneCol.setCellValueFactory(new PropertyValueFactory<HRStaffModel, String>("phone"));
-		genderCol.setCellValueFactory(new PropertyValueFactory<HRStaffModel, String>("gender"));
-		birthCol.setCellValueFactory(new PropertyValueFactory<HRStaffModel, Date>("birth"));
-		addressCol.setCellValueFactory(new PropertyValueFactory<HRStaffModel, String>("address"));
-		salaryCol.setCellValueFactory(new PropertyValueFactory<HRStaffModel, Integer>("salary"));
+		codeCol.setCellValueFactory(new PropertyValueFactory<HRStaff, String>("code"));
+		nameCol.setCellValueFactory(new PropertyValueFactory<HRStaff, String>("name"));
+		phoneCol.setCellValueFactory(new PropertyValueFactory<HRStaff, String>("phone"));
+		genderCol.setCellValueFactory(new PropertyValueFactory<HRStaff, String>("gender"));
+		birthCol.setCellValueFactory(new PropertyValueFactory<HRStaff, Date>("birth"));
+		addressCol.setCellValueFactory(new PropertyValueFactory<HRStaff, String>("address"));
+		salaryCol.setCellValueFactory(new PropertyValueFactory<HRStaff, Integer>("salary"));
+		accountUsernameCol.setCellValueFactory(cell ->
+		{
+			ObjectProperty<String> prop = new SimpleObjectProperty<String>();
+			
+			Account account = cell.getValue().getAccount();
+			String accountUsername = account != null ? account.getUsername() : SystemConstant.UNKNOWN;
+			prop.set(accountUsername);
+			
+			return prop;
+		});
 	}
 	private void initListView()
 	{
@@ -137,7 +142,7 @@ public class HRStaffController extends GenericController<HRStaffModel> implement
 	}
 	private void initPageable()
 	{
-		pageable = new PageRequest<HRStaffModel>(SystemConstant.DEFAULT_PAGE, SystemConstant.DEFAULT_PERPAGE, null, null, null);
+		pageable = new PageRequest<HRStaff>(SystemConstant.DEFAULT_PAGE, SystemConstant.DEFAULT_PERPAGE, null, null, null);
 		
 		changeDataView(pageable);
 	}
@@ -147,7 +152,7 @@ public class HRStaffController extends GenericController<HRStaffModel> implement
 		headerController.setTitleLabelText("QUẢN LÝ NHÂN SỰ");
 	}
 	@Override
-	protected HRStaffModel getFilterModel()
+	protected HRStaff getFilterModel()
 	{
 		String code = codeFilterTextField.getText().trim();
 		String name = nameFilterTextField.getText().trim();
@@ -166,7 +171,7 @@ public class HRStaffController extends GenericController<HRStaffModel> implement
 			isDeleted == null)
 			return null;
 		
-		HRStaffModel model = new HRStaffModel();
+		HRStaff model = new HRStaff();
 		
 		if(!code.isEmpty())
 			model.setCode(code);
@@ -213,17 +218,17 @@ public class HRStaffController extends GenericController<HRStaffModel> implement
 		salaryFilterTextField.setText("");
 	}
 	@Override
-	protected void changeDataView(Pageable<HRStaffModel> pageable) 
+	protected void changeDataView(Pageable<HRStaff> pageable) 
 	{
-		Pageable<HRStaffModel> totalPageable = new PageRequest<HRStaffModel>(null, null, pageable.getSorter(), pageable.getSearchKey(), pageable.getFilterModel());
-		Integer count = hrStaffService.count(totalPageable);
+		Pageable<HRStaff> totalPageable = new PageRequest<HRStaff>(null, null, pageable.getSorter(), pageable.getSearchKey(), pageable.getFilterModel());
+		Long count = hrStaffService.count(totalPageable);
 		if(count == null)
 			return;
 		
 		int totalPages = (int)Math.ceil((double) count / pageable.getLimit());
 		pagination.setPageCount(totalPages);
 	
-		List<HRStaffModel> list = hrStaffService.find(pageable);
+		List<HRStaff> list = hrStaffService.find(pageable);
 		if(list == null)
 			return;
 		

@@ -1,21 +1,13 @@
 package com.toanhuuvuong.controller.edit;
 
 import java.net.URL;
-import java.util.Optional;
 import java.util.ResourceBundle;
 
-import com.toanhuuvuong.model.GenericModel;
-
-import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Dialog;
-import javafx.scene.control.DialogPane;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Toggle;

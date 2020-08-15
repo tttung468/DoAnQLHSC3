@@ -2,14 +2,14 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 
 <hibernate-mapping>
-	<class catalog="qlhsc3DB" name="model.HRStaff"
+	<class catalog="qlhsc3DB" name="com.toanhuuvuong.model.HRStaff"
 		optimistic-lock="version" table="hrstaff">
 		<id name="id" type="java.lang.Long">
 			<column name="id" />
 			<generator class="identity" />
 		</id>
-		<many-to-one class="model.Account" fetch="join"
-			lazy="false" name="account">
+		<many-to-one class="com.toanhuuvuong.model.Account"
+			fetch="join" lazy="false" name="account">
 			<column name="accountid" />
 		</many-to-one>
 		<property name="code" type="string">

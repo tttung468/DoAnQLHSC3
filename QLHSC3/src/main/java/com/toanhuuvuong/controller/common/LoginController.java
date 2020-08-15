@@ -4,8 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.toanhuuvuong.constant.SystemConstant;
-import com.toanhuuvuong.model.AccountModel;
-import com.toanhuuvuong.service.IAccountService;
+import com.toanhuuvuong.model.Account;
 import com.toanhuuvuong.service.impl.AccountService;
 import com.toanhuuvuong.utils.SceneUtils;
 import com.toanhuuvuong.utils.SecurityUtils;
@@ -43,10 +42,10 @@ public class LoginController implements Initializable
 	@FXML
 	private Button loginButton;
 	
-	private IAccountService accountService = new AccountService();
+	private AccountService accountService = new AccountService();
 	private ResourceBundle messageBundle = ResourceBundle.getBundle("message");
 	
-	private AccountModel model = new AccountModel();
+	private Account model = new Account();
 	// ------------------------------------------- Methods
 	@Override
 	public void initialize(URL location, ResourceBundle resources) 
@@ -133,7 +132,7 @@ public class LoginController implements Initializable
 	{
 		messageLabel.setVisible(true);
 	    
-	    AccountModel account = accountService.findByUsername(model.getUsername());
+		Account account = accountService.findByUsername(model.getUsername());
 	    if(account == null)
 	    {
 	    	messageLabel.setText(messageBundle.getString("account_not_registered"));
