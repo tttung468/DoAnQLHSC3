@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Pagination?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView layoutX="10.0" layoutY="47.0" prefHeight="250.0" prefWidth="880.0">
+        <columns>
+            <TableColumn prefWidth="101.0" text="Tên" />
+          <TableColumn prefWidth="91.0" text="Số điện thoại" />
+          <TableColumn minWidth="8.0" prefWidth="151.0" text="Email" />
+            <TableColumn prefWidth="132.0" text="Công việc" />
+            <TableColumn prefWidth="95.0" text="Ngày sinh" />
+            <TableColumn prefWidth="224.0" text="Địa chỉ" />
+            <TableColumn prefWidth="85.0" text="Mối quan hệ" />
+        </columns>
+      </TableView>
+      <Pagination layoutX="410.0" layoutY="297.0" pageCount="100" prefHeight="25.0" prefWidth="82.0" />
+      <Label layoutX="265.0" text="THÔNG TIN NGƯỜI THÂN" textAlignment="CENTER">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="30.0" fitWidth="30.0" layoutX="14.0" layoutY="342.0">
+         <image>
+            <Image url="@../../Image/parents.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="48.0" layoutY="342.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="150.0" style="-fx-background-radius: 20; -fx-background-color: #23DB1F;" text="Thêm người thân">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="588.0" layoutY="357.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="100.0" style="-fx-background-radius: 20; -fx-background-color: #23DB1F;" text="Cập nhật">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="700.0" layoutY="357.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" style="-fx-background-radius: 20; -fx-background-color: #7D13D0;" text="Hủy">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
