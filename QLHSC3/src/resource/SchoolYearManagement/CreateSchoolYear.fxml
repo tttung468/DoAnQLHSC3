@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="375.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="40.0" text="THÊM NĂM HỌC">
+         <font>
+            <Font name="System Bold" size="40.0" />
+         </font>
+      </Label>
+      <Label layoutX="19.0" layoutY="60.0" text="Mã năm học">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <TextField layoutX="173.0" layoutY="60.0" prefHeight="31.0" prefWidth="200.0" promptText="Nhập mã năm học" style="-fx-background-radius: 20;">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <Label layoutX="139.0" layoutY="60.0" text="(*)" textFill="RED">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="40.0" layoutY="116.0" text="Niên khóa">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="69.0" layoutY="172.0" text="Chủ đề">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <TextField alignment="CENTER" layoutX="173.0" layoutY="116.0" prefHeight="31.0" prefWidth="70.0" promptText="từ" style="-fx-background-radius: 20;">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <Label layoutX="183.0" layoutY="91.0" text="Error" textFill="RED">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="139.0" layoutY="116.0" text="(*)" textFill="RED">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="182.0" layoutY="147.0" text="Error" textFill="RED">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label layoutX="139.0" layoutY="172.0" text="(*)" textFill="RED">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="182.0" layoutY="281.0" text="Error" textFill="RED">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Button layoutX="221.0" layoutY="322.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="70.0" style="-fx-background-radius: 20; -fx-background-color: #23DB1F;" text="Tạo">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="303.0" layoutY="322.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="70.0" style="-fx-background-radius: 20; -fx-background-color: #7D13D0;" text="Hủy">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="115.0" layoutY="322.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="70.0" style="-fx-background-radius: 20; -fx-background-color: #BE2626;" text="Xóa" visible="false">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="190.0" layoutY="322.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="100.0" style="-fx-background-radius: 20; -fx-background-color: #23DB1F;" text="Cập nhật" visible="false">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Button layoutX="220.0" layoutY="322.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="70.0" style="-fx-background-radius: 20; -fx-background-color: #23DB1F;" text="Lưu" visible="false">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <TextField alignment="CENTER" layoutX="303.0" layoutY="116.0" prefHeight="31.0" prefWidth="70.0" promptText="đến" style="-fx-background-radius: 20;">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <Label layoutX="255.0" layoutY="116.0" text="đến">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+      </Label>
+      <TextArea layoutX="169.0" layoutY="172.0" prefHeight="109.0" prefWidth="200.0" />
+   </children>
+</AnchorPane>
