@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DTO;
+package BUS;
 
 import DAO.VerificationTokenDAO;
 import pojos.VerificationToken;
@@ -12,9 +12,9 @@ import pojos.VerificationToken;
  *
  * @author ThanhTung
  */
-public class VerificationTokenDTO extends AbstractHibernateDTO<VerificationToken>{
+public class VerificationTokenBUS extends AbstractHibernateBUS<VerificationToken>{
 
-    public VerificationTokenDTO() {
+    public VerificationTokenBUS() {
         setAbstractHiberanateDAO(new VerificationTokenDAO());
     }
     

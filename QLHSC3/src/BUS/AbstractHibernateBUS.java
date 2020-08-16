@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DTO;
+package BUS;
 
 import DAO.AbstractHibernateDAO;
 import DAO.AccountDAO;
@@ -21,7 +21,7 @@ import qlhsc3.Generic;
  * @author ThanhTung
  * @param <T>
  */
-public abstract class AbstractHibernateDTO<T extends Generic> {
+public abstract class AbstractHibernateBUS<T extends Generic> {
     
     protected AbstractHibernateDAO<T> dao;
 

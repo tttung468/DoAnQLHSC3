@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DTO;
+package BUS;
 
 import DAO.SubjectDAO;
 import pojos.Subject;
@@ -12,9 +12,9 @@ import pojos.Subject;
  *
  * @author ThanhTung
  */
-public class SubjectDTO extends AbstractHibernateDTO<Subject>{
+public class SubjectBUS extends AbstractHibernateBUS<Subject>{
 
-    public SubjectDTO() {
+    public SubjectBUS() {
         setAbstractHiberanateDAO(new SubjectDAO());
     }
     

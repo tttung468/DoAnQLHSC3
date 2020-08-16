@@ -3,19 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DTO;
+package BUS;
 
-import DAO.HeadmasterDAO;
-import pojos.Headmaster;
+import DAO.HRStaffDAO;
+import pojos.HRStaff;
 
 /**
  *
  * @author ThanhTung
  */
-public class HeadmasterDTO extends AbstractHibernateDTO<Headmaster>{
+public class HRStaffBUS extends AbstractHibernateBUS<HRStaff>{
 
-    public HeadmasterDTO() {
-        setAbstractHiberanateDAO(new HeadmasterDAO());
+    public HRStaffBUS() {
+        setAbstractHiberanateDAO(new HRStaffDAO());
     }
     
 }

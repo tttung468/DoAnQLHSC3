@@ -3,19 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DTO;
+package BUS;
 
-import DAO.OfficeStaffDAO;
-import pojos.OfficeStaff;
+import DAO.ScoreTypeDAO;
+import pojos.ScoreType;
 
 /**
  *
  * @author ThanhTung
  */
-public class OfficeStaffDTO extends AbstractHibernateDTO<OfficeStaff>{
+public class ScoreTypeBUS extends AbstractHibernateBUS<ScoreType>{
 
-    public OfficeStaffDTO() {
-        setAbstractHiberanateDAO(new OfficeStaffDAO());
+    public ScoreTypeBUS() {
+        setAbstractHiberanateDAO(new ScoreTypeDAO());
     }
     
 }

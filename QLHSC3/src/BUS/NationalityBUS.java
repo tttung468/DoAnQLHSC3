@@ -3,19 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DTO;
+package BUS;
 
-import DAO.SchoolYearDAO;
-import pojos.SchoolYear;
+import DAO.NationalityDAO;
+import pojos.Nationality;
 
 /**
  *
  * @author ThanhTung
  */
-public class SchoolYearDTO extends AbstractHibernateDTO<SchoolYear>{
+public class NationalityBUS extends AbstractHibernateBUS<Nationality>{
 
-    public SchoolYearDTO() {
-        setAbstractHiberanateDAO(new SchoolYearDAO());
+    public NationalityBUS() {
+        setAbstractHiberanateDAO(new NationalityDAO());
     }
     
 }

@@ -3,19 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DTO;
+package BUS;
 
-import DAO.RelativesDAO;
-import pojos.Relatives;
+import DAO.RegulationDAO;
+import pojos.Regulation;
 
 /**
  *
  * @author ThanhTung
  */
-public class RelativesDTO extends AbstractHibernateDTO<Relatives>{
+public class RegulationBUS extends AbstractHibernateBUS<Regulation>{
 
-    public RelativesDTO() {
-        setAbstractHiberanateDAO(new RelativesDAO());
+    public RegulationBUS() {
+        setAbstractHiberanateDAO(new RegulationDAO());
     }
     
 }

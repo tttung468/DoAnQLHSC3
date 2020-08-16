@@ -18,7 +18,7 @@ import DAO.StudentDAO;
 import DAO.SubjectDAO;
 import DAO.TeacherAssignmentDAO;
 import DAO.TeacherDAO;
-import DTO.AccountDTO;
+import BUS.AccountBUS;
 import connection.HibernateUtil;
 import java.util.List;
 import pagination.PageRequest;
@@ -71,13 +71,11 @@ public class main {
 //        System.out.println("\nTest count :");
 //        System.out.println(dao.count(pageRequest));
         
-//        AccountDTO dto = new AccountDTO();
-//        for (Account a : dto.findAll()) {
-//            System.out.println(a.getId() + "  " + a.getUsername());
-//        }
-        HRStaff entity = (new HRStaffDAO()).findByCode("hr-001");
-        if(entity != null)
-            System.out.println(entity.getId() + " -- " + entity.getName());
+        AccountBUS bus = new AccountBUS();
+        for (Account a : bus.findAll()) {
+            System.out.println(a.getId() + "  " + a.getUsername());
+        }
+        
         
         //close sessionFactory
         HibernateUtil.close();

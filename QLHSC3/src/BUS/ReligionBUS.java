@@ -3,19 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DTO;
+package BUS;
 
-import DAO.ConductTypeDAO;
-import pojos.ConductType;
+import DAO.ReligionDAO;
+import pojos.Religion;
 
 /**
  *
  * @author ThanhTung
  */
-public class ConductTypeDTO extends AbstractHibernateDTO<ConductType>{
+public class ReligionBUS extends AbstractHibernateBUS<Religion>{
 
-    public ConductTypeDTO() {
-        setAbstractHiberanateDAO(new ConductTypeDAO());
+    public ReligionBUS() {
+        setAbstractHiberanateDAO(new ReligionDAO());
     }
     
 }

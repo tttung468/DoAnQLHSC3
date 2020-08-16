@@ -3,19 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DTO;
+package BUS;
 
-import DAO.RelationshipDAO;
-import pojos.Relationship;
+import DAO.SemesterDAO;
+import pojos.Semester;
 
 /**
  *
  * @author ThanhTung
  */
-public class RelationshipDTO extends AbstractHibernateDTO<Relationship>{
+public class SemesterBUS extends AbstractHibernateBUS<Semester>{
 
-    public RelationshipDTO() {
-        setAbstractHiberanateDAO(new RelationshipDAO());
+    public SemesterBUS() {
+        setAbstractHiberanateDAO(new SemesterDAO());
     }
     
 }

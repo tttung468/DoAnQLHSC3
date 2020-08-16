@@ -3,19 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DTO;
+package BUS;
 
-import DAO.ScoreDAO;
-import pojos.Score;
+import DAO.RelationshipDAO;
+import pojos.Relationship;
 
 /**
  *
  * @author ThanhTung
  */
-public class ScoreDTO extends AbstractHibernateDTO<Score>{
+public class RelationshipBUS extends AbstractHibernateBUS<Relationship>{
 
-    public ScoreDTO() {
-        setAbstractHiberanateDAO(new ScoreDAO());
+    public RelationshipBUS() {
+        setAbstractHiberanateDAO(new RelationshipDAO());
     }
     
 }

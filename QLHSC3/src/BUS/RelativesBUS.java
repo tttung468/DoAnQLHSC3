@@ -3,18 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DTO;
+package BUS;
 
-import DAO.AccountDAO;
-import pojos.Account;
+import DAO.RelativesDAO;
+import pojos.Relatives;
 
 /**
  *
  * @author ThanhTung
  */
-public class AccountDTO extends AbstractHibernateDTO<Account>{
-    
-    public AccountDTO(){
-        setAbstractHiberanateDAO(new AccountDAO());
+public class RelativesBUS extends AbstractHibernateBUS<Relatives>{
+
+    public RelativesBUS() {
+        setAbstractHiberanateDAO(new RelativesDAO());
     }
+    
 }
