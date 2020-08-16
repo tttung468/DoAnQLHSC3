@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author ThanhTung
  */
-public class Generic {
+public class Generic implements java.io.Serializable{
     protected Long id;
     protected Boolean isDeleted;
     protected Date createdDate;
@@ -67,5 +67,7 @@ public class Generic {
         this.modifiedBy = modifiedBy;
     }
     
-    
+    public String getCode(){
+        return null;
+    }
 }
