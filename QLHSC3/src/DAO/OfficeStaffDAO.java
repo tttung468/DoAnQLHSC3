@@ -5,8 +5,11 @@
  */
 package DAO;
 
+import connection.HibernateUtil;
+import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.type.StringNVarcharType;
 import org.hibernate.type.StringType;
 import pagination.Pageable;
@@ -20,6 +23,39 @@ import sort.Sorter;
 public class OfficeStaffDAO extends AbstractHibernateDAO<OfficeStaff>{
     public OfficeStaffDAO(){
         setClazz(OfficeStaff.class);
+    }
+    
+    @Override
+    public OfficeStaff findByCode(String code) {
+        OfficeStaff entity = null;
+        List<OfficeStaff> list = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try {
+            String hql = "from OfficeStaff officeStaff";
+            hql += " where officeStaff.code = :code"; 
+            Query query = session.createQuery(hql);
+
+            query.setParameter("code", code, StringType.INSTANCE);
+            tx = session.beginTransaction();
+            
+            list = query.list();    //get all
+            if(!list.isEmpty()){
+                entity = list.get(0);   //get first entity
+            }
+            
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        
+        return entity;
     }
     
     @Override

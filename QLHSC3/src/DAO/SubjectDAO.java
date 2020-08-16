@@ -5,11 +5,15 @@
  */
 package DAO;
 
+import connection.HibernateUtil;
+import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 import org.hibernate.type.StringNVarcharType;
 import org.hibernate.type.StringType;
 import pagination.Pageable;
+import pojos.ConductType;
 import pojos.Subject;
 import sort.Sorter;
 
@@ -20,6 +24,39 @@ import sort.Sorter;
 public class SubjectDAO extends AbstractHibernateDAO<Subject>{
     public SubjectDAO(){
         setClazz(Subject.class);
+    }
+    
+    @Override
+    public Subject findByCode(String code) {
+        Subject entity = null;
+        List<Subject> list = null;
+        Session session = HibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+
+        try {
+            String hql = "from Subject subject";
+            hql += " where subject.code = :code"; 
+            Query query = session.createQuery(hql);
+
+            query.setParameter("code", code, StringType.INSTANCE);
+            tx = session.beginTransaction();
+            
+            list = query.list();    //get all
+            if(!list.isEmpty()){
+                entity = list.get(0);   //get first entity
+            }
+            
+            tx.commit();
+        } catch (Exception e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+        
+        return entity;
     }
     
     @Override

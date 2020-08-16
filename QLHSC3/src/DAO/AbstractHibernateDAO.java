@@ -12,18 +12,20 @@ import java.util.List;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.type.StringType;
 import pagination.Pageable;
+import qlhsc3.Generic;
 
 /**
  *
  * @author ThanhTung
  * @param <T>
  */
-public abstract class AbstractHibernateDAO<T extends Serializable> {
+public abstract class AbstractHibernateDAO<T extends Generic> {
 
-    private Class<T> clazz;
+    protected Class<T> clazz;
 
-    public void setClazz(Class<T> clazzToSet) {
+    protected void setClazz(Class<T> clazzToSet) {
         clazz = clazzToSet;
     }
 
@@ -45,6 +47,10 @@ public abstract class AbstractHibernateDAO<T extends Serializable> {
         }
         
         return entity;
+    }
+    
+    public T findByCode(String code) {
+        return null;
     }
     
     public List<T> findAll() {
