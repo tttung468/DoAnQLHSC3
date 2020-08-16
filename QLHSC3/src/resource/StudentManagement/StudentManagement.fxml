@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Pagination?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="574.0" prefWidth="1382.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView layoutX="40.0" layoutY="72.0" prefHeight="450.0" prefWidth="1302.0">
+         <columns>
+            <TableColumn prefWidth="75.0" text="Mã" />
+            <TableColumn prefWidth="157.0" text="Họ &amp; tên" />
+            <TableColumn prefWidth="135.0" text="Số điện thoại" />
+            <TableColumn prefWidth="85.0" text="Giới tính" />
+            <TableColumn prefWidth="234.0" text="Địa chỉ" />
+            <TableColumn prefWidth="151.0" text="Ngày sinh" />
+            <TableColumn prefWidth="166.0" text="Trạng thái học tập" />
+            <TableColumn prefWidth="162.0" text="Trạng thái" />
+            <TableColumn prefWidth="136.0" text="Tùy chọn" />
+         </columns>
+      </TableView>
+      <Pagination layoutX="650.0" layoutY="522.0" pageCount="100" prefHeight="25.0" prefWidth="82.0" />
+      <TextField layoutX="121.0" layoutY="36.0" prefHeight="31.0" prefWidth="200.0" promptText="Tìm kiếm học sinh">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </TextField>
+      <Button layoutX="321.0" layoutY="35.0" mnemonicParsing="false" prefHeight="4.0" prefWidth="41.0">
+         <graphic>
+            <ImageView fitHeight="25.0" fitWidth="25.0">
+               <image>
+                  <Image url="@../../Image/search.png" />
+               </image>
+            </ImageView>
+         </graphic>
+      </Button>
+      <Label layoutX="606.0" layoutY="42.0" text="Địa chỉ:">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <ComboBox layoutX="661.0" layoutY="40.0" prefHeight="25.0" prefWidth="120.0" />
+      <Button layoutX="1255.0" layoutY="36.0" mnemonicParsing="false" style="-fx-background-radius: 20;" text="Làm mới">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Label layoutX="393.0" layoutY="42.0" text="Trạng thái:">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <ComboBox layoutX="472.0" layoutY="40.0" prefHeight="25.0" prefWidth="120.0" />
+      <Button layoutX="1135.0" layoutY="36.0" mnemonicParsing="false" style="-fx-background-radius: 20;" text="Lọc">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Label layoutX="792.0" layoutY="42.0" text="Trạng thái học tập:">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Button layoutX="20.0" layoutY="36.0" mnemonicParsing="false" style="-fx-background-color: #23DB1F; -fx-background-radius: 20;" text="Tạo mới">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <ComboBox layoutX="928.0" layoutY="40.0" prefHeight="25.0" prefWidth="120.0" />
+      <Label layoutX="393.0" layoutY="6.0" text="Khối:">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <ComboBox layoutX="472.0" layoutY="4.0" prefHeight="25.0" prefWidth="120.0" />
+      <Label layoutX="606.0" layoutY="6.0" text="Lớp:">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <ComboBox layoutX="661.0" layoutY="4.0" prefHeight="25.0" prefWidth="120.0" />
+      <Label layoutX="792.0" layoutY="6.0" text="Giới tính:">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <ComboBox layoutX="928.0" layoutY="4.0" prefHeight="25.0" prefWidth="120.0" />
+      <Label layoutX="1062.0" layoutY="6.0" text="Năm sinh:">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <ComboBox layoutX="1135.0" layoutY="4.0" prefHeight="25.0" prefWidth="120.0" />
+   </children>
+</AnchorPane>
