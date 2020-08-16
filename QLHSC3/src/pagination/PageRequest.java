@@ -6,6 +6,7 @@
 package pagination;
 
 import java.io.Serializable;
+import qlhsc3.Generic;
 import sort.Sorter;
 
 /**
@@ -13,7 +14,7 @@ import sort.Sorter;
  * @author ThanhTung
  * @param <T>
  */
-public class PageRequest<T extends Serializable> implements Pageable<T> 
+public class PageRequest<T extends Generic> implements Pageable<T> 
 {
         private Integer page;
 	private Integer perPage;

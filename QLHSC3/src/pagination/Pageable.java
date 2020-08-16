@@ -6,6 +6,7 @@
 package pagination;
 
 import java.io.Serializable;
+import qlhsc3.Generic;
 import sort.Sorter;
 
 
@@ -15,7 +16,7 @@ import sort.Sorter;
  * @author ThanhTung
  * @param <T>
  */
-public interface Pageable<T extends Serializable> {
+public interface Pageable<T extends Generic> {
     public Integer getPage();
     public Integer getOffset();
     public Integer getLimit();

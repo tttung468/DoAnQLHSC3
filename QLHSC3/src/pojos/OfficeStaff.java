@@ -29,6 +29,5 @@ public class OfficeStaff extends Officer implements java.io.Serializable {
         this.modifiedDate = modifiedDate;
         this.modifiedBy = modifiedBy;
     }
-
     
 }
