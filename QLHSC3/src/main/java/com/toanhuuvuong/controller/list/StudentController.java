@@ -142,7 +142,7 @@ public class StudentController extends GenericController<Student> implements Ini
 	}
 	private void initStatusFilterComboBox()
 	{
-		statusFilterComboBox.setItems(FXCollections.observableArrayList("Chuyển đến", "Chuyển đi", "Thôi hoc", "Đang học"));
+		statusFilterComboBox.setItems(FXCollections.observableArrayList("Chuyển đến", "Chuyển đi", "Thôi học", "Đang học"));
 		statusFilterComboBox.setValue(null);
 	}
 	private void initEthnicFilterComboBox()
@@ -196,22 +196,13 @@ public class StudentController extends GenericController<Student> implements Ini
 		{
 		    if (newValue != null)
 		    {
-		    	if(tableView.getSelectionModel().getSelectedItems().size() == 1)
-		    	{
-		    		updateButton.setVisible(true);
-		    		detailButton.setVisible(true);
-		    	}
+		    	if(tableView.getSelectionModel().getSelectedItems().size() == 1)	
+		    		evaluateButton.setVisible(true);
 		    	else
-		    	{
-		    		updateButton.setVisible(false);
-		    		detailButton.setVisible(false);
-		    	}
+		    		evaluateButton.setVisible(false);
 		    }
 		    else
-		    {
-		    	updateButton.setVisible(false);
-		    	detailButton.setVisible(false);
-		    }
+		    	evaluateButton.setVisible(false);
 		});
 		
 		avatarPathCol.setCellValueFactory(cell ->
@@ -283,7 +274,7 @@ public class StudentController extends GenericController<Student> implements Ini
 	@Override
 	protected void initHeaderController() 
 	{
-		headerController.setTitleLabelText("QUẢN LÝ GIÁO VỤ");
+		headerController.setTitleLabelText("QUẢN LÝ HỌC SINH");
 	}
 	@Override
 	protected Student getFilterModel()

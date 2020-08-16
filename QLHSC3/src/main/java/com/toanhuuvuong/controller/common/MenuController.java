@@ -148,7 +148,7 @@ public class MenuController implements Initializable
 	@FXML
 	public void classListMenuItemOnAction(ActionEvent event)
 	{
-		URL url = getClass().getResource("../../application/views/class/list.fxml");
+		URL url = getClass().getResource("../../application/views/schoolclass/list.fxml");
 		Stage stage = (Stage)(menuBar.getScene().getWindow());
 		String title = "Danh sách lớp học";
 		Double width = menuBar.getScene().getWidth();

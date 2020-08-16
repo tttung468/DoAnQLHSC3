@@ -1,6 +1,10 @@
 eclipse.preferences.version=1
 encoding//src/main/java/com/toanhuuvuong/controller/list/HRStaffController.java=UTF-8
 encoding//src/main/java/com/toanhuuvuong/controller/list/OfficeStaffController.java=UTF-8
+encoding//src/main/java/com/toanhuuvuong/controller/list/SchoolClassController.java=UTF-8
+encoding//src/main/java/com/toanhuuvuong/controller/list/SchoolYearController.java=UTF-8
+encoding//src/main/java/com/toanhuuvuong/controller/list/ScoreController.java=UTF-8
 encoding//src/main/java/com/toanhuuvuong/controller/list/StudentController.java=UTF-8
+encoding//src/main/java/com/toanhuuvuong/controller/list/SubjectController.java=UTF-8
 encoding//src/main/java/com/toanhuuvuong/controller/list/TeacherController.java=UTF-8
 encoding/<project>=UTF-8

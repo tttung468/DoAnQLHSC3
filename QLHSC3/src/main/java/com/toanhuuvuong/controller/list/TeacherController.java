@@ -183,7 +183,7 @@ public class TeacherController extends GenericController<Teacher> implements Ini
 	@Override
 	protected void initHeaderController() 
 	{
-		headerController.setTitleLabelText("QUẢN LÝ GIÁO VỤ");
+		headerController.setTitleLabelText("QUẢN LÝ GIÁO VIÊN");
 	}
 	@Override
 	protected Teacher getFilterModel()

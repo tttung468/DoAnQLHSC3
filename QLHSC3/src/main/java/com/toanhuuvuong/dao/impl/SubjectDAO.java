@@ -108,9 +108,6 @@ public class SubjectDAO extends AbstractHibernateDAO<Subject> implements ISubjec
 		// Các dòng còn lại
 		hql += generateHQL(pageable);
 
-		// test
-		System.out.println("\n" + hql);
-
 		return hql;
 	}
 

@@ -19,23 +19,28 @@
 		<mapping resource="com/toanhuuvuong/model/Religion.hbm.xml" />		
 		<mapping resource="com/toanhuuvuong/model/Nationality.hbm.xml" />
 		<mapping resource="com/toanhuuvuong/model/Student.hbm.xml" />
-		<!--<mapping resource="model/Grade.hbm.xml" />
-		
+		<mapping resource="com/toanhuuvuong/model/SchoolYear.hbm.xml" />
+		<mapping resource="com/toanhuuvuong/model/Grade.hbm.xml" />
+		<mapping resource="com/toanhuuvuong/model/SchoolClass.hbm.xml" />
+		<mapping resource="com/toanhuuvuong/model/Semester.hbm.xml" />
+		<mapping resource="com/toanhuuvuong/model/StudentOfClass.hbm.xml" />
+		<mapping resource="com/toanhuuvuong/model/ScoreType.hbm.xml" />
+		<mapping resource="com/toanhuuvuong/model/Score.hbm.xml" />
+		<!--
 		
 		<mapping resource="model/Score.hbm.xml" />
 		
 		<mapping resource="model/Observation.hbm.xml" />
 		<mapping resource="model/Regulation.hbm.xml" />
-		<mapping resource="model/StudentOfClass.hbm.xml" />
+		
 		<mapping resource="model/Subject.hbm.xml" />
 		<mapping resource="model/Relatives.hbm.xml" />
 		
 		<mapping resource="model/Performance.hbm.xml" />
-		<mapping resource="model/ScoreType.hbm.xml" />
+		
 		<mapping resource="model/Conduct.hbm.xml" />
 		
-		<mapping resource="model/SchoolYear.hbm.xml" />
-		<mapping resource="model/Semester.hbm.xml" />
+		
 		<mapping resource="model/ConductType.hbm.xml" />
 		<mapping resource="model/FormTeacherAssignment.hbm.xml" />
 		
