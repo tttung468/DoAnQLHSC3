@@ -5,39 +5,11 @@
  */
 package qlhsc3;
 
-
-import DAO.ConductTypeDAO;
-import DAO.EthnicDAO;
-import DAO.HRStaffDAO;
-import DAO.OfficeStaffDAO;
-import DAO.RoleDAO;
-import DAO.SchoolClassDAO;
-import DAO.SchoolYearDAO;
-import DAO.ScoreDAO;
-import DAO.StudentDAO;
-import DAO.SubjectDAO;
-import DAO.TeacherAssignmentDAO;
-import DAO.TeacherDAO;
-import BUS.AccountBUS;
-import BUS.StudentOfClassBUS;
-import BUS.SubjectBUS;
+import BUS.ConductBUS;
 import connection.HibernateUtil;
 import java.util.List;
 import pagination.PageRequest;
-import pojos.Account;
-import pojos.ConductType;
-import pojos.Ethnic;
-import pojos.HRStaff;
-import pojos.OfficeStaff;
-import pojos.Role;
-import pojos.SchoolClass;
-import pojos.SchoolYear;
-import pojos.Score;
-import pojos.Student;
-import pojos.StudentOfClass;
-import pojos.Subject;
-import pojos.Teacher;
-import pojos.TeacherAssignment;
+import pojos.Conduct;
 import sort.Sorter;
 
 /**
@@ -50,25 +22,25 @@ public class main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        StudentOfClassBUS bus = new StudentOfClassBUS();
-        StudentOfClass filterModel;
+        ConductBUS bus = new ConductBUS();
+        Conduct filterModel;
         Integer page = 1;
 	Integer perPage = 6;
-	Sorter sorter = new Sorter("studentOfClass.id", "desc");
+	Sorter sorter = new Sorter("conduct.id", "desc");
         String searchKey;       
         
 	searchKey = null;
 	filterModel = null;
 //        searchKey = null;
 //        filterModel = bus.findOne(3);        
-//        searchKey = "7";
+//        searchKey = "8";
 //        filterModel = null;
         
-        PageRequest<StudentOfClass> pageRequest = new PageRequest<>(page, perPage, sorter, searchKey, filterModel);
-        List<StudentOfClass> list = bus.find(pageRequest);
+        PageRequest<Conduct> pageRequest = new PageRequest<>(page, perPage, sorter, searchKey, filterModel);
+        List<Conduct> list = bus.find(pageRequest);
         System.out.println("\nTest find :");
-        for (StudentOfClass pojo : list) {
-            System.out.println(pojo.getId() + " - " + pojo.getStudent().getCode());
+        for (Conduct pojo : list) {
+            System.out.println(pojo.getId() + " - " + pojo.getConductType().getCode());
         }
         
         System.out.println("\nTest count :");
