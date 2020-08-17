@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class catalog="qlhsc3DB" name="com.toanhuuvuong.model.Conduct"
+		optimistic-lock="version" table="conduct">
+		<id name="id" type="java.lang.Long">
+			<column name="id" />
+			<generator class="identity" />
+		</id>
+		<many-to-one class="com.toanhuuvuong.model.ConductType"
+			fetch="join" lazy="false" name="conductType">
+			<column name="conducttypeid" />
+		</many-to-one>
+		<many-to-one class="com.toanhuuvuong.model.SchoolClass"
+			fetch="join" lazy="false" name="schoolClass">
+			<column name="classid" />
+		</many-to-one>
+		<many-to-one class="com.toanhuuvuong.model.SchoolYear"
+			fetch="join" lazy="false" name="schoolYear">
+			<column name="schoolyearid" />
+		</many-to-one>
+		<many-to-one class="com.toanhuuvuong.model.Semester"
+			fetch="join" lazy="false" name="semester">
+			<column name="semesterid" />
+		</many-to-one>
+		<many-to-one class="com.toanhuuvuong.model.Student"
+			fetch="join" lazy="false" name="student">
+			<column name="studentid" />
+		</many-to-one>
+		<many-to-one class="com.toanhuuvuong.model.Teacher"
+			fetch="join" lazy="false" name="teacher">
+			<column name="formteacherid" />
+		</many-to-one>
+		<property name="isDeleted" type="java.lang.Boolean">
+			<column name="isdeleted" />
+		</property>
+		<property name="createdDate" type="timestamp">
+			<column length="19" name="createddate" not-null="true" />
+		</property>
+		<property name="createdBy" type="string">
+			<column name="createdby" />
+		</property>
+		<property name="modifiedDate" type="timestamp">
+			<column length="19" name="modifieddate" />
+		</property>
+		<property name="modifiedBy" type="string">
+			<column name="modifiedby" />
+		</property>
+	</class>
+</hibernate-mapping>

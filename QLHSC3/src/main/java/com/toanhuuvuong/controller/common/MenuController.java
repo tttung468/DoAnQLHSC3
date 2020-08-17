@@ -170,7 +170,7 @@ public class MenuController implements Initializable
 	@FXML
 	public void subjectScoreMenuItemOnAction(ActionEvent event)
 	{
-		URL url = getClass().getResource("../../application/views/common/subjectscore.fxml");
+		URL url = getClass().getResource("../../application/views/score/list.fxml");
 		Stage stage = (Stage)(menuBar.getScene().getWindow());
 		String title = "Bảng điểm";
 		Double width = menuBar.getScene().getWidth();
@@ -192,7 +192,7 @@ public class MenuController implements Initializable
 	@FXML
 	public void resultStatisticsMenuItemOnAction(ActionEvent event)
 	{
-		URL url = getClass().getResource("../../application/views/common/resultstatistics.fxml");
+		URL url = getClass().getResource("../../application/views/resultstatistics/list.fxml");
 		Stage stage = (Stage)(menuBar.getScene().getWindow());
 		String title = "Thống kê kết quả học tập";
 		Double width = menuBar.getScene().getWidth();
@@ -203,7 +203,7 @@ public class MenuController implements Initializable
 	@FXML
 	public void lookUpResultMenuItemOnAction(ActionEvent event)
 	{
-		URL url = getClass().getResource("../../application/views/common/lookupresult.fxml");
+		URL url = getClass().getResource("../../application/views/result/list.fxml");
 		Stage stage = (Stage)(menuBar.getScene().getWindow());
 		String title = "Tra cứu kết quả học tập";
 		Double width = menuBar.getScene().getWidth();

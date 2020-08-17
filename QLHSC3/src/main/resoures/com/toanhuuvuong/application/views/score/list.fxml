@@ -45,7 +45,7 @@
 								<Font name="System Bold" size="15.0" />
 							</font>
 						</Label>
-						<Label text="Quản lý bảng điểm">
+						<Label text="Bảng điểm">
 							<font>
 								<Font name="System Bold" size="15.0" />
 							</font>
@@ -235,7 +235,7 @@
                                  </graphic></TableColumn>
                               <TableColumn fx:id="minuteTestCol" prefWidth="-1.0" text="15 phút">
                                  <graphic>
-                                    <FontAwesomeIcon iconName="PAPERCLIP" />
+                                    <FontAwesomeIcon iconName="PENCIL" />
                                  </graphic></TableColumn>
                               <TableColumn fx:id="hourTestCol" prefWidth="-1.0" text="1 tiết">
                                  <graphic>
@@ -243,7 +243,7 @@
                                  </graphic></TableColumn>
                               <TableColumn fx:id="semiTestCol" prefWidth="-1.0" text="Thi giữa kỳ">
                                  <graphic>
-                                    <FontAwesomeIcon iconName="PASTE" />
+                                    <FontAwesomeIcon iconName="STAR_HALF" />
                                  </graphic></TableColumn>
                               <TableColumn fx:id="finalTestCol" prefWidth="-1.0" text="Thi cuối kỳ">
                                  <graphic>

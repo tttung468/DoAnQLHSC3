@@ -2,8 +2,8 @@ package com.toanhuuvuong.controller.ontap;
 
 import java.util.List;
 
-import com.toanhuuvuong.model.StudentOfClass;
-import com.toanhuuvuong.service.impl.StudentOfClassService;
+import com.toanhuuvuong.model.Conduct;
+import com.toanhuuvuong.service.impl.ConductService;
 
 public class HelloThread extends Thread
 {
@@ -16,12 +16,12 @@ public class HelloThread extends Thread
 	}
 	public static void main(String[] agrs)
 	{
-		StudentOfClassService roleService = new StudentOfClassService();
+		ConductService roleService = new ConductService();
 		
-		List<StudentOfClass> roles = roleService.findAll();
+		List<Conduct> roles = roleService.findAll();
 		String format = "%-15s";
 		
-		for(StudentOfClass role : roles)
+		for(Conduct role : roles)
 			System.out.println(String.format(format, role.getId()));
 	}
 }

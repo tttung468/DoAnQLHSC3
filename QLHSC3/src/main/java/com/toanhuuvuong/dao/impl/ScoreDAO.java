@@ -63,7 +63,7 @@ public class ScoreDAO extends AbstractHibernateDAO<Score> implements IScoreDAO {
 
 			// score.semester.id
 			if (score.getSemester() != null) {
-				sql.append(" score.semester.id=:semesterID");
+				sql.append(" score.semester.name=:semesterName");
 			}
 			if (score.getSchoolYear() != null && (score.getValue() != null || score.getOrdinalNumber() != null
 					|| score.getScoreType() != null || score.getSubject() != null || score.getSemester() != null)) {
@@ -72,94 +72,117 @@ public class ScoreDAO extends AbstractHibernateDAO<Score> implements IScoreDAO {
 
 			// score.schoolYear.id
 			if (score.getSchoolYear() != null) {
-				sql.append(" score.schoolYear.id=:schoolYearID");
+				sql.append(" score.schoolYear.code=:schoolYearCode");
 			}
-			if (score.getStudent() != null && (score.getValue() != null || score.getOrdinalNumber() != null
-					|| score.getScoreType() != null || score.getSubject() != null || score.getSemester() != null
-					|| score.getSchoolYear() != null)) {
+			if (score.getStudent() != null && score.getStudent().getId() != null
+					&& (score.getValue() != null || score.getOrdinalNumber() != null || score.getScoreType() != null
+							|| score.getSubject() != null || score.getSemester() != null
+							|| score.getSchoolYear() != null)) {
 				sql.append(" and");
 			}
 
-			if (score.getStudent() != null) {
-				// score.student.id
-				if (score.getStudent().getId() != null) {
-					sql.append(" score.student.id=:studentID");
-				}
-				if (score.getStudent().getCode() != null
-						&& (score.getValue() != null || score.getOrdinalNumber() != null || score.getScoreType() != null
-								|| score.getSubject() != null || score.getSemester() != null
-								|| score.getSchoolYear() != null || score.getStudent().getId() != null)) {
-					sql.append(" and");
-				}
-
-				// score.student.code
-				if (score.getStudent().getCode() != null) {
-					sql.append(" score.student.code=:studentCode");
-				}
-				if (score.getStudent().getName() != null && (score.getValue() != null
-						|| score.getOrdinalNumber() != null || score.getScoreType() != null
-						|| score.getSubject() != null || score.getSemester() != null || score.getSchoolYear() != null
-						|| score.getStudent().getId() != null || score.getStudent().getCode() != null)) {
-					sql.append(" and");
-				}
-
-				// score.student.name
-				if (score.getStudent().getName() != null) {
-					sql.append(" score.student.name=:studentName");
-				}
-				if (score.getStudent().getGender() != null
-						&& (score.getValue() != null || score.getOrdinalNumber() != null || score.getScoreType() != null
-								|| score.getSubject() != null || score.getSemester() != null
-								|| score.getSchoolYear() != null || score.getStudent().getId() != null
-								|| score.getStudent().getCode() != null || score.getStudent().getName() != null)) {
-					sql.append(" and");
-				}
-
-				// score.student.gender
-				if (score.getStudent().getGender() != null) {
-					sql.append(" score.student.gender=:studentGender");
-				}
-				if (score.getStudent().getStatus() != null && (score.getValue() != null
-						|| score.getOrdinalNumber() != null || score.getScoreType() != null
-						|| score.getSubject() != null || score.getSemester() != null || score.getSchoolYear() != null
-						|| score.getStudent().getId() != null || score.getStudent().getCode() != null
-						|| score.getStudent().getName() != null || score.getStudent().getGender() != null)) {
-					sql.append(" and");
-				}
-
-				// score.student.status
-				if (score.getStudent().getStatus() != null) {
-					sql.append(" score.student.status=:studentStatus");
-				}
+			// score.student.id
+			if (score.getStudent() != null && score.getStudent().getId() != null) {
+				sql.append(" score.student.id=:studentID");
 			}
-			if (score.getSchoolClass() != null && (score.getValue() != null || score.getOrdinalNumber() != null
-					|| score.getScoreType() != null || score.getSubject() != null || score.getSemester() != null
-					|| score.getSchoolYear() != null || score.getStudent().getId() != null
+			if (score.getStudent() != null && score.getStudent().getCode() != null
+					&& (score.getValue() != null || score.getOrdinalNumber() != null || score.getScoreType() != null
+							|| score.getSubject() != null || score.getSemester() != null
+							|| score.getSchoolYear() != null
+							|| score.getStudent() != null && score.getStudent().getId() != null)) {
+				sql.append(" and");
+			}
+
+			// score.student.code
+			if (score.getStudent() != null && score.getStudent().getCode() != null) {
+				sql.append(" score.student.code=:studentCode");
+			}
+			if (score.getStudent() != null && score.getStudent().getName() != null
+					&& (score.getValue() != null || score.getOrdinalNumber() != null || score.getScoreType() != null
+							|| score.getSubject() != null || score.getSemester() != null
+							|| score.getSchoolYear() != null || (score.getStudent() != null
+									&& (score.getStudent().getId() != null || score.getStudent().getCode() != null)))) {
+				sql.append(" and");
+			}
+
+			// score.student.name
+			if (score.getStudent() != null && score.getStudent().getName() != null) {
+				sql.append(" score.student.name=:studentName");
+			}
+			if (score.getStudent() != null && score.getStudent().getGender() != null && (score.getValue() != null
+					|| score.getOrdinalNumber() != null || score.getScoreType() != null || score.getSubject() != null
+					|| score.getSemester() != null || score.getSchoolYear() != null
+					|| (score.getStudent() != null && (score.getStudent().getId() != null
+							|| score.getStudent().getCode() != null || score.getStudent().getName() != null)))) {
+				sql.append(" and");
+			}
+
+			// score.student.gender
+			if (score.getStudent() != null && score.getStudent().getGender() != null) {
+				sql.append(" score.student.gender=:studentGender");
+			}
+			if (score.getStudent() != null && score.getStudent().getStatus() != null
+					&& (score.getValue() != null || score.getOrdinalNumber() != null || score.getScoreType() != null
+							|| score.getSubject() != null || score.getSemester() != null
+							|| score.getSchoolYear() != null
+							|| (score.getStudent() != null && (score.getStudent().getId() != null
+									|| score.getStudent().getCode() != null || score.getStudent().getName() != null
+									|| score.getStudent().getGender() != null)))) {
+				sql.append(" and");
+			}
+
+			// score.student.status
+			if (score.getStudent() != null && score.getStudent().getStatus() != null) {
+				sql.append(" score.student.status=:studentStatus");
+			}
+			if (score.getSchoolClass() != null && score.getSchoolClass().getId() != null && (score.getValue() != null
+					|| score.getOrdinalNumber() != null || score.getScoreType() != null || score.getSubject() != null
+					|| score.getSemester() != null || score.getSchoolYear() != null
+					|| score.getStudent().getId() != null
 					|| (score.getStudent() != null && (score.getStudent().getId() != null
 							|| score.getStudent().getCode() != null || score.getStudent().getName() != null
 							|| score.getStudent().getGender() != null || score.getStudent().getStatus() != null)))) {
 				sql.append(" and");
 			}
 			// score.schoolClass.id
-			if (score.getSchoolClass() != null) {
+			if (score.getSchoolClass() != null && score.getSchoolClass().getId() != null) {
 				sql.append(" score.schoolClass.id=:schoolClassID");
+			}
+			if (score.getSchoolClass() != null && score.getSchoolClass().getGrade().getName() != null
+					&& (score.getValue() != null || score.getOrdinalNumber() != null || score.getScoreType() != null
+							|| score.getSubject() != null || score.getSemester() != null
+							|| score.getSchoolYear() != null
+							|| (score.getSchoolClass() != null && score.getSchoolClass().getId() != null)
+							|| (score.getStudent() != null && (score.getStudent().getId() != null
+									|| score.getStudent().getCode() != null || score.getStudent().getName() != null
+									|| score.getStudent().getGender() != null
+									|| score.getStudent().getStatus() != null)))) {
+				sql.append(" and");
+			}
+			// score.schoolClass.grade.name
+			if (score.getSchoolClass() != null && score.getSchoolClass().getGrade().getName() != null) {
+				sql.append(" score.schoolClass.grade.name=:gradeName");
 			}
 			if (score.getIsDeleted() != null && (score.getValue() != null || score.getOrdinalNumber() != null
 					|| score.getScoreType() != null || score.getSubject() != null || score.getSemester() != null
-					|| score.getSchoolYear() != null || score.getSchoolClass() != null
+					|| score.getSchoolYear() != null
+					|| (score.getSchoolClass() != null && (score.getSchoolClass().getId() != null
+							|| score.getSchoolClass().getGrade().getName() != null))
 					|| (score.getStudent() != null && (score.getStudent().getId() != null
 							|| score.getStudent().getCode() != null || score.getStudent().getName() != null
 							|| score.getStudent().getGender() != null || score.getStudent().getStatus() != null)))) {
 				sql.append(" and");
 			}
-
 			// score.isDeleted
 			if (score.getIsDeleted() != null) {
 				sql.append(" score.isDeleted=:isDeleted");
 			}
 			if (searchKey != null && (score.getValue() != null || score.getOrdinalNumber() != null
 					|| score.getScoreType() != null || score.getSubject() != null || score.getSemester() != null
-					|| score.getSchoolYear() != null || score.getSchoolClass() != null || score.getIsDeleted() != null
+					|| score.getSchoolYear() != null
+					|| (score.getSchoolClass() != null && (score.getSchoolClass().getId() != null
+							|| score.getSchoolClass().getGrade().getName() != null))
+					|| score.getIsDeleted() != null
 					|| (score.getStudent() != null && (score.getStudent().getId() != null
 							|| score.getStudent().getCode() != null || score.getStudent().getName() != null
 							|| score.getStudent().getGender() != null || score.getStudent().getStatus() != null)))) {
@@ -173,13 +196,10 @@ public class ScoreDAO extends AbstractHibernateDAO<Score> implements IScoreDAO {
 //              OR score.schoolYear.id LIKE ? OR score.student.id LIKE ? OR score.schoolClass.id LIKE ? )
 		if (searchKey != null) {
 			sql.append(" (score.value like :searchKey");
-			sql.append(" score.ordinalNumber like :searchKey");
-			sql.append(" score.scoreType.id like :searchKey");
-			sql.append(" score.subject.id like :searchKey");
-			sql.append(" score.semester.id like :searchKey");
-			sql.append(" score.schoolYear.id like :searchKey");
-			sql.append(" score.student.id like :searchKey");
-			sql.append(" score.schoolClass.id like :searchKey)");
+			sql.append(" or score.student.code like :searchKey");
+			sql.append(" or score.student.name like :searchKey");
+			sql.append(" or score.student.gender like :searchKey");
+			sql.append(" or score.student.status like :searchKey)");
 		}
 
 //        ORDER BY ? ?
@@ -257,10 +277,10 @@ public class ScoreDAO extends AbstractHibernateDAO<Score> implements IScoreDAO {
 				query.setParameter("subjectID", score.getSubject().getId());
 			}
 			if (score.getSemester() != null) {
-				query.setParameter("semesterID", score.getSemester().getId());
+				query.setParameter("semesterName", score.getSemester().getName());
 			}
 			if (score.getSchoolYear() != null) {
-				query.setParameter("schoolYearID", score.getSchoolYear().getId());
+				query.setParameter("schoolYearCode", score.getSchoolYear().getCode());
 			}
 			if (score.getStudent() != null && score.getStudent().getId() != null) {
 				query.setParameter("studentID", score.getStudent().getId());
@@ -277,8 +297,11 @@ public class ScoreDAO extends AbstractHibernateDAO<Score> implements IScoreDAO {
 			if (score.getStudent() != null && score.getStudent().getStatus() != null) {
 				query.setParameter("studentStatus", score.getStudent().getStatus());
 			}
-			if (score.getSchoolClass() != null) {
+			if (score.getSchoolClass() != null && score.getSchoolClass().getId() != null) {
 				query.setParameter("schoolClassID", score.getSchoolClass().getId());
+			}
+			if (score.getSchoolClass() != null && score.getSchoolClass().getGrade().getName() != null) {
+				query.setParameter("gradeName", score.getSchoolClass().getGrade().getName());
 			}
 			if (score.getIsDeleted() != null) {
 				query.setParameter("isDeleted", score.getIsDeleted());

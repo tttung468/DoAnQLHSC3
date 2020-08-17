@@ -46,7 +46,7 @@ public class StudentOfClassDAO extends AbstractHibernateDAO<StudentOfClass> {
 
 			// studentOfClass.semester.id=?
 			if (studentOfClass.getSemester() != null) {
-				sql.append(" studentOfClass.semester.id=:semesterID");
+				sql.append(" studentOfClass.semester.name=:semesterName");
 			}
 			if (studentOfClass.getSchoolYear() != null && (studentOfClass.getAbsence() != null
 					|| studentOfClass.getAbsenceWithoutLeave() != null || studentOfClass.getSemester() != null)) {
@@ -55,7 +55,7 @@ public class StudentOfClassDAO extends AbstractHibernateDAO<StudentOfClass> {
 
 			// studentOfClass.schoolYear.id=?
 			if (studentOfClass.getSchoolYear() != null) {
-				sql.append(" studentOfClass.schoolYear.id=:schoolYearID");
+				sql.append(" studentOfClass.schoolYear.code=:schoolYearCode");
 			}
 			if (studentOfClass.getStudent() != null
 					&& (studentOfClass.getAbsence() != null || studentOfClass.getAbsenceWithoutLeave() != null
@@ -179,10 +179,10 @@ public class StudentOfClassDAO extends AbstractHibernateDAO<StudentOfClass> {
 				query.setParameter("absenceWithoutLeave", studentOfClass.getAbsenceWithoutLeave());
 			}
 			if (studentOfClass.getSemester() != null) {
-				query.setParameter("semesterID", studentOfClass.getSemester().getId());
+				query.setParameter("semesterName", studentOfClass.getSemester().getName());
 			}
 			if (studentOfClass.getSchoolYear() != null) {
-				query.setParameter("schoolYearID", studentOfClass.getSchoolYear().getId());
+				query.setParameter("schoolYearCode", studentOfClass.getSchoolYear().getCode());
 			}
 			if (studentOfClass.getStudent() != null) {
 				query.setParameter("studentID", studentOfClass.getStudent().getId());

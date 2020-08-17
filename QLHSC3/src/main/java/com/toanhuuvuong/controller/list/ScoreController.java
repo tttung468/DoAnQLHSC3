@@ -12,7 +12,6 @@ import com.toanhuuvuong.model.Score;
 import com.toanhuuvuong.model.ScoreType;
 import com.toanhuuvuong.model.Semester;
 import com.toanhuuvuong.model.Student;
-import com.toanhuuvuong.model.StudentOfClass;
 import com.toanhuuvuong.model.Subject;
 import com.toanhuuvuong.pagination.PageRequest;
 import com.toanhuuvuong.pagination.Pageable;
@@ -21,8 +20,6 @@ import com.toanhuuvuong.service.impl.SchoolYearService;
 import com.toanhuuvuong.service.impl.ScoreService;
 import com.toanhuuvuong.service.impl.ScoreTypeService;
 import com.toanhuuvuong.service.impl.SemesterService;
-import com.toanhuuvuong.service.impl.StudentOfClassService;
-import com.toanhuuvuong.service.impl.StudentService;
 import com.toanhuuvuong.service.impl.SubjectService;
 import com.toanhuuvuong.utils.CSVUtils;
 
@@ -71,8 +68,6 @@ public class ScoreController extends GenericController<Score> implements Initial
 	
 	private ScoreService scoreService = new ScoreService();
 	private ScoreTypeService scoreTypeService = new ScoreTypeService();
-	private StudentService studentService = new StudentService();
-	private StudentOfClassService studentOfClassService = new StudentOfClassService();
 	private SubjectService subjectService = new SubjectService();
 	private SemesterService semesterService = new SemesterService();
 	private SchoolYearService schoolYearService = new SchoolYearService();
@@ -172,22 +167,8 @@ public class ScoreController extends GenericController<Score> implements Initial
 			SchoolYear schoolYear = getFilterModel().getSchoolYear();
 			SchoolClass schoolClass = getFilterModel().getSchoolClass();
 			
-			Score filter = new Score();
-			filter.setStudent(student);
-			filter.setScoreType(scoreType);
-			filter.setSubject(subject);
-			filter.setSemester(semester);
-			filter.setSchoolYear(schoolYear);
-			filter.setSchoolClass(schoolClass);
-			
-			Pageable<Score> pageable = new PageRequest<Score>(null, null, null, null, filter);
-			
-			List<Score> scores = scoreService.find(pageable);
-			
-			String mouthTest = "";
-			for(Score score : scores)
-				mouthTest += score.getValue().toString() + "   ";
-			
+			List<Score> scores = scoreService.findByScoreTypeOfStudent(scoreType, student, semester, schoolYear, schoolClass, subject);
+			String mouthTest = scoreService.generateScoreFrom(scores);
 			prop.set(mouthTest);
 			
 			return prop;
@@ -203,23 +184,9 @@ public class ScoreController extends GenericController<Score> implements Initial
 			SchoolYear schoolYear = getFilterModel().getSchoolYear();
 			SchoolClass schoolClass = getFilterModel().getSchoolClass();
 			
-			Score filter = new Score();
-			filter.setStudent(student);
-			filter.setScoreType(scoreType);
-			filter.setSubject(subject);
-			filter.setSemester(semester);
-			filter.setSchoolYear(schoolYear);
-			filter.setSchoolClass(schoolClass);
-			
-			Pageable<Score> pageable = new PageRequest<Score>(null, null, null, null, filter);
-			
-			List<Score> scores = scoreService.find(pageable);
-			
-			String mouthTest = "";
-			for(Score score : scores)
-				mouthTest += score.getValue().toString() + "   ";
-			
-			prop.set(mouthTest);
+			List<Score> scores = scoreService.findByScoreTypeOfStudent(scoreType, student, semester, schoolYear, schoolClass, subject);
+			String minuteTest = scoreService.generateScoreFrom(scores);
+			prop.set(minuteTest);
 			
 			return prop;
 		});
@@ -234,23 +201,9 @@ public class ScoreController extends GenericController<Score> implements Initial
 			SchoolYear schoolYear = getFilterModel().getSchoolYear();
 			SchoolClass schoolClass = getFilterModel().getSchoolClass();
 			
-			Score filter = new Score();
-			filter.setStudent(student);
-			filter.setScoreType(scoreType);
-			filter.setSubject(subject);
-			filter.setSemester(semester);
-			filter.setSchoolYear(schoolYear);
-			filter.setSchoolClass(schoolClass);
-			
-			Pageable<Score> pageable = new PageRequest<Score>(null, null, null, null, filter);
-			
-			List<Score> scores = scoreService.find(pageable);
-			
-			String mouthTest = "";
-			for(Score score : scores)
-				mouthTest += score.getValue().toString() + "   ";
-			
-			prop.set(mouthTest);
+			List<Score> scores = scoreService.findByScoreTypeOfStudent(scoreType, student, semester, schoolYear, schoolClass, subject);
+			String hourTest = scoreService.generateScoreFrom(scores);
+			prop.set(hourTest);
 			
 			return prop;
 		});
@@ -265,23 +218,9 @@ public class ScoreController extends GenericController<Score> implements Initial
 			SchoolYear schoolYear = getFilterModel().getSchoolYear();
 			SchoolClass schoolClass = getFilterModel().getSchoolClass();
 			
-			Score filter = new Score();
-			filter.setStudent(student);
-			filter.setScoreType(scoreType);
-			filter.setSubject(subject);
-			filter.setSemester(semester);
-			filter.setSchoolYear(schoolYear);
-			filter.setSchoolClass(schoolClass);
-			
-			Pageable<Score> pageable = new PageRequest<Score>(null, null, null, null, filter);
-			
-			List<Score> scores = scoreService.find(pageable);
-			
-			String mouthTest = "";
-			for(Score score : scores)
-				mouthTest += score.getValue().toString() + "   ";
-			
-			prop.set(mouthTest);
+			List<Score> scores = scoreService.findByScoreTypeOfStudent(scoreType, student, semester, schoolYear, schoolClass, subject);
+			String semiTest = scoreService.generateScoreFrom(scores);
+			prop.set(semiTest);
 			
 			return prop;
 		});
@@ -296,23 +235,9 @@ public class ScoreController extends GenericController<Score> implements Initial
 			SchoolYear schoolYear = getFilterModel().getSchoolYear();
 			SchoolClass schoolClass = getFilterModel().getSchoolClass();
 			
-			Score filter = new Score();
-			filter.setStudent(student);
-			filter.setScoreType(scoreType);
-			filter.setSubject(subject);
-			filter.setSemester(semester);
-			filter.setSchoolYear(schoolYear);
-			filter.setSchoolClass(schoolClass);
-			
-			Pageable<Score> pageable = new PageRequest<Score>(null, null, null, null, filter);
-			
-			List<Score> scores = scoreService.find(pageable);
-			
-			String mouthTest = "";
-			for(Score score : scores)
-				mouthTest += score.getValue().toString() + "   ";
-			
-			prop.set(mouthTest);
+			List<Score> scores = scoreService.findByScoreTypeOfStudent(scoreType, student, semester, schoolYear, schoolClass, subject);
+			String finalTest = scoreService.generateScoreFrom(scores);
+			prop.set(finalTest);
 			
 			return prop;
 		});
@@ -331,7 +256,7 @@ public class ScoreController extends GenericController<Score> implements Initial
 	@Override
 	protected void initHeaderController() 
 	{
-		headerController.setTitleLabelText("QUẢN LÝ BẢNG ĐIỂM");
+		headerController.setTitleLabelText("BẢNG ĐIỂM");
 	}
 	@Override
 	protected Score getFilterModel()
@@ -400,38 +325,15 @@ public class ScoreController extends GenericController<Score> implements Initial
 	@Override
 	protected void changeDataView(Pageable<Score> pageable) 
 	{
+		pageable = new PageRequest<Score>(null, null, null, pageable.getSearchKey(), pageable.getFilterModel());
+		
 		pagination.setPageCount(SystemConstant.DEFAULT_PAGE);
 	
 		List<Score> list = scoreService.find(pageable);
 		if(list == null)
 			return;
 		
-		StudentOfClass filter = new StudentOfClass();
-		filter.setSemester(semesterService.findOne(1L));
-		filter.setSchoolYear(schoolYearService.findOne(3L));
-		filter.setSchoolClass(schoolClassService.findOne(1L));
-		
-		List<StudentOfClass> studentsOfClass = studentOfClassService
-				.find(new PageRequest<StudentOfClass>(null, null, null, null, filter));
-		
-		for(StudentOfClass studentOfClass : studentsOfClass)
-		{
-			boolean isExisted = false;
-			for(int i = 0; i < list.size(); i++)
-			{
-				Score score = list.get(i);
-				if(studentOfClass.getStudent().getId() == score.getStudent().getId())
-				{
-					if(isExisted)
-					{
-						list.remove(score);
-						i--;
-					}
-					else
-						isExisted = true;
-				}
-			}
-		}
+		list = scoreService.generateScoreGroupByStudentFrom(list, getFilterModel());
 		
 		observableList.clear();
 		observableList.addAll(list);

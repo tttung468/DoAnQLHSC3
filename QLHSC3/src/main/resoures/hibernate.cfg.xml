@@ -26,28 +26,16 @@
 		<mapping resource="com/toanhuuvuong/model/StudentOfClass.hbm.xml" />
 		<mapping resource="com/toanhuuvuong/model/ScoreType.hbm.xml" />
 		<mapping resource="com/toanhuuvuong/model/Score.hbm.xml" />
-		<!--
-		
-		<mapping resource="model/Score.hbm.xml" />
-		
-		<mapping resource="model/Observation.hbm.xml" />
+		<mapping resource="com/toanhuuvuong/model/Observation.hbm.xml" />
+		<mapping resource="com/toanhuuvuong/model/ConductType.hbm.xml" />
+		<mapping resource="com/toanhuuvuong/model/Conduct.hbm.xml" />
+		<mapping resource="com/toanhuuvuong/model/Performance.hbm.xml" />
+		<!--		
 		<mapping resource="model/Regulation.hbm.xml" />
-		
-		<mapping resource="model/Subject.hbm.xml" />
 		<mapping resource="model/Relatives.hbm.xml" />
-		
-		<mapping resource="model/Performance.hbm.xml" />
-		
-		<mapping resource="model/Conduct.hbm.xml" />
-		
-		
-		<mapping resource="model/ConductType.hbm.xml" />
 		<mapping resource="model/FormTeacherAssignment.hbm.xml" />
-		
 		<mapping resource="model/Relationship.hbm.xml" />
 		<mapping resource="model/TeacherAssignment.hbm.xml" />
-		<mapping resource="model/VerificationToken.hbm.xml" />
-		<mapping resource="model/SchoolClass.hbm.xml" />
 		<mapping resource="model/Headmaster.hbm.xml" />-->
 	</session-factory>
 </hibernate-configuration>
