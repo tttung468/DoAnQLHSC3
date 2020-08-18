@@ -41,9 +41,11 @@ public abstract class GenericService<T extends Generic & Serializable> implement
 	@Override
 	public void delete(Long[] deletedIds) 
 	{
+		deleteRelative(deletedIds);
 		for(Long id : deletedIds)
 			getDAO().deleteById(id);
 	}
+	public void deleteRelative(Long[] deletedIds) { return; }
 	@Override
 	public T insertOne(T model, Account creator) 
 	{

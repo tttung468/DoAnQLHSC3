@@ -190,7 +190,7 @@
                                     </TableColumn>
                                     <TableColumn fx:id="minuteTestCol" prefWidth="-1.0" text="15 phút">
                                        <graphic>
-                                          <FontAwesomeIcon iconName="PAPERCLIP" />
+                                          <FontAwesomeIcon iconName="PENCIL" />
                                        </graphic>
                                     </TableColumn>
                                     <TableColumn fx:id="hourTestCol" prefWidth="-1.0" text="1 tiết">
@@ -200,7 +200,7 @@
                                     </TableColumn>
                                     <TableColumn fx:id="semiTestCol" prefWidth="-1.0" text="Thi giữa kỳ">
                                        <graphic>
-                                          <FontAwesomeIcon iconName="PASTE" />
+                                          <FontAwesomeIcon iconName="STAR_HALF" />
                                        </graphic>
                                     </TableColumn>
                                     <TableColumn fx:id="finalTestCol" prefWidth="-1.0" text="Thi cuối kỳ">
@@ -210,10 +210,10 @@
                                     </TableColumn>
       										<TableColumn fx:id="subjectAvgCol" prefWidth="-1.0" text="Trung bình">
                                        <graphic>
-                                          <FontAwesomeIcon iconName="CHECK" />
+                                          <FontAwesomeIcon iconName="BAR_CHART" />
                                        </graphic>
       										</TableColumn>
-                                    <TableColumn fx:id="isDeletedCol" prefWidth="-1.0" text="Trạng thái">
+                                    <TableColumn fx:id="isDeletedCol" prefWidth="-1.0" text="Trạng thái" visible="false">
                                        <graphic>
                                           <FontAwesomeIcon iconName="LOCK" text="" />
                                        </graphic>

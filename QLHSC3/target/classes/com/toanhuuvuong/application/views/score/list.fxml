@@ -45,7 +45,7 @@
 								<Font name="System Bold" size="15.0" />
 							</font>
 						</Label>
-						<Label text="Quản lý bảng điểm">
+						<Label text="Bảng điểm">
 							<font>
 								<Font name="System Bold" size="15.0" />
 							</font>
@@ -165,6 +165,7 @@
                                           <CheckMenuItem mnemonicParsing="false" selected="true" text="Miệng" />
                                           <CheckMenuItem mnemonicParsing="false" selected="true" text="Thi giữa kỳ" />
                                           <CheckMenuItem mnemonicParsing="false" selected="true" text="Thi cuối kỳ" />
+                                          <CheckMenuItem mnemonicParsing="false" selected="true" text="Trung bình" />
 														<CheckMenuItem mnemonicParsing="false" selected="true" text="Trạng thái học tập" />
 														<CheckMenuItem mnemonicParsing="false" selected="true" text="Trạng thái" />
 													</items>
@@ -235,7 +236,7 @@
                                  </graphic></TableColumn>
                               <TableColumn fx:id="minuteTestCol" prefWidth="-1.0" text="15 phút">
                                  <graphic>
-                                    <FontAwesomeIcon iconName="PAPERCLIP" />
+                                    <FontAwesomeIcon iconName="PENCIL" />
                                  </graphic></TableColumn>
                               <TableColumn fx:id="hourTestCol" prefWidth="-1.0" text="1 tiết">
                                  <graphic>
@@ -243,12 +244,17 @@
                                  </graphic></TableColumn>
                               <TableColumn fx:id="semiTestCol" prefWidth="-1.0" text="Thi giữa kỳ">
                                  <graphic>
-                                    <FontAwesomeIcon iconName="PASTE" />
+                                    <FontAwesomeIcon iconName="STAR_HALF" />
                                  </graphic></TableColumn>
                               <TableColumn fx:id="finalTestCol" prefWidth="-1.0" text="Thi cuối kỳ">
                                  <graphic>
                                     <FontAwesomeIcon iconName="STAR" />
                                  </graphic></TableColumn>
+                              <TableColumn fx:id="avgSubjectCol" prefWidth="-1.0" text="Trung bình">
+                                 <graphic>
+                                    <FontAwesomeIcon iconName="CHECK" />
+                                 </graphic>
+                              </TableColumn>
 										<TableColumn fx:id="statusCol" prefWidth="-1.0" text="Trạng thái học tập">
                                  <graphic>
                                     <FontAwesomeIcon iconName="BOOK" />

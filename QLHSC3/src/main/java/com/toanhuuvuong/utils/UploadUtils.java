@@ -7,7 +7,7 @@ import javax.imageio.ImageIO;
 
 public class UploadUtils 
 {
-	public static String upload(File srcFile, String destFolder)
+	public static String uploadImage(File srcFile, String destFolder)
 	{
 		try 
 		{

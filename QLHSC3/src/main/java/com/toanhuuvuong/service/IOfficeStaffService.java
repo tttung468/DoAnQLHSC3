@@ -1,9 +1,9 @@
 package com.toanhuuvuong.service;
 
-import com.toanhuuvuong.model.HRStaff;
+import com.toanhuuvuong.model.OfficeStaff;
 
 public interface IOfficeStaffService 
 {
-	public HRStaff findByCode(String code);
-	public HRStaff findByAccountUsername(String username);
+	public OfficeStaff findByCode(String code);
+	public OfficeStaff findByAccountUsername(String username);
 }

@@ -13,10 +13,10 @@ public class Main extends Application
 	@Override
 	public void start(Stage primaryStage) 
 	{
-		URL url = getClass().getResource("views/resultstatistics/list.fxml");
+		URL url = getClass().getResource("views/score/list.fxml");
 		String title = "Danh sách giáo vụ";
 		
-		SceneUtils.changeSceneWithoutLostFocus(url, primaryStage, title, SystemConstant.FRAME_WIDTH, SystemConstant.FRAME_HEIGHT);
+		SceneUtils.changeScene(url, primaryStage, title, SystemConstant.FRAME_WIDTH, SystemConstant.FRAME_HEIGHT);
 	}
 	public static void main(String[] args) 
 	{

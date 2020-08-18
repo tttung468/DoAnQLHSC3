@@ -129,13 +129,13 @@
 												</Button>
 												<MenuButton fx:id="showHideColMenuButton" mnemonicParsing="false" style="-fx-background-radius: 20;" text="Ẩn/hiện cột">
 													<items>
-														<CheckMenuItem mnemonicParsing="false" selected="true" text="Môn" />
-														<CheckMenuItem mnemonicParsing="false" selected="true" text="15 phút" />
-														<CheckMenuItem mnemonicParsing="false" selected="true" text="1 tiết" />
-                                          <CheckMenuItem mnemonicParsing="false" selected="true" text="Miệng" />
-                                          <CheckMenuItem mnemonicParsing="false" selected="true" text="Thi giữa kỳ" />
-                                          <CheckMenuItem mnemonicParsing="false" selected="true" text="Thi cuối kỳ" />
-														<CheckMenuItem mnemonicParsing="false" selected="true" text="Trung bình" />
+														<CheckMenuItem mnemonicParsing="false" selected="true" text="Khối" />
+														<CheckMenuItem mnemonicParsing="false" selected="true" text="Lớp" />
+														<CheckMenuItem mnemonicParsing="false" selected="true" text="Giỏi" />
+                                          <CheckMenuItem mnemonicParsing="false" selected="true" text="Khá" />
+                                          <CheckMenuItem mnemonicParsing="false" selected="true" text="Trung bình" />
+                                          <CheckMenuItem mnemonicParsing="false" selected="true" text="Yếu" />
+														<CheckMenuItem mnemonicParsing="false" selected="true" text="Kém" />
 													</items>
 													<font>
 														<Font name="System Bold" size="15.0" />

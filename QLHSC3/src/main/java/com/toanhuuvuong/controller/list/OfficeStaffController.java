@@ -8,26 +8,34 @@ import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 import com.toanhuuvuong.constant.SystemConstant;
+import com.toanhuuvuong.controller.edit.OfficeStaffAccountController;
 import com.toanhuuvuong.converter.OfficeStaffConverter;
 import com.toanhuuvuong.model.Account;
 import com.toanhuuvuong.model.OfficeStaff;
 import com.toanhuuvuong.pagination.PageRequest;
 import com.toanhuuvuong.pagination.Pageable;
+import com.toanhuuvuong.service.impl.AccountService;
 import com.toanhuuvuong.service.impl.OfficeStaffService;
 import com.toanhuuvuong.utils.AutoCompleteComboBoxListener;
 import com.toanhuuvuong.utils.CSVUtils;
+import com.toanhuuvuong.utils.SceneUtils;
+import com.toanhuuvuong.utils.SessionUtils;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 public class OfficeStaffController extends GenericController<OfficeStaff> implements Initializable
 {
@@ -44,6 +52,10 @@ public class OfficeStaffController extends GenericController<OfficeStaff> implem
 	private ComboBox<String> addressFilterComboBox;
 	@FXML
 	private TextField salaryFilterTextField;
+	@FXML
+	private Button insertAccountButton;
+	@FXML
+	private Button deleteAccountButton;
 	@FXML
 	private TableColumn<OfficeStaff, ImageView> avatarPathCol;
 	@FXML
@@ -64,6 +76,9 @@ public class OfficeStaffController extends GenericController<OfficeStaff> implem
 	private TableColumn<OfficeStaff, String> accountUsernameCol;
 	
 	private OfficeStaffService officeStaffService = new OfficeStaffService();
+	private AccountService accountService = new AccountService();
+	
+	private Account accountModel = (Account)SessionUtils.getInstance().getValue("accountModel");
 	// ------------------------------------------- Methods
 	@Override
 	public void initialize(URL location, ResourceBundle resources) 
@@ -102,6 +117,27 @@ public class OfficeStaffController extends GenericController<OfficeStaff> implem
 	}
 	private void initTableView()
 	{
+		tableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> 
+		{
+		    if (newValue != null)
+		    {
+		    	if(tableView.getSelectionModel().getSelectedItems().size() == 1)	
+		    	{
+		    		insertAccountButton.setVisible(true);
+		    		deleteAccountButton.setVisible(true);
+		    	}
+		    	else
+		    	{
+		    		insertAccountButton.setVisible(false);
+		    		deleteAccountButton.setVisible(false);
+		    	}
+		    }
+		    else
+		    {
+		    	insertAccountButton.setVisible(false);
+		    	deleteAccountButton.setVisible(false);
+		    }
+		});
 		avatarPathCol.setCellValueFactory(cell ->
 		{
 			ObjectProperty<ImageView> prop = new SimpleObjectProperty<ImageView>();
@@ -238,5 +274,45 @@ public class OfficeStaffController extends GenericController<OfficeStaff> implem
 		tableView.setItems(observableList);
 		
 		listView.setItems(observableList);
+	}
+	@FXML
+	public void insertAccountButtonOnAction(ActionEvent event)
+	{
+		Integer selectedIndex = tableView.getSelectionModel().getSelectedIndex();
+		OfficeStaff selectedItem = observableList.get(selectedIndex);
+		
+		if(selectedItem == null)
+			return;
+		
+		URL url = getClass().getResource("../../application/views/account/officestaff.fxml");
+		Stage stage = new Stage();
+		String title = "Tạo tài khoản";
+		
+		FXMLLoader loader = SceneUtils.changeSceneWithoutLostFocus(url, stage, title, null, null); 
+		
+		OfficeStaffAccountController controller = loader.getController();
+		controller.listDelegate = this;
+		controller.setItem(selectedIndex, selectedItem);
+	}
+	@FXML
+	public void deleteAccountButtonOnAction(ActionEvent event)
+	{
+		Integer selectedIndex = tableView.getSelectionModel().getSelectedIndex();
+		OfficeStaff selectedItem = observableList.get(selectedIndex);
+		
+		if(selectedItem == null)
+			return;
+		
+		if(selectedItem.getAccount() != null)
+		{
+			Long[] deletedIds = { selectedItem.getAccount().getId() };
+			
+			selectedItem.setAccount(null);
+			officeStaffService.updateOne(selectedItem, accountModel);
+			
+			accountService.delete(deletedIds);
+			
+			updateSelectedItem(selectedIndex, selectedItem);
+		}
 	}
 }

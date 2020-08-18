@@ -7,6 +7,8 @@ import java.util.Map;
 import com.toanhuuvuong.dao.impl.AbstractHibernateDAO;
 import com.toanhuuvuong.dao.impl.AccountDAO;
 import com.toanhuuvuong.model.Account;
+import com.toanhuuvuong.pagination.PageRequest;
+import com.toanhuuvuong.pagination.Pageable;
 import com.toanhuuvuong.service.IAccountService;
 
 public class AccountService extends GenericService<Account> implements IAccountService
@@ -39,8 +41,14 @@ public class AccountService extends GenericService<Account> implements IAccountS
 	@Override
 	public Account findByUsername(String username)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		Account filter = new Account();
+		filter.setUsername(username);
+		
+		Pageable<Account> pageable = new PageRequest<Account>(null, null, null, null, filter);
+		
+		List<Account> list = accountDAO.find(pageable);
+		
+		return (list != null && !list.isEmpty()) ? list.get(0) : null;
 	}
 	@Override
 	public List<Account> findByRoleCode(String code)

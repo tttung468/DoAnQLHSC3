@@ -8,28 +8,36 @@ import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 import com.toanhuuvuong.constant.SystemConstant;
+import com.toanhuuvuong.controller.edit.TeacherAccountController;
 import com.toanhuuvuong.converter.TeacherConverter;
 import com.toanhuuvuong.model.Account;
 import com.toanhuuvuong.model.Subject;
 import com.toanhuuvuong.model.Teacher;
 import com.toanhuuvuong.pagination.PageRequest;
 import com.toanhuuvuong.pagination.Pageable;
+import com.toanhuuvuong.service.impl.AccountService;
 import com.toanhuuvuong.service.impl.SubjectService;
 import com.toanhuuvuong.service.impl.TeacherService;
 import com.toanhuuvuong.utils.AutoCompleteComboBoxListener;
 import com.toanhuuvuong.utils.CSVUtils;
+import com.toanhuuvuong.utils.SceneUtils;
+import com.toanhuuvuong.utils.SessionUtils;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 public class TeacherController extends GenericController<Teacher> implements Initializable
 {
@@ -48,6 +56,10 @@ public class TeacherController extends GenericController<Teacher> implements Ini
 	private TextField salaryFilterTextField;
 	@FXML
 	private ComboBox<String> subjectFilterComboBox;
+	@FXML
+	private Button insertAccountButton;
+	@FXML
+	private Button deleteAccountButton;
 	@FXML
 	private TableColumn<Teacher, ImageView> avatarPathCol;
 	@FXML
@@ -71,6 +83,9 @@ public class TeacherController extends GenericController<Teacher> implements Ini
 	
 	private TeacherService teacherService = new TeacherService();
 	private SubjectService subjectService = new SubjectService();
+	private AccountService accountService = new AccountService();
+	
+	private Account accountModel = (Account)SessionUtils.getInstance().getValue("accountModel");
 	// ------------------------------------------- Methods
 	@Override
 	public void initialize(URL location, ResourceBundle resources) 
@@ -126,6 +141,27 @@ public class TeacherController extends GenericController<Teacher> implements Ini
 	}
 	private void initTableView()
 	{
+		tableView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> 
+		{
+		    if (newValue != null)
+		    {
+		    	if(tableView.getSelectionModel().getSelectedItems().size() == 1)	
+		    	{
+		    		insertAccountButton.setVisible(true);
+		    		deleteAccountButton.setVisible(true);
+		    	}
+		    	else
+		    	{
+		    		insertAccountButton.setVisible(false);
+		    		deleteAccountButton.setVisible(false);
+		    	}
+		    }
+		    else
+		    {
+		    	insertAccountButton.setVisible(false);
+		    	deleteAccountButton.setVisible(false);
+		    }
+		});
 		avatarPathCol.setCellValueFactory(cell ->
 		{
 			ObjectProperty<ImageView> prop = new SimpleObjectProperty<ImageView>();
@@ -281,5 +317,45 @@ public class TeacherController extends GenericController<Teacher> implements Ini
 		tableView.setItems(observableList);
 		
 		listView.setItems(observableList);
+	}
+	@FXML
+	public void insertAccountButtonOnAction(ActionEvent event)
+	{
+		Integer selectedIndex = tableView.getSelectionModel().getSelectedIndex();
+		Teacher selectedItem = observableList.get(selectedIndex);
+		
+		if(selectedItem == null)
+			return;
+		
+		URL url = getClass().getResource("../../application/views/account/teacher.fxml");
+		Stage stage = new Stage();
+		String title = "Tạo tài khoản";
+		
+		FXMLLoader loader = SceneUtils.changeSceneWithoutLostFocus(url, stage, title, null, null); 
+		
+		TeacherAccountController controller = loader.getController();
+		controller.listDelegate = this;
+		controller.setItem(selectedIndex, selectedItem);
+	}
+	@FXML
+	public void deleteAccountButtonOnAction(ActionEvent event)
+	{
+		Integer selectedIndex = tableView.getSelectionModel().getSelectedIndex();
+		Teacher selectedItem = observableList.get(selectedIndex);
+		
+		if(selectedItem == null)
+			return;
+		
+		if(selectedItem.getAccount() != null)
+		{
+			Long[] deletedIds = { selectedItem.getAccount().getId() };
+			
+			selectedItem.setAccount(null);
+			teacherService.updateOne(selectedItem, accountModel);
+			
+			accountService.delete(deletedIds);
+			
+			updateSelectedItem(selectedIndex, selectedItem);
+		}
 	}
 }

@@ -33,6 +33,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
+import javafx.stage.Stage;
 
 public abstract class GenericController<T> implements Initializable
 {
@@ -235,12 +236,14 @@ public abstract class GenericController<T> implements Initializable
 	public void insertButtonOnAction(ActionEvent event)
 	{
 		URL url = getClass().getResource(getEditLoaderPath());
-		FXMLLoader loader = SceneUtils.changeScene(url, null, null, null, null); 
-
-		/*com.toanhuuvuong.controller.edit.GenericController<T> controller = loader.getController();
+		Stage stage = new Stage();
+		String title = "Thêm";
+		
+		FXMLLoader loader = SceneUtils.changeSceneWithoutLostFocus(url, stage, title, null, null);
+		com.toanhuuvuong.controller.edit.GenericController<T> controller = loader.getController();
 		controller.listDelegate = this;
 		controller.setItem(null, null);
-		controller.showDialog();*/
+		
 	}
 	@FXML
 	public void updateButtonOnAction(ActionEvent event)
@@ -252,32 +255,23 @@ public abstract class GenericController<T> implements Initializable
 			return;
 		
 		URL url = getClass().getResource(getEditLoaderPath());
-		FXMLLoader loader = SceneUtils.changeScene(url, null, null, null, null);
+		Stage stage = new Stage();
+		String title = "Sửa/xóa";
+		
+		FXMLLoader loader = SceneUtils.changeSceneWithoutLostFocus(url, stage, title, null, null);
 
-		/*com.toanhuuvuong.controller.edit.GenericController<T> controller = loader.getController();
+		com.toanhuuvuong.controller.edit.GenericController<T> controller = loader.getController();
 		controller.listDelegate = this;
 		controller.setItem(selectedIndex, selectedItem);
-		controller.showDialog();*/
 	}
 	@FXML
 	public void detailButtonOnAction(ActionEvent event)
 	{
-		Integer selectedIndex = tableView.getSelectionModel().getSelectedIndex();
-		T selectedItem = observableList.get(selectedIndex);
 		
-		if(selectedItem == null)
-			return;
-		
-		URL url = getClass().getResource(getDetailLoaderPath());
-		FXMLLoader loader = SceneUtils.changeScene(url, null, null, null, null);
-
-		/*com.toanhuuvuong.controller.edit.GenericController<T> controller = loader.getController();
-		controller.setItem(selectedIndex, selectedItem);
-		controller.showDialog();*/
 	}
 	public void deleteSelectedItem(Integer index, T item)
 	{
-		observableList.remove(index);
+		observableList.remove(item);
 		
 		tableView.setItems(observableList);
 	}
@@ -295,6 +289,7 @@ public abstract class GenericController<T> implements Initializable
 	{	
 		refresh();
 		
+		pagination.setCurrentPageIndex(SystemConstant.DEFAULT_PAGE - 1);
 		pageable = new PageRequest<T>(SystemConstant.DEFAULT_PAGE, SystemConstant.DEFAULT_PERPAGE, null, null, null);
 		changeDataView(pageable);
 	}

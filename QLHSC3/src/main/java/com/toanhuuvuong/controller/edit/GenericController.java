@@ -74,7 +74,7 @@ public abstract class GenericController<T> implements Initializable
 			deleteButton.setVisible(false);
 			
 			editButton.setText("Thêm");
-			editButton.setDisable(true);
+			editButton.setDisable(false);
 			
 			editIcon.setIconName("PLUS");
 		}
@@ -82,9 +82,11 @@ public abstract class GenericController<T> implements Initializable
 	@FXML
 	public void deleteButtonOnAction(ActionEvent event)
 	{
-		delete();
+		messageLabel.setVisible(true);
 		
-		if(listDelegate != null)
+		boolean isSuccess = delete();
+		
+		if(listDelegate != null && isSuccess)
 			listDelegate.deleteSelectedItem(index, model);
 	}
 	@FXML
@@ -94,12 +96,13 @@ public abstract class GenericController<T> implements Initializable
 		
 		mappingForm();
 		
+		boolean isSuccess = false;
 		if(index != null)
-			update();
+			isSuccess = update();
 		else
-			insert();
+			isSuccess = insert();
 		
-		if(listDelegate != null)
+		if(listDelegate != null && isSuccess)
 			listDelegate.updateSelectedItem(index, model);
 	}
 	@FXML
@@ -112,7 +115,7 @@ public abstract class GenericController<T> implements Initializable
 	protected abstract void fillForm();
 	protected abstract void mappingForm();
 	protected abstract boolean validateForm();
-	protected abstract void delete();
-	protected abstract void update();
-	protected abstract void insert();
+	protected abstract boolean delete();
+	protected abstract boolean update();
+	protected abstract boolean insert();
 }

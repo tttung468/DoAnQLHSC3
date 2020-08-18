@@ -24,7 +24,10 @@ public class SceneUtils
 			if(stage != null)
 			{
 				stage.setTitle(title);
-				stage.setScene(new Scene(root, width, height));
+				if(width != null && height != null)
+					stage.setScene(new Scene(root, width, height));
+				else
+					stage.setScene(new Scene(root));
 				stage.show();
 			}
 		} 
@@ -49,7 +52,10 @@ public class SceneUtils
 			if(stage != null)
 			{
 				stage.setTitle(title);
-				stage.setScene(new Scene(root, width, height));
+				if(width != null && height != null)
+					stage.setScene(new Scene(root, width, height));
+				else
+					stage.setScene(new Scene(root));
 				stage.setAlwaysOnTop(true);
 				stage.show();
 			}

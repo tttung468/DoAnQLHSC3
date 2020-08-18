@@ -1,11 +1,15 @@
 package com.toanhuuvuong.service.impl;
 
 import java.util.Hashtable;
+import java.util.List;
 import java.util.Map;
 
 import com.toanhuuvuong.dao.impl.AbstractHibernateDAO;
 import com.toanhuuvuong.dao.impl.TeacherDAO;
+import com.toanhuuvuong.model.Account;
 import com.toanhuuvuong.model.Teacher;
+import com.toanhuuvuong.pagination.PageRequest;
+import com.toanhuuvuong.pagination.Pageable;
 import com.toanhuuvuong.service.ITeacherService;
 
 public class TeacherService extends GenericService<Teacher> implements ITeacherService
@@ -17,7 +21,7 @@ public class TeacherService extends GenericService<Teacher> implements ITeacherS
 	{
 		Map<String, String> map = new Hashtable<String, String>();
 		
-		if(model == null)
+		if(model != null && findByCode(model.getCode()) != null)
 		{
 			map.put("messageCode", "code_existed");
 			map.put("alert", "danger");
@@ -38,8 +42,13 @@ public class TeacherService extends GenericService<Teacher> implements ITeacherS
 	@Override
 	public Teacher findByCode(String code) 
 	{
-		// TODO Auto-generated method stub
-		return null;
+		Teacher filter = new Teacher();
+		filter.setCode(code);
+		
+		Pageable<Teacher> pageable = new PageRequest<Teacher>(null, null, null, null, filter);
+		List<Teacher> list = teacherDAO.find(pageable);
+		
+		return (list != null && !list.isEmpty()) ? list.get(0) : null;
 	}
 	@Override
 	public Teacher findBySubjectCode(String code) 
@@ -50,7 +59,14 @@ public class TeacherService extends GenericService<Teacher> implements ITeacherS
 	@Override
 	public Teacher findByAccountUsername(String username) 
 	{
-		// TODO Auto-generated method stub
-		return null;
+		Teacher filter = new Teacher();
+		Account account = new Account();
+		account.setUsername(username);
+		filter.setAccount(account);
+		
+		Pageable<Teacher> pageable = new PageRequest<Teacher>(null, null, null, null, filter);
+		List<Teacher> list = teacherDAO.find(pageable);
+		
+		return (list != null && !list.isEmpty()) ? list.get(0) : null;
 	}
 }

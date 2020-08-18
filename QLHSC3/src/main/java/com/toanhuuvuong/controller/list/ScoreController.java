@@ -65,6 +65,8 @@ public class ScoreController extends GenericController<Score> implements Initial
 	private TableColumn<Score, String> semiTestCol;
 	@FXML
 	private TableColumn<Score, String> finalTestCol;
+	@FXML
+	private TableColumn<Score, String> avgSubjectCol;
 	
 	private ScoreService scoreService = new ScoreService();
 	private ScoreTypeService scoreTypeService = new ScoreTypeService();
@@ -238,6 +240,21 @@ public class ScoreController extends GenericController<Score> implements Initial
 			List<Score> scores = scoreService.findByScoreTypeOfStudent(scoreType, student, semester, schoolYear, schoolClass, subject);
 			String finalTest = scoreService.generateScoreFrom(scores);
 			prop.set(finalTest);
+			
+			return prop;
+		});
+		avgSubjectCol.setCellValueFactory(cell ->
+		{
+			ObjectProperty<String> prop = new SimpleObjectProperty<String>();
+			
+			Student student = cell.getValue().getStudent();
+			Subject subject = getFilterModel().getSubject();
+			Semester semester = getFilterModel().getSemester();
+			SchoolYear schoolYear = getFilterModel().getSchoolYear();
+			SchoolClass schoolClass = getFilterModel().getSchoolClass();
+			
+			Float avg = scoreService.calculateSubjectAvg(student, semester, schoolYear, schoolClass, subject);
+			prop.set(String.format("%.2f", avg));
 			
 			return prop;
 		});

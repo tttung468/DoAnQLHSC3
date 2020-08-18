@@ -257,4 +257,23 @@ public class ScoreService extends GenericService<Score> implements IScoreService
 		
 		return scoreRow.toString();
 	}
+	@Override
+	public Score findByOrdinalNumberOfScoreTypeOfStudent(Integer ordinalNumber, ScoreType scoreType, Student student,
+			Semester semester, SchoolYear schoolYear, SchoolClass schoolClass, Subject subject) 
+	{
+		Score filter = new Score();
+		filter.setStudent(student);
+		filter.setScoreType(scoreType);
+		filter.setSubject(subject);
+		filter.setSemester(semester);
+		filter.setSchoolYear(schoolYear);
+		filter.setSchoolClass(schoolClass);
+		filter.setOrdinalNumber(ordinalNumber);
+		
+		Pageable<Score> pageable = new PageRequest<Score>(null, null, null, null, filter);
+		
+		List<Score> scores = scoreDAO.find(pageable);
+		
+		return (scores != null && !scores.isEmpty()) ? scores.get(0) : null;
+	}
 }

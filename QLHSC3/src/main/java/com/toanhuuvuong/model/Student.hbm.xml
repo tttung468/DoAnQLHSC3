@@ -9,15 +9,15 @@
 			<generator class="identity" />
 		</id>
 		<many-to-one class="com.toanhuuvuong.model.Ethnic"
-			fetch="join" lazy="false" name="ethnic">
+			fetch="join" lazy="false" name="ethnic" cascade="all">
 			<column name="ethnicid" />
 		</many-to-one>
 		<many-to-one class="com.toanhuuvuong.model.Nationality"
-			fetch="join" lazy="false" name="nationality">
+			fetch="join" lazy="false" name="nationality" cascade="all">
 			<column name="nationalityid" />
 		</many-to-one>
 		<many-to-one class="com.toanhuuvuong.model.Religion"
-			fetch="join" lazy="false" name="religion">
+			fetch="join" lazy="false" name="religion" cascade="all">
 			<column name="religionid" />
 		</many-to-one>
 		<property name="code" type="string">
@@ -54,7 +54,7 @@
 			<column name="isdeleted" />
 		</property>
 		<property name="createdDate" type="timestamp">
-			<column length="19" name="createddate" not-null="true" />
+			<column length="19" name="createddate" />
 		</property>
 		<property name="createdBy" type="string">
 			<column name="createdby" />

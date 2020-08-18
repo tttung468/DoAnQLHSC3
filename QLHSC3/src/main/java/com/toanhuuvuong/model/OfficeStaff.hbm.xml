@@ -41,7 +41,7 @@
 			<column name="isdeleted" />
 		</property>
 		<property name="createdDate" type="timestamp">
-			<column length="19" name="createddate" not-null="true" />
+			<column length="19" name="createddate" />
 		</property>
 		<property name="createdBy" type="string">
 			<column name="createdby" />

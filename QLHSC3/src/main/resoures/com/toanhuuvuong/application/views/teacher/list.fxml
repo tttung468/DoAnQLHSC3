@@ -206,6 +206,22 @@
 														<FontAwesomeIcon iconName="EYE" />
 													</graphic>
 												</Button>
+                                    <Button fx:id="insertAccountButton" mnemonicParsing="false" onAction="#insertAccountButtonOnAction" style="-fx-background-color: #17043F; -fx-background-radius: 20;" text="Tạo tài khoản" textFill="WHITE" visible="false">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                       <graphic>
+                                          <FontAwesomeIcon fill="WHITE" iconName="WRENCH" />
+                                       </graphic>
+                                    </Button>
+                                    <Button fx:id="deleteAccountButton" mnemonicParsing="false" onAction="#deleteAccountButtonOnAction" style="-fx-background-color: #BE2626; -fx-background-radius: 20;" text="Xóa tài khoản hiện tại" textFill="WHITE" visible="false">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                       <graphic>
+                                          <FontAwesomeIcon fill="WHITE" iconName="TRASH" />
+                                       </graphic>
+                                    </Button>
 											</children>
 										</HBox>
 									</children>

@@ -1,12 +1,15 @@
 package com.toanhuuvuong.service.impl;
 
 import java.util.Hashtable;
+import java.util.List;
 import java.util.Map;
 
 import com.toanhuuvuong.dao.impl.AbstractHibernateDAO;
 import com.toanhuuvuong.dao.impl.OfficeStaffDAO;
 import com.toanhuuvuong.model.HRStaff;
 import com.toanhuuvuong.model.OfficeStaff;
+import com.toanhuuvuong.pagination.PageRequest;
+import com.toanhuuvuong.pagination.Pageable;
 import com.toanhuuvuong.service.IOfficeStaffService;
 
 public class OfficeStaffService extends GenericService<OfficeStaff> implements IOfficeStaffService
@@ -18,7 +21,7 @@ public class OfficeStaffService extends GenericService<OfficeStaff> implements I
 	{
 		Map<String, String> map = new Hashtable<String, String>();
 		
-		if(model == null)
+		if(model != null && findByCode(model.getCode()) != null)
 		{
 			map.put("messageCode", "code_existed");
 			map.put("alert", "danger");
@@ -37,13 +40,18 @@ public class OfficeStaffService extends GenericService<OfficeStaff> implements I
 		return officeStaffDAO;
 	}
 	@Override
-	public HRStaff findByCode(String code)
+	public OfficeStaff findByCode(String code)
 	{
-		// TODO Auto-generated method stub
-		return null;
+		OfficeStaff filter = new OfficeStaff();
+		filter.setCode(code);
+		
+		Pageable<OfficeStaff> pageable = new PageRequest<OfficeStaff>(null, null, null, null, filter);
+		List<OfficeStaff> list = officeStaffDAO.find(pageable);
+		
+		return (list != null && !list.isEmpty()) ? list.get(0) : null;
 	}
 	@Override
-	public HRStaff findByAccountUsername(String username) 
+	public OfficeStaff findByAccountUsername(String username) 
 	{
 		// TODO Auto-generated method stub
 		return null;

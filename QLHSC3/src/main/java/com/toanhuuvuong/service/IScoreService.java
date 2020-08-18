@@ -13,6 +13,8 @@ import com.toanhuuvuong.model.Subject;
 
 public interface IScoreService 
 {
+	public Score findByOrdinalNumberOfScoreTypeOfStudent(Integer ordinalNumber, ScoreType scoreType, Student student, Semester semester, 
+			SchoolYear schoolYear, SchoolClass schoolClass, Subject subject);
 	public List<Score> findByScoreTypeOfStudent(ScoreType scoreType, Student student, Semester semester, 
 			SchoolYear schoolYear, SchoolClass schoolClass, Subject subject);
 	public Float calculateSubjectAvg(Student student, Semester semester, 
