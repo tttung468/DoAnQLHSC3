@@ -6,9 +6,11 @@
 package qlhsc3;
 
 import BUS.ConductBUS;
+import DAO.AccountDAO;
 import connection.HibernateUtil;
 import java.util.List;
 import pagination.PageRequest;
+import pojos.Account;
 import pojos.Conduct;
 import sort.Sorter;
 
@@ -22,25 +24,25 @@ public class main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        ConductBUS bus = new ConductBUS();
-        Conduct filterModel;
+        AccountDAO bus = new AccountDAO();
+        Account filterModel;
         Integer page = 1;
 	Integer perPage = 6;
-	Sorter sorter = new Sorter("conduct.id", "desc");
+	Sorter sorter = new Sorter("account.id", "desc");
         String searchKey;       
         
-	searchKey = null;
-	filterModel = null;
+//	searchKey = null;
+//	filterModel = null;
 //        searchKey = null;
 //        filterModel = bus.findOne(3);        
-//        searchKey = "8";
-//        filterModel = null;
+        searchKey = "teacher1@gmail.com";
+        filterModel = null;
         
-        PageRequest<Conduct> pageRequest = new PageRequest<>(page, perPage, sorter, searchKey, filterModel);
-        List<Conduct> list = bus.find(pageRequest);
+        PageRequest<Account> pageRequest = new PageRequest<>(page, perPage, sorter, searchKey, filterModel);
+        List<Account> list = bus.find(pageRequest);
         System.out.println("\nTest find :");
-        for (Conduct pojo : list) {
-            System.out.println(pojo.getId() + " - " + pojo.getConductType().getCode());
+        for (Account pojo : list) {
+            System.out.println(pojo.getId() + " - " + pojo.getUsername());
         }
         
         System.out.println("\nTest count :");
