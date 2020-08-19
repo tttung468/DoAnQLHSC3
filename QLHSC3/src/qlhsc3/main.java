@@ -5,13 +5,11 @@
  */
 package qlhsc3;
 
-import BUS.ConductBUS;
-import DAO.AccountDAO;
+import DAO.FormTeacherAssignmentDAO;
 import connection.HibernateUtil;
 import java.util.List;
 import pagination.PageRequest;
-import pojos.Account;
-import pojos.Conduct;
+import pojos.FormTeacherAssignment;
 import sort.Sorter;
 
 /**
@@ -24,34 +22,29 @@ public class main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        AccountDAO bus = new AccountDAO();
-        Account filterModel;
+        FormTeacherAssignmentDAO bus = new FormTeacherAssignmentDAO();
+        FormTeacherAssignment filterModel;
         Integer page = 1;
 	Integer perPage = 6;
-	Sorter sorter = new Sorter("account.id", "desc");
+	Sorter sorter = new Sorter("formTeacherAssignment.id", "desc");
         String searchKey;       
         
-//	searchKey = null;
-//	filterModel = null;
+	searchKey = null;
+	filterModel = null;
 //        searchKey = null;
-//        filterModel = bus.findOne(3);        
-        searchKey = "teacher1@gmail.com";
-        filterModel = null;
+//        filterModel = bus.findOne(2);        
+//        searchKey = "5";
+//        filterModel = null;
         
-        PageRequest<Account> pageRequest = new PageRequest<>(page, perPage, sorter, searchKey, filterModel);
-        List<Account> list = bus.find(pageRequest);
+        PageRequest<FormTeacherAssignment> pageRequest = new PageRequest<>(page, perPage, sorter, searchKey, filterModel);
+        List<FormTeacherAssignment> list = bus.find(pageRequest);
         System.out.println("\nTest find :");
-        for (Account pojo : list) {
-            System.out.println(pojo.getId() + " - " + pojo.getUsername());
+        for (FormTeacherAssignment pojo : list) {
+            System.out.println(pojo.getId() + " - " + pojo.getCapacity());
         }
         
         System.out.println("\nTest count :");
         System.out.println(bus.count(pageRequest));
-        
-//        AccountBUS bus = new AccountBUS();
-//        for (Account a : bus.findAll()) {
-//            System.out.println(a.getId() + "  " + a.getUsername());
-//        }
         
         
         //close sessionFactory
