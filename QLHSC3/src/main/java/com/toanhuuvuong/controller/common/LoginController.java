@@ -5,7 +5,11 @@ import java.util.ResourceBundle;
 
 import com.toanhuuvuong.constant.SystemConstant;
 import com.toanhuuvuong.model.Account;
+import com.toanhuuvuong.model.Officer;
 import com.toanhuuvuong.service.impl.AccountService;
+import com.toanhuuvuong.service.impl.HRStaffService;
+import com.toanhuuvuong.service.impl.OfficeStaffService;
+import com.toanhuuvuong.service.impl.TeacherService;
 import com.toanhuuvuong.utils.SceneUtils;
 import com.toanhuuvuong.utils.SecurityUtils;
 import com.toanhuuvuong.utils.SessionUtils;
@@ -43,6 +47,9 @@ public class LoginController implements Initializable
 	private Button loginButton;
 	
 	private AccountService accountService = new AccountService();
+	private TeacherService teacherService = new TeacherService();
+	private HRStaffService hrStaffService = new HRStaffService();
+	private OfficeStaffService officeStaffService = new OfficeStaffService();
 	private ResourceBundle messageBundle = ResourceBundle.getBundle("message");
 	
 	private Account model = new Account();
@@ -50,7 +57,7 @@ public class LoginController implements Initializable
 	@Override
 	public void initialize(URL location, ResourceBundle resources) 
 	{
-		//initLogoCircle();
+		initLogoCircle();
 	}
 	private void initLogoCircle()
 	{
@@ -154,11 +161,28 @@ public class LoginController implements Initializable
 			}
 			else
 			{
+				String code = account.getRole().getCode();
+				Officer officer = null;
+				if(code.equals("hr"))
+					officer = hrStaffService.findByAccountUsername(account.getUsername());
+				else if(code.equals("office"))
+					officer = officeStaffService.findByAccountUsername(account.getUsername());
+				else if(code.equals("teacher"))
+					officer = teacherService.findByAccountUsername(account.getUsername());
+				
+				if(officer == null)
+				{
+					messageLabel.setText(messageBundle.getString("not_permission"));
+				    messageLabel.setTextFill(Color.RED);
+				    return;
+				}
+				
+				SessionUtils.getInstance().putValue("officerModel", officer);
 				SessionUtils.getInstance().putValue("accountModel", account);
 				
-				URL url = getClass().getResource("../../application/views/conference/list.fxml");
+				URL url = getClass().getResource("../../application/views/common/home.fxml");
 				Stage stage = (Stage)((Node)(event.getSource())).getScene().getWindow();
-				String title = "Danh sách hội nghị";
+				String title = "Trang chủ";
 				
 				SceneUtils.changeScene(url, stage, title, SystemConstant.FRAME_WIDTH, SystemConstant.FRAME_HEIGHT);
 			}

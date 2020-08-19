@@ -8,4 +8,5 @@ import com.toanhuuvuong.model.Student;
 public interface IObservationService 
 {
 	public Observation findByStudent(Student student, SchoolYear schoolYear, SchoolClass schoolClass);
+	public Observation findByStudent(Student student, SchoolYear schoolYear);
 }

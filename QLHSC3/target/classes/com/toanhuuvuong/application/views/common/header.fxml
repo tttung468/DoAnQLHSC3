@@ -38,7 +38,7 @@
          </children></HBox>
       <HBox alignment="CENTER" GridPane.columnIndex="1">
          <children>
-            <Label fx:id="titleLabel" text="TITLE" textFill="#be2626">
+            <Label fx:id="titleLabel" text="TRANG CHỦ" textFill="#be2626">
                <font>
                   <Font name="System Bold" size="48.0" />
                </font>

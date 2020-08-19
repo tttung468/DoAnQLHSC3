@@ -6,7 +6,7 @@ import java.util.Map;
 
 import com.toanhuuvuong.dao.impl.AbstractHibernateDAO;
 import com.toanhuuvuong.dao.impl.OfficeStaffDAO;
-import com.toanhuuvuong.model.HRStaff;
+import com.toanhuuvuong.model.Account;
 import com.toanhuuvuong.model.OfficeStaff;
 import com.toanhuuvuong.pagination.PageRequest;
 import com.toanhuuvuong.pagination.Pageable;
@@ -15,6 +15,7 @@ import com.toanhuuvuong.service.IOfficeStaffService;
 public class OfficeStaffService extends GenericService<OfficeStaff> implements IOfficeStaffService
 {
 	private OfficeStaffDAO officeStaffDAO = new OfficeStaffDAO();
+	private AccountService accountService = new AccountService();
 	
 	@Override
 	public Map<String, String> validate(OfficeStaff model)
@@ -53,7 +54,17 @@ public class OfficeStaffService extends GenericService<OfficeStaff> implements I
 	@Override
 	public OfficeStaff findByAccountUsername(String username) 
 	{
-		// TODO Auto-generated method stub
+		OfficeStaff filter = new OfficeStaff();
+		Account account = accountService.findByUsername(username);
+		if(account != null)
+		{
+			filter.setAccount(account);
+		
+			Pageable<OfficeStaff> pageable = new PageRequest<OfficeStaff>(null, null, null, null, filter);
+			List<OfficeStaff> list = officeStaffDAO.find(pageable);
+			
+			return (list != null && !list.isEmpty()) ? list.get(0) : null;
+		}
 		return null;
 	}
 }

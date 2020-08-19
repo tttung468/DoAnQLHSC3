@@ -26,4 +26,8 @@ public interface IScoreService
 	public List<Score> generateScoreGroupBySubjectFrom(List<Score> scores, Score filterModel);
 	public List<Score> generateScoreGroupBySchoolClassFrom(List<Score> scores, Score filterModel);
 	public String generateScoreFrom(List<Score> scores);
+	public void generateScoreForStudent(Student student, Semester semester, 
+			SchoolYear schoolYear, SchoolClass schoolClass);
+	public void updateScoreForStudent(Student student, Semester semester, 
+			SchoolYear schoolYear, SchoolClass schoolClass);
 }

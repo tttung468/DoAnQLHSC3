@@ -45,4 +45,9 @@ public class SemesterService extends GenericService<Semester> implements ISemest
 	{
 		return null;
 	}
+	@Override
+	public Semester findCurrentSemester() 
+	{
+		return findOne(1L);
+	}
 }

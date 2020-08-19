@@ -5,4 +5,5 @@ import com.toanhuuvuong.model.SchoolYear;
 public interface ISchoolYearService 
 {
 	public SchoolYear findByCode(String code);
+	public SchoolYear findCurrentSchoolYear();
 }

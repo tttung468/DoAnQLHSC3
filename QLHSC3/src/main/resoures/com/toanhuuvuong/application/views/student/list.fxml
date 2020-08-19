@@ -177,6 +177,7 @@
                                           <CheckMenuItem mnemonicParsing="false" selected="true" text="Dân tộc" />
                                           <CheckMenuItem mnemonicParsing="false" selected="true" text="Tôn giáo" />
                                           <CheckMenuItem mnemonicParsing="false" selected="true" text="Quốc tịch" />
+                                          <CheckMenuItem mnemonicParsing="false" selected="true" text="Lớp" />
 													</items>
 													<font>
 														<Font name="System Bold" size="15.0" />
@@ -213,7 +214,15 @@
 														<FontAwesomeIcon iconName="EYE" />
 													</graphic>
 												</Button>
-                                    <Button fx:id="evaluateButton" mnemonicParsing="false" onAction="#evaluateButtonOnAction" style="-fx-background-color: #17043F; -fx-background-radius: 20;" text="Đánh giá nhận xét" textFill="WHITE" visible="false">
+                                    <Button fx:id="evaluateButton" mnemonicParsing="false" onAction="#evaluateButtonOnAction" style="-fx-background-color: #17043F; -fx-background-radius: 20;" text="Đánh giá hạnh kiểm" textFill="WHITE" visible="false">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                       <graphic>
+                                          <FontAwesomeIcon fill="WHITE" iconName="WRENCH" />
+                                       </graphic>
+                                    </Button>
+                                    <Button fx:id="exchangeButton" mnemonicParsing="false" onAction="#exchangeButtonOnAction" style="-fx-background-color: #17043F; -fx-background-radius: 20;" text="Phân lớp &amp; Chuyển lớp" textFill="WHITE" visible="false">
                                        <font>
                                           <Font name="System Bold" size="15.0" />
                                        </font>
@@ -299,6 +308,11 @@
                               <TableColumn fx:id="nationalityNameCol" prefWidth="-1.0" text="Quốc tịch">
                                  <graphic>
                                     <FontAwesomeIcon iconName="FLAG" />
+                                 </graphic>
+                              </TableColumn>
+                              <TableColumn fx:id="schoolClassNameCol" prefWidth="-1.0" text="Lớp">
+                                 <graphic>
+                                    <FontAwesomeIcon iconName="GROUP" />
                                  </graphic>
                               </TableColumn>
 									</columns>

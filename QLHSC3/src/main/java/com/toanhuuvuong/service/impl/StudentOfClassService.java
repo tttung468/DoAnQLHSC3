@@ -58,6 +58,20 @@ public class StudentOfClassService extends GenericService<StudentOfClass> implem
 		return (studentsOfClass != null && !studentsOfClass.isEmpty()) ? studentsOfClass.get(0) : null;
 	}
 	@Override
+	public StudentOfClass findByStudent(Student student, Semester semester, SchoolYear schoolYear)
+	{
+		StudentOfClass filter = new StudentOfClass();
+		filter.setStudent(student);
+		filter.setSemester(semester);
+		filter.setSchoolYear(schoolYear);
+		
+		Pageable<StudentOfClass> pageable = new PageRequest<StudentOfClass>(null, null, null, null, filter);
+		
+		List<StudentOfClass> studentsOfClass = studentOfClassDAO.find(pageable);
+		
+		return (studentsOfClass != null && !studentsOfClass.isEmpty()) ? studentsOfClass.get(0) : null;
+	}
+	@Override
 	public Integer countByStudentOfSchoolClass(Semester semester, SchoolYear schoolYear, SchoolClass schoolClass) 
 	{
 		StudentOfClass filter = new StudentOfClass();

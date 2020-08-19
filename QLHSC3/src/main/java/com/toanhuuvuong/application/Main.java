@@ -13,8 +13,8 @@ public class Main extends Application
 	@Override
 	public void start(Stage primaryStage) 
 	{
-		URL url = getClass().getResource("views/score/list.fxml");
-		String title = "Danh sách giáo vụ";
+		URL url = getClass().getResource("views/common/login.fxml");
+		String title = "Đăng nhập";
 		
 		SceneUtils.changeScene(url, primaryStage, title, SystemConstant.FRAME_WIDTH, SystemConstant.FRAME_HEIGHT);
 	}

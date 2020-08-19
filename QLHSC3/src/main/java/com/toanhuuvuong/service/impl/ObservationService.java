@@ -55,4 +55,17 @@ public class ObservationService extends GenericService<Observation> implements I
 		
 		return (observations != null && !observations.isEmpty()) ? observations.get(0) : null;
 	}
+	@Override
+	public Observation findByStudent(Student student, SchoolYear schoolYear) 
+	{
+		Observation filter = new Observation();
+		filter.setStudent(student);
+		filter.setSchoolYear(schoolYear);
+		
+		Pageable<Observation> pageable = new PageRequest<Observation>(null, null, null, null, filter);
+		
+		List<Observation> observations = observationDAO.find(pageable);
+		
+		return (observations != null && !observations.isEmpty()) ? observations.get(0) : null;
+	}
 }

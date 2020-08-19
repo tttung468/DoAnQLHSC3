@@ -9,5 +9,6 @@ import com.toanhuuvuong.model.StudentOfClass;
 public interface IStudentOfClassService 
 {
 	public StudentOfClass findByStudent(Student student, Semester semester, SchoolYear schoolYear, SchoolClass schoolClass);
+	public StudentOfClass findByStudent(Student student, Semester semester, SchoolYear schoolYear);
 	public Integer countByStudentOfSchoolClass(Semester semester, SchoolYear schoolYear, SchoolClass schoolClass);
 }

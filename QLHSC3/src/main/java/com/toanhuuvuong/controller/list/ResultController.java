@@ -31,7 +31,6 @@ import com.toanhuuvuong.service.impl.ScoreTypeService;
 import com.toanhuuvuong.service.impl.SemesterService;
 import com.toanhuuvuong.service.impl.StudentOfClassService;
 import com.toanhuuvuong.service.impl.StudentService;
-import com.toanhuuvuong.service.impl.SubjectService;
 import com.toanhuuvuong.utils.CSVUtils;
 
 import javafx.beans.property.ObjectProperty;
@@ -89,29 +88,19 @@ public class ResultController extends GenericController<Score> implements Initia
 	private PerformanceService performanceService = new PerformanceService();
 	private ConductService conductService = new ConductService();
 	private ObservationService observationService = new ObservationService();
-	private SubjectService subjectService = new SubjectService();
 	private SemesterService semesterService = new SemesterService();
 	private SchoolYearService schoolYearService = new SchoolYearService();
 	private SchoolClassService schoolClassService = new SchoolClassService();
+	
+	private Student studentChoose;
+	private Semester semesterChoose;
+	private SchoolYear schoolYearChoose;
+	private SchoolClass schoolClassChoose;
 	// ------------------------------------------- Methods
 	@Override
 	public void initialize(URL location, ResourceBundle resources) 
 	{
 		super.initialize(location, resources);
-		
-		initStudentCodeTextField();
-		
-		initStudentNameTextField();
-		
-		initSchoolYearFilterComboBox();
-		
-		initSemesterFilterComboBox();	
-		
-		initTableView();
-		
-		initListView();
-		
-		initPageable();
 	}
 	private void initStudentCodeTextField()
 	{
@@ -280,10 +269,10 @@ public class ResultController extends GenericController<Score> implements Initia
 	{
 		Score model = new Score();
 		
-		model.setStudent(studentService.findOne(1L));
-		model.setSemester(semesterService.findOne(1L));
-		model.setSchoolYear(schoolYearService.findOne(3L));
-		model.setSchoolClass(schoolClassService.findOne(1L));
+		model.setStudent(studentChoose);
+		model.setSemester(semesterChoose);
+		model.setSchoolYear(schoolYearChoose);
+		model.setSchoolClass(schoolClassChoose);
 		
 		String schoolYearCode = schoolYearFilterComboBox.getValue();
 		String semesterName = semesterFilterComboBox.getValue();
@@ -421,5 +410,29 @@ public class ResultController extends GenericController<Score> implements Initia
 		tableView.setItems(observableList);
 		
 		listView.setItems(observableList);
+	}
+	public void setChoose(Student student, Semester semester, SchoolYear schoolYear)
+	{
+		this.studentChoose = student;
+		this.semesterChoose = semester;
+		this.schoolYearChoose = schoolYear;
+		
+		StudentOfClass studentOfClass = studentOfClassService.findByStudent(student, semester, schoolYear);
+		if(studentOfClass != null)
+			this.schoolClassChoose = studentOfClass.getSchoolClass();
+		
+		initStudentCodeTextField();
+		
+		initStudentNameTextField();
+		
+		initSchoolYearFilterComboBox();
+		
+		initSemesterFilterComboBox();	
+		
+		initTableView();
+		
+		initListView();
+		
+		initPageable();
 	}
 }

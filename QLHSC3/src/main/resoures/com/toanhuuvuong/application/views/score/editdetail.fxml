@@ -100,7 +100,7 @@
       						</HBox>
       						<HBox alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="2">
       							<children>
-      								<TextField fx:id="ordinalNumberTextField" editable="false" prefWidth="200.0" promptText="Nhập số thứ tự" style="-fx-background-radius: 20;">
+      								<TextField fx:id="ordinalNumberTextField" prefWidth="200.0" promptText="Nhập số thứ tự" style="-fx-background-radius: 20;">
       									<font>
       										<Font size="15.0" />
       									</font>
@@ -109,7 +109,7 @@
       						</HBox>
       						<HBox alignment="CENTER_LEFT" GridPane.columnIndex="3" GridPane.rowIndex="2">
       							<children>
-      								<TextField fx:id="valueTextField" editable="false" prefWidth="200.0" promptText="Nhập giá trị điểm" style="-fx-background-radius: 20;">
+      								<TextField fx:id="valueTextField" prefWidth="200.0" promptText="Nhập giá trị điểm" style="-fx-background-radius: 20;">
       									<font>
       										<Font size="15.0" />
       									</font>

@@ -9,7 +9,7 @@
 			<generator class="identity" />
 		</id>
 		<many-to-one class="com.toanhuuvuong.model.Account"
-			fetch="join" lazy="false" name="account">
+			fetch="join" lazy="false" name="account" cascade="all">
 			<column name="accountid" />
 		</many-to-one>
 		<property name="code" type="string">

@@ -6,7 +6,6 @@ import java.sql.Date;
 import java.util.Collection;
 import java.util.Map;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
 
 import com.jfoenix.controls.JFXDatePicker;
 import com.toanhuuvuong.constant.SystemConstant;
@@ -26,6 +25,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.paint.Color;
@@ -33,6 +34,7 @@ import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
+import javafx.util.Callback;
 
 public class TeacherController extends GenericController<Teacher> implements Initializable
 {	
@@ -68,7 +70,7 @@ public class TeacherController extends GenericController<Teacher> implements Ini
 	@FXML
 	private Label salaryErrorLabel;
 	@FXML
-	private ComboBox<String> subjectComboBox;
+	private ComboBox<Subject> subjectComboBox;
 	
 	private TeacherService teacherService = new TeacherService();
 	private SubjectService subjectService = new SubjectService();
@@ -99,17 +101,44 @@ public class TeacherController extends GenericController<Teacher> implements Ini
 	private void initSubjectComboBox()
 	{
 		Collection<Subject> models = subjectService.findAll();
-		Collection<String> subjectNames = (models == null) ? null
-		: models.stream().map(item ->
-		{
-			return item.getName();
-		}).collect(Collectors.toSet());
 		
-		if(subjectNames != null)
-			subjectComboBox.setItems(FXCollections.observableArrayList(subjectNames));
+		subjectComboBox.setItems(FXCollections.observableArrayList(models));
 		subjectComboBox.setValue(null);
 		
-		new AutoCompleteComboBoxListener<String>(subjectComboBox);
+		subjectComboBox.setCellFactory(new Callback<ListView<Subject>, ListCell<Subject>>() 
+		{
+            @Override
+            public ListCell<Subject> call(ListView<Subject> param) 
+            {
+                final ListCell<Subject> cell = new ListCell<Subject>() 
+                {
+                    @Override
+                    protected void updateItem(Subject item, boolean empty) 
+                    {
+                        super.updateItem(item, empty);
+                        if (item != null && !empty)
+                            setText(item.getName());
+                        else 
+                            setText(null);
+                    }
+                };
+                return cell;
+            }
+        });
+		subjectComboBox.setButtonCell(new ListCell<Subject>()
+		{
+            @Override
+            protected void updateItem(Subject item, boolean empty) 
+            {
+                super.updateItem(item, empty);
+                if (item != null && !empty)
+                    setText(item.getName());
+                else
+                    setText(null);
+            }
+        });
+		
+		new AutoCompleteComboBoxListener<Subject>(subjectComboBox);
 	}
 	@Override
 	protected void applyUI() 
@@ -143,7 +172,17 @@ public class TeacherController extends GenericController<Teacher> implements Ini
 			addressTextField.setText(model.getAddress());
 			if(model.getSalary() != null)
 				salaryTextField.setText(model.getSalary().toString());
-			subjectComboBox.setValue(model.getSubject().getName());
+			if(model.getSubject() != null)
+			{
+				for(Subject type : subjectComboBox.getItems())
+				{
+					if(type.getId() == model.getSubject().getId())
+					{
+						subjectComboBox.setValue(type);
+						break;
+					}
+				}
+			}	
 			isDeletedComboBox.setValue(model.getIsDeleted() ? "Khóa" : "Mở");
 		}
 	}
@@ -163,11 +202,7 @@ public class TeacherController extends GenericController<Teacher> implements Ini
 		model.setAddress(addressTextField.getText().trim());
 		model.setSalary(Integer.parseInt(salaryTextField.getText().trim()));
 		if(subjectComboBox.getValue() != null)
-		{
-			Subject subject = new Subject();
-			subject.setName(subjectComboBox.getValue());
-			model.setSubject(subject);
-		}
+			model.setSubject(subjectComboBox.getValue());
 		if(isDeletedComboBox.getValue() != null)
 			model.setIsDeleted(isDeletedComboBox.getValue().equals("Khóa"));
 	}

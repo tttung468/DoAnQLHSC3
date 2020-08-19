@@ -8,20 +8,35 @@ import java.util.ResourceBundle;
 import java.util.stream.Collectors;
 
 import com.toanhuuvuong.constant.SystemConstant;
+import com.toanhuuvuong.controller.edit.EvaluateController;
+import com.toanhuuvuong.controller.edit.ExchangeController;
 import com.toanhuuvuong.converter.StudentConverter;
+import com.toanhuuvuong.model.Account;
+import com.toanhuuvuong.model.Conduct;
 import com.toanhuuvuong.model.Ethnic;
 import com.toanhuuvuong.model.Nationality;
+import com.toanhuuvuong.model.Observation;
 import com.toanhuuvuong.model.Religion;
+import com.toanhuuvuong.model.SchoolYear;
+import com.toanhuuvuong.model.Semester;
 import com.toanhuuvuong.model.Student;
+import com.toanhuuvuong.model.StudentOfClass;
+import com.toanhuuvuong.model.Teacher;
 import com.toanhuuvuong.pagination.PageRequest;
 import com.toanhuuvuong.pagination.Pageable;
+import com.toanhuuvuong.service.impl.ConductService;
 import com.toanhuuvuong.service.impl.EthnicService;
 import com.toanhuuvuong.service.impl.NationalityService;
+import com.toanhuuvuong.service.impl.ObservationService;
 import com.toanhuuvuong.service.impl.ReligionService;
+import com.toanhuuvuong.service.impl.SchoolYearService;
+import com.toanhuuvuong.service.impl.SemesterService;
+import com.toanhuuvuong.service.impl.StudentOfClassService;
 import com.toanhuuvuong.service.impl.StudentService;
 import com.toanhuuvuong.utils.AutoCompleteComboBoxListener;
 import com.toanhuuvuong.utils.CSVUtils;
 import com.toanhuuvuong.utils.SceneUtils;
+import com.toanhuuvuong.utils.SessionUtils;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -37,6 +52,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 
 public class StudentController extends GenericController<Student> implements Initializable
 {
@@ -66,6 +82,8 @@ public class StudentController extends GenericController<Student> implements Ini
 	@FXML
 	private Button evaluateButton;
 	@FXML
+	private Button exchangeButton;
+	@FXML
 	private TableColumn<Student, ImageView> avatarPathCol;
 	@FXML
 	private TableColumn<Student, String> codeCol;
@@ -91,11 +109,21 @@ public class StudentController extends GenericController<Student> implements Ini
 	private TableColumn<Student, String> religionNameCol;
 	@FXML
 	private TableColumn<Student, String> nationalityNameCol;
+	@FXML
+	private TableColumn<Student, String> schoolClassNameCol;
 	
 	private StudentService studentService = new StudentService();
+	private StudentOfClassService studentOfClassService = new StudentOfClassService();
 	private EthnicService ethnicService = new EthnicService();
 	private ReligionService religionService = new ReligionService();
 	private NationalityService nationalityService = new NationalityService();
+	private SemesterService semesterService = new SemesterService();
+	private SchoolYearService schoolYearService = new SchoolYearService();
+	private ConductService conductService = new ConductService();
+	private ObservationService observationService = new ObservationService();
+	
+	private Account accountModel = (Account)SessionUtils.getInstance().getValue("accountModel");
+	private Teacher officerModel = (Teacher)SessionUtils.getInstance().getValue("officerModel");
 	// ------------------------------------------- Methods
 	@Override
 	public void initialize(URL location, ResourceBundle resources) 
@@ -197,12 +225,21 @@ public class StudentController extends GenericController<Student> implements Ini
 		    if (newValue != null)
 		    {
 		    	if(tableView.getSelectionModel().getSelectedItems().size() == 1)	
+		    	{
 		    		evaluateButton.setVisible(true);
+		    		exchangeButton.setVisible(true);
+		    	}
 		    	else
+		    	{
 		    		evaluateButton.setVisible(false);
+		    		exchangeButton.setVisible(false);
+		    	}
 		    }
 		    else
+		    {
 		    	evaluateButton.setVisible(false);
+		    	exchangeButton.setVisible(false);
+		    }
 		});
 		
 		avatarPathCol.setCellValueFactory(cell ->
@@ -257,6 +294,21 @@ public class StudentController extends GenericController<Student> implements Ini
 			Nationality nationality = cell.getValue().getNationality();
 			String nationalityName = nationality != null ? nationality.getName() : SystemConstant.UNKNOWN;
 			prop.set(nationalityName);
+			
+			return prop;
+		});
+		schoolClassNameCol.setCellValueFactory(cell ->
+		{
+			ObjectProperty<String> prop = new SimpleObjectProperty<String>();
+			
+			Student student = cell.getValue();
+			Semester semester = semesterService.findOne(1L);
+			SchoolYear schoolYear = schoolYearService.findOne(3L);
+			
+			StudentOfClass studentOfClass = studentOfClassService.findByStudent(student, semester, schoolYear);
+			String className = (studentOfClass != null && studentOfClass.getClass() != null)
+					? studentOfClass.getSchoolClass().getName() : SystemConstant.UNKNOWN;
+			prop.set(className);
 			
 			return prop;
 		});
@@ -411,10 +463,68 @@ public class StudentController extends GenericController<Student> implements Ini
 			return;
 		
 		URL url = getClass().getResource("../../application/views/student/evaluate.fxml");
-		FXMLLoader loader = SceneUtils.changeScene(url, null, null, null, null);
+		Stage stage = new Stage();
+		String title = "Đánh giá & Nhận xét";
+		FXMLLoader loader = SceneUtils.changeSceneWithoutLostFocus(url, stage, title, null, null);
 
-		/*com.toanhuuvuong.controller.edit.GenericController<T> controller = loader.getController();
-		controller.setItem(selectedIndex, selectedItem);
-		controller.showDialog();*/
+		EvaluateController controller = loader.getController();
+		controller.editDelegate = this;
+		
+		Student student = selectedItem;
+		Semester semester = semesterService.findCurrentSemester();
+		SchoolYear schoolYear = schoolYearService.findCurrentSchoolYear();
+		StudentOfClass studentOfClass = studentOfClassService.findByStudent(student, semester, schoolYear);
+		
+		Conduct conduct = conductService.findByStudent(student, semester, schoolYear);
+		
+		if(conduct != null)
+			controller.setItem(selectedIndex, conduct);
+		else
+		{
+			Conduct model = new Conduct();
+			model.setStudent(student);
+			model.setSemester(semester);
+			model.setSchoolYear(schoolYear);
+			model.setSchoolClass(studentOfClass.getSchoolClass());
+			model.setTeacher(officerModel);
+			
+			controller.setItem(null, conduct);
+		}
+	}
+	@FXML
+	public void exchangeButtonOnAction(ActionEvent event)
+	{
+		Integer selectedIndex = tableView.getSelectionModel().getSelectedIndex();
+		Student selectedItem = observableList.get(selectedIndex);
+		
+		if(selectedItem == null)
+			return;
+		
+		URL url = getClass().getResource("../../application/views/student/exchange.fxml");
+		Stage stage = new Stage();
+		String title = "Phân lớp & Chuyển lớp";
+		FXMLLoader loader = SceneUtils.changeSceneWithoutLostFocus(url, stage, title, null, null);
+
+		ExchangeController controller = loader.getController();
+		controller.editDelegate = this;
+		
+		Student student = selectedItem;
+		Semester semester = semesterService.findCurrentSemester();
+		SchoolYear schoolYear = schoolYearService.findCurrentSchoolYear();
+		
+		StudentOfClass studentOfClass = studentOfClassService.findByStudent(student, semester, schoolYear);
+		if(studentOfClass != null)
+			controller.setItem(selectedIndex, studentOfClass);
+		else
+		{
+			studentOfClass = new StudentOfClass();
+			studentOfClass.setStudent(student);
+			studentOfClass.setSemester(semester);
+			studentOfClass.setSchoolYear(schoolYear);
+			studentOfClass.setAbsence(0);
+			studentOfClass.setAbsenceWithoutLeave(0);
+			
+			controller.setItem(null, studentOfClass);
+		}
 	}
 }

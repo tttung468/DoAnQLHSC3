@@ -4,7 +4,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import com.toanhuuvuong.model.Account;
-import com.toanhuuvuong.service.impl.AccountService;
 import com.toanhuuvuong.utils.SceneUtils;
 import com.toanhuuvuong.utils.SessionUtils;
 
@@ -62,9 +61,6 @@ public class MenuController implements Initializable
 	@FXML
 	private MenuItem regulationMenuItem;
 	
-	
-	private AccountService accountService = new AccountService();
-	
 	private Account accountModel = (Account)SessionUtils.getInstance().getValue("accountModel");
 	// ------------------------------------------- Methods
 	@Override
@@ -74,9 +70,37 @@ public class MenuController implements Initializable
 	}
 	private void applyUI()
 	{
-		if(accountModel == null)
+		if(accountModel != null)
 		{
-			
+			String code = accountModel.getRole().getCode();
+			if(code.equals("hr"))
+			{
+				studentListMenuItem.setVisible(false);
+				subjectListMenuItem.setVisible(false);
+				schoolYearListMenuItem.setVisible(false);
+				exchangeClassMenuItem.setVisible(false);
+				lookUpAndStatisticsMenu.setVisible(false);
+				regulationMenu.setVisible(false);
+			}
+			else if(code.equals("office"))
+			{
+				teacherListMenuItem.setVisible(false);
+				officeStaffListMenuItem.setVisible(false);
+				hrStaffListMenuItem.setVisible(false);
+				assignmentMenu.setVisible(false);
+				regulationMenu.setVisible(false);
+				exchangeClassMenuItem.setVisible(false);
+			}
+			else if(code.equals("teacher"))
+			{
+				educationMenu.setVisible(false);
+				teacherListMenuItem.setVisible(false);
+				officeStaffListMenuItem.setVisible(false);
+				hrStaffListMenuItem.setVisible(false);
+				officerStatisticsMenuItem.setVisible(false);
+				assignmentMenu.setVisible(false);
+				regulationMenu.setVisible(false);
+			}
 		}
 	}
 	@FXML
@@ -170,11 +194,11 @@ public class MenuController implements Initializable
 	@FXML
 	public void subjectScoreMenuItemOnAction(ActionEvent event)
 	{
-		URL url = getClass().getResource("../../application/views/score/list.fxml");
+		URL url = getClass().getResource("../../application/views/score/scoreoption.fxml");
 		Stage stage = (Stage)(menuBar.getScene().getWindow());
-		String title = "Bảng điểm";
-		Double width = menuBar.getScene().getWidth();
-		Double height = menuBar.getScene().getHeight();
+		String title = "Tùy chọn";
+		Double width = null;
+		Double height = null;
 		
 		SceneUtils.changeScene(url, stage, title, width, height);
 	}
@@ -203,11 +227,11 @@ public class MenuController implements Initializable
 	@FXML
 	public void lookUpResultMenuItemOnAction(ActionEvent event)
 	{
-		URL url = getClass().getResource("../../application/views/result/list.fxml");
+		URL url = getClass().getResource("../../application/views/result/resultoption.fxml");
 		Stage stage = (Stage)(menuBar.getScene().getWindow());
 		String title = "Tra cứu kết quả học tập";
-		Double width = menuBar.getScene().getWidth();
-		Double height = menuBar.getScene().getHeight();
+		Double width = null;
+		Double height = null;
 		
 		SceneUtils.changeScene(url, stage, title, width, height);
 	}

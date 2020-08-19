@@ -276,4 +276,54 @@ public class ScoreService extends GenericService<Score> implements IScoreService
 		
 		return (scores != null && !scores.isEmpty()) ? scores.get(0) : null;
 	}
+	@Override
+	public void generateScoreForStudent(Student student, Semester semester, SchoolYear schoolYear,
+			SchoolClass schoolClass) 
+	{
+		List<Subject> subjects = subjectDAO.findAll();
+		List<ScoreType> scoreTypes = scoreTypeDAO.findAll();
+		
+		for(Subject subject : subjects)
+		{
+			for(ScoreType scoreType : scoreTypes)
+			{
+				Score score = new Score();
+				score.setStudent(student);
+				score.setSemester(semester);
+				score.setSchoolYear(schoolYear);
+				score.setSchoolClass(schoolClass);
+				score.setSubject(subject);
+				score.setScoreType(scoreType);
+				score.setOrdinalNumber(1);
+				score.setValue(0f);
+				
+				insertOne(score, null);
+			}
+		}
+	}
+	@Override
+	public void updateScoreForStudent(Student student, Semester semester, SchoolYear schoolYear,
+			SchoolClass schoolClass) 
+	{
+		List<Subject> subjects = subjectDAO.findAll();
+		List<ScoreType> scoreTypes = scoreTypeDAO.findAll();
+		
+		for(Subject subject : subjects)
+		{
+			for(ScoreType scoreType : scoreTypes)
+			{
+				Score score = new Score();
+				score.setStudent(student);
+				score.setSemester(semester);
+				score.setSchoolYear(schoolYear);
+				score.setSchoolClass(schoolClass);
+				score.setSubject(subject);
+				score.setScoreType(scoreType);
+				score.setOrdinalNumber(1);
+				score.setValue(0f);
+				
+				insertOne(score, null);
+			}
+		}
+	}
 }

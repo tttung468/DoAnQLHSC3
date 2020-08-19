@@ -190,12 +190,12 @@
       						</HBox>
       						<HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.columnIndex="3" GridPane.rowIndex="5">
       							<children>
-      								<ComboBox fx:id="minuteTestComboBox" prefHeight="30.0" promptText="Điểm 15 phút" />
+      								<ComboBox fx:id="minuteTestComboBox" prefHeight="30.0" prefWidth="150.0" promptText="Điểm 15 phút" />
       							</children>
       						</HBox>
       						<HBox alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="7">
                            <children>
-                              <ComboBox fx:id="hourTestComboBox" prefHeight="30.0" promptText="Điểm 1 tiết" />
+                              <ComboBox fx:id="hourTestComboBox" prefHeight="30.0" prefWidth="150.0" promptText="Điểm 1 tiết" />
                            </children>
       						</HBox>
       						<HBox alignment="CENTER_LEFT" GridPane.columnIndex="3" GridPane.rowIndex="7">
@@ -204,7 +204,7 @@
                                  <children>
                                     <HBox alignment="CENTER_LEFT" spacing="10.0">
                                        <children>
-                                          <ComboBox fx:id="semiTestComboBox" prefHeight="30.0" promptText="Điểm thi giữa kỳ" />
+                                          <ComboBox fx:id="semiTestComboBox" prefHeight="30.0" prefWidth="150.0" promptText="Điểm thi giữa kỳ" />
                                        </children>
                                     </HBox>
                                  </children>
@@ -233,7 +233,7 @@
       						</HBox>
       						<HBox alignment="CENTER_LEFT" spacing="10.0" GridPane.columnIndex="1" GridPane.rowIndex="9">
       							<children>
-      								<ComboBox fx:id="finalTestComboBox" prefHeight="30.0" promptText="Điểm thi cuối kỳ" />
+      								<ComboBox fx:id="finalTestComboBox" prefHeight="30.0" prefWidth="150.0" promptText="Điểm thi cuối kỳ" />
       							</children>
       						</HBox>
       						<Label fx:id="isDeletedErrorLabel" text="Error" textFill="RED" visible="false" GridPane.columnIndex="1" GridPane.rowIndex="10">
@@ -288,7 +288,7 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" GridPane.columnIndex="1" GridPane.rowIndex="5">
                            <children>
-                              <ComboBox fx:id="mouthTestComboBox" prefHeight="30.0" promptText="Điểm miệng" />
+                              <ComboBox fx:id="mouthTestComboBox" prefHeight="30.0" prefWidth="150.0" promptText="Điểm miệng" />
                            </children>
                         </HBox>
                         <HBox alignment="CENTER_RIGHT" spacing="5.0" GridPane.columnIndex="2" GridPane.rowIndex="5">
@@ -368,7 +368,7 @@
                         <ComboBox fx:id="isDeletedComboBox" prefHeight="30.0" promptText="Trạng thái" visible="false" GridPane.columnIndex="3" GridPane.rowIndex="10" />
                         <HBox alignment="CENTER_LEFT" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="9">
                            <children>
-                              <TextField fx:id="avgSubjectTextField" editable="false" prefWidth="200.0" promptText="Điểm trung bình" style="-fx-background-radius: 20;">
+                              <TextField fx:id="avgSubjectTextField" editable="false" prefWidth="150.0" promptText="Điểm trung bình" style="-fx-background-radius: 20;">
                                  <font>
                                     <Font name="System Bold" size="15.0" />
                                  </font>

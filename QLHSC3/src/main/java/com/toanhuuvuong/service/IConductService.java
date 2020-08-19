@@ -10,4 +10,6 @@ public interface IConductService
 {
 	public Conduct findByStudent(Student student, Semester semester, 
 			SchoolYear schoolYear, SchoolClass schoolClass);
+	public Conduct findByStudent(Student student, Semester semester, 
+			SchoolYear schoolYear);
 }

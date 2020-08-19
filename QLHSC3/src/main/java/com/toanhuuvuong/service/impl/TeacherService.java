@@ -15,6 +15,7 @@ import com.toanhuuvuong.service.ITeacherService;
 public class TeacherService extends GenericService<Teacher> implements ITeacherService
 { 
 	private TeacherDAO teacherDAO = new TeacherDAO();
+	private AccountService accountService = new AccountService();
 	
 	@Override
 	public Map<String, String> validate(Teacher model)
@@ -60,13 +61,16 @@ public class TeacherService extends GenericService<Teacher> implements ITeacherS
 	public Teacher findByAccountUsername(String username) 
 	{
 		Teacher filter = new Teacher();
-		Account account = new Account();
-		account.setUsername(username);
-		filter.setAccount(account);
+		Account account = accountService.findByUsername(username);
+		if(account != null)
+		{
+			filter.setAccount(account);
 		
-		Pageable<Teacher> pageable = new PageRequest<Teacher>(null, null, null, null, filter);
-		List<Teacher> list = teacherDAO.find(pageable);
-		
-		return (list != null && !list.isEmpty()) ? list.get(0) : null;
+			Pageable<Teacher> pageable = new PageRequest<Teacher>(null, null, null, null, filter);
+			List<Teacher> list = teacherDAO.find(pageable);
+			
+			return (list != null && !list.isEmpty()) ? list.get(0) : null;
+		}
+		return null;
 	}
 }

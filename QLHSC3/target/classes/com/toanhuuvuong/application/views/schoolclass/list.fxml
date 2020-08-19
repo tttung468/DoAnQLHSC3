@@ -159,6 +159,7 @@
 														<CheckMenuItem mnemonicParsing="false" selected="true" text="Tên lớp học" />
 														<CheckMenuItem mnemonicParsing="false" selected="true" text="Trạng thái" />
                                           <CheckMenuItem mnemonicParsing="false" selected="true" text="Khối" />
+                                          <CheckMenuItem mnemonicParsing="false" selected="true" text="GVCN" />
 													</items>
 													<font>
 														<Font name="System Bold" size="15.0" />
@@ -195,6 +196,22 @@
 														<FontAwesomeIcon iconName="EYE" />
 													</graphic>
 												</Button>
+                                    <Button fx:id="assignButton" mnemonicParsing="false" onAction="#assignButtonOnAction" style="-fx-background-color: #17043F; -fx-background-radius: 20;" text="Phân công GVCN" textFill="WHITE" visible="false">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                       <graphic>
+                                          <FontAwesomeIcon fill="WHITE" iconName="WRENCH" />
+                                       </graphic>
+                                    </Button>
+                                    <Button mnemonicParsing="false" style="-fx-background-color: #17043F; -fx-background-radius: 20;" text="Phân công giáo viên giảng dạy" textFill="WHITE" visible="false">
+                                       <font>
+                                          <Font name="System Bold" size="15.0" />
+                                       </font>
+                                       <graphic>
+                                          <FontAwesomeIcon fill="WHITE" iconName="WRENCH" />
+                                       </graphic>
+                                    </Button>
 											</children>
 										</HBox>
 									</children>
@@ -227,6 +244,11 @@
                               <TableColumn fx:id="gradeNameCol" prefWidth="-1.0" text="Khối">
                                  <graphic>
                                     <FontAwesomeIcon iconName="GROUP" />
+                                 </graphic>
+                              </TableColumn>
+                              <TableColumn fx:id="formTeacherNameCol" prefWidth="-1.0" text="GVCN">
+                                 <graphic>
+                                    <FontAwesomeIcon iconName="USER" />
                                  </graphic>
                               </TableColumn>
 									</columns>

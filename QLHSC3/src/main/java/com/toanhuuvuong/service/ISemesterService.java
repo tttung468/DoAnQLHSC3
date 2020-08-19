@@ -6,4 +6,5 @@ public interface ISemesterService
 {
 	public Semester findByCode(String code);
 	public Semester findByName(String name);
+	public Semester findCurrentSemester();
 }

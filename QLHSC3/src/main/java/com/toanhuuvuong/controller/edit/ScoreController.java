@@ -1,12 +1,9 @@
 package com.toanhuuvuong.controller.edit;
 
-import java.io.File;
 import java.net.URL;
 import java.util.Collection;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
 
-import com.toanhuuvuong.model.Account;
 import com.toanhuuvuong.model.SchoolClass;
 import com.toanhuuvuong.model.SchoolYear;
 import com.toanhuuvuong.model.Score;
@@ -14,20 +11,10 @@ import com.toanhuuvuong.model.ScoreType;
 import com.toanhuuvuong.model.Semester;
 import com.toanhuuvuong.model.Student;
 import com.toanhuuvuong.model.Subject;
-import com.toanhuuvuong.service.impl.NationalityService;
-import com.toanhuuvuong.service.impl.ReligionService;
-import com.toanhuuvuong.service.impl.SchoolClassService;
-import com.toanhuuvuong.service.impl.SchoolYearService;
 import com.toanhuuvuong.service.impl.ScoreService;
 import com.toanhuuvuong.service.impl.ScoreTypeService;
-import com.toanhuuvuong.service.impl.SemesterService;
-import com.toanhuuvuong.service.impl.StudentService;
-import com.toanhuuvuong.service.impl.SubjectService;
 import com.toanhuuvuong.utils.SceneUtils;
-import com.toanhuuvuong.utils.SessionUtils;
 
-import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -38,7 +25,7 @@ import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
+import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import javafx.util.Callback;
@@ -55,33 +42,36 @@ public class ScoreController extends GenericController<Score> implements Initial
 	@FXML
 	private ComboBox<Score> mouthTestComboBox;
 	@FXML
-	private ComboBox<Float> minuteTestComboBox;
+	private ComboBox<Score> minuteTestComboBox;
 	@FXML
-	private ComboBox<Float> hourTestComboBox;
+	private ComboBox<Score> hourTestComboBox;
 	@FXML
-	private ComboBox<Float> semiTestComboBox;
+	private ComboBox<Score> semiTestComboBox;
 	@FXML
-	private ComboBox<Float> finalTestComboBox;
+	private ComboBox<Score> finalTestComboBox;
 	@FXML
 	private TextField avgSubjectTextField;
 	
-	private StudentService studentService = new StudentService();
 	private ScoreService scoreService = new ScoreService();
-	private ReligionService religionService = new ReligionService();
-	private NationalityService nationalityService = new NationalityService();
 	private ScoreTypeService scoreTypeService = new ScoreTypeService();
-	private SubjectService subjectService = new SubjectService();
-	private SemesterService semesterService = new SemesterService();
-	private SchoolYearService schoolYearService = new SchoolYearService();
-	private SchoolClassService schoolClassService = new SchoolClassService();
-	
-	private File avatarFile;
-	private Account accountModel = (Account)SessionUtils.getInstance().getValue("accountModel");
 	// ------------------------------------------- Methods
 	@Override
 	public void initialize(URL location, ResourceBundle resources) 
 	{		
 		super.initialize(location, resources);
+	}
+	private void initAvatarCircle()
+	{		
+		Student student = model.getStudent();
+		
+		if(student != null && student.getAvatarpath() != null)
+		{
+			URL url = getClass().getResource(student.getAvatarpath());
+			String path = url != null ? url.toString() : null;
+			Image image = path != null ? new Image(path) : null;
+			
+			avatarCircle.setFill(new ImagePattern(image));
+		}
 	}
 	private void initCodeAndNameTextField()
 	{		
@@ -107,11 +97,6 @@ public class ScoreController extends GenericController<Score> implements Initial
 		mouthTestComboBox.setItems(FXCollections.observableArrayList(models));
 		mouthTestComboBox.getSelectionModel().select(0);
 		
-		mouthTestComboBox.valueProperty().addListener((observable, oldValue, newValue) ->
-		{
-			mouthTestComboBox.setPromptText(newValue.getValue().toString());
-		});
-		
 		mouthTestComboBox.setCellFactory(new Callback<ListView<Score>, ListCell<Score>>() 
 		{
             @Override
@@ -132,6 +117,18 @@ public class ScoreController extends GenericController<Score> implements Initial
                 return cell;
             }
         });
+		mouthTestComboBox.setButtonCell(new ListCell<Score>()
+		{
+            @Override
+            protected void updateItem(Score item, boolean empty) 
+            {
+                super.updateItem(item, empty);
+                if (item != null && !empty)
+                    setText(item.getValue().toString());
+                else
+                    setText(null);
+            }
+        });
 	}
 	private void initMinuteTestComboBox()
 	{		
@@ -143,14 +140,42 @@ public class ScoreController extends GenericController<Score> implements Initial
 		SchoolClass schoolClass = model.getSchoolClass();
 		
 		Collection<Score> models = scoreService.findByScoreTypeOfStudent(scoreType, student, semester, schoolYear, schoolClass, subject);
-		Collection<Float> values = (models == null) ? null
-		: models.stream().map(item ->
-		{
-			return item.getValue();
-		}).collect(Collectors.toList());
 		
-		minuteTestComboBox.setItems(FXCollections.observableArrayList(values));
-		minuteTestComboBox.setValue(minuteTestComboBox.getItems().get(0));
+		minuteTestComboBox.setItems(FXCollections.observableArrayList(models));
+		minuteTestComboBox.getSelectionModel().select(0);
+		
+		minuteTestComboBox.setCellFactory(new Callback<ListView<Score>, ListCell<Score>>() 
+		{
+            @Override
+            public ListCell<Score> call(ListView<Score> param) 
+            {
+                final ListCell<Score> cell = new ListCell<Score>() 
+                {
+                    @Override
+                    protected void updateItem(Score item, boolean empty) 
+                    {
+                        super.updateItem(item, empty);
+                        if (item != null && !empty)
+                            setText(item.getValue().toString());
+                        else 
+                            setText(null);
+                    }
+                };
+                return cell;
+            }
+        });
+		minuteTestComboBox.setButtonCell(new ListCell<Score>()
+		{
+            @Override
+            protected void updateItem(Score item, boolean empty) 
+            {
+                super.updateItem(item, empty);
+                if (item != null && !empty)
+                    setText(item.getValue().toString());
+                else
+                    setText(null);
+            }
+        });
 	}
 	private void initHourTestComboBox()
 	{		
@@ -162,14 +187,42 @@ public class ScoreController extends GenericController<Score> implements Initial
 		SchoolClass schoolClass = model.getSchoolClass();
 		
 		Collection<Score> models = scoreService.findByScoreTypeOfStudent(scoreType, student, semester, schoolYear, schoolClass, subject);
-		Collection<Float> values = (models == null) ? null
-		: models.stream().map(item ->
-		{
-			return item.getValue();
-		}).collect(Collectors.toList());
 		
-		hourTestComboBox.setItems(FXCollections.observableArrayList(values));
+		hourTestComboBox.setItems(FXCollections.observableArrayList(models));
 		hourTestComboBox.setValue(hourTestComboBox.getItems().get(0));
+		
+		hourTestComboBox.setCellFactory(new Callback<ListView<Score>, ListCell<Score>>() 
+		{
+            @Override
+            public ListCell<Score> call(ListView<Score> param) 
+            {
+                final ListCell<Score> cell = new ListCell<Score>() 
+                {
+                    @Override
+                    protected void updateItem(Score item, boolean empty) 
+                    {
+                        super.updateItem(item, empty);
+                        if (item != null && !empty)
+                            setText(item.getValue().toString());
+                        else 
+                            setText(null);
+                    }
+                };
+                return cell;
+            }
+        });
+		hourTestComboBox.setButtonCell(new ListCell<Score>()
+		{
+            @Override
+            protected void updateItem(Score item, boolean empty) 
+            {
+                super.updateItem(item, empty);
+                if (item != null && !empty)
+                    setText(item.getValue().toString());
+                else
+                    setText(null);
+            }
+        });
 	}
 	private void initSemiTestComboBox()
 	{		
@@ -181,33 +234,89 @@ public class ScoreController extends GenericController<Score> implements Initial
 		SchoolClass schoolClass = model.getSchoolClass();
 		
 		Collection<Score> models = scoreService.findByScoreTypeOfStudent(scoreType, student, semester, schoolYear, schoolClass, subject);
-		Collection<Float> values = (models == null) ? null
-		: models.stream().map(item ->
-		{
-			return item.getValue();
-		}).collect(Collectors.toList());
 		
-		semiTestComboBox.setItems(FXCollections.observableArrayList(values));
+		semiTestComboBox.setItems(FXCollections.observableArrayList(models));
 		semiTestComboBox.setValue(semiTestComboBox.getItems().get(0));
+		
+		semiTestComboBox.setCellFactory(new Callback<ListView<Score>, ListCell<Score>>() 
+		{
+            @Override
+            public ListCell<Score> call(ListView<Score> param) 
+            {
+                final ListCell<Score> cell = new ListCell<Score>() 
+                {
+                    @Override
+                    protected void updateItem(Score item, boolean empty) 
+                    {
+                        super.updateItem(item, empty);
+                        if (item != null && !empty)
+                            setText(item.getValue().toString());
+                        else 
+                            setText(null);
+                    }
+                };
+                return cell;
+            }
+        });
+		semiTestComboBox.setButtonCell(new ListCell<Score>()
+		{
+            @Override
+            protected void updateItem(Score item, boolean empty) 
+            {
+                super.updateItem(item, empty);
+                if (item != null && !empty)
+                    setText(item.getValue().toString());
+                else
+                    setText(null);
+            }
+        });
 	}
 	private void initFinalTestComboBox()
 	{		
 		Student student = model.getStudent();
-		ScoreType scoreType = scoreTypeService.findOne(4L);
+		ScoreType scoreType = scoreTypeService.findOne(5L);
 		Subject subject = model.getSubject();
 		Semester semester = model.getSemester();
 		SchoolYear schoolYear = model.getSchoolYear();
 		SchoolClass schoolClass = model.getSchoolClass();
 		
 		Collection<Score> models = scoreService.findByScoreTypeOfStudent(scoreType, student, semester, schoolYear, schoolClass, subject);
-		Collection<Float> values = (models == null) ? null
-		: models.stream().map(item ->
-		{
-			return item.getValue();
-		}).collect(Collectors.toList());
 		
-		finalTestComboBox.setItems(FXCollections.observableArrayList(values));
+		finalTestComboBox.setItems(FXCollections.observableArrayList(models));
 		finalTestComboBox.setValue(finalTestComboBox.getItems().get(0));
+		
+		finalTestComboBox.setCellFactory(new Callback<ListView<Score>, ListCell<Score>>() 
+		{
+            @Override
+            public ListCell<Score> call(ListView<Score> param) 
+            {
+                final ListCell<Score> cell = new ListCell<Score>() 
+                {
+                    @Override
+                    protected void updateItem(Score item, boolean empty) 
+                    {
+                        super.updateItem(item, empty);
+                        if (item != null && !empty)
+                            setText(item.getValue().toString());
+                        else 
+                            setText(null);
+                    }
+                };
+                return cell;
+            }
+        });
+		finalTestComboBox.setButtonCell(new ListCell<Score>()
+		{
+            @Override
+            protected void updateItem(Score item, boolean empty) 
+            {
+                super.updateItem(item, empty);
+                if (item != null && !empty)
+                    setText(item.getValue().toString());
+                else
+                    setText(null);
+            }
+        });
 	}
 	private void initAvgSubjectTextField()
 	{		
@@ -227,6 +336,8 @@ public class ScoreController extends GenericController<Score> implements Initial
 		super.applyUI();
 		
 		titleLabel.setText("SỬA ĐIỂM");
+		
+		initAvatarCircle();
 		
 		initCodeAndNameTextField();
 		
@@ -338,14 +449,16 @@ public class ScoreController extends GenericController<Score> implements Initial
 	{
 		URL url = getClass().getResource("../../application/views/score/editdetail.fxml");
 		Stage stage = new Stage();
-		String title = "Thêm điểm miệng";
+		String title = "Thêm 15 phút";
 		
 		FXMLLoader loader = SceneUtils.changeSceneWithoutLostFocus(url, stage, title, null, null);
 		ScoreDetailController controller = loader.getController();
 		
+		controller.editDelegate = this;
+		
 		Score score = new Score();
 		Student student = model.getStudent();
-		ScoreType scoreType = scoreTypeService.findOne(1L);
+		ScoreType scoreType = scoreTypeService.findOne(2L);
 		Subject subject = model.getSubject();
 		Semester semester = model.getSemester();
 		SchoolYear schoolYear = model.getSchoolYear();
@@ -362,20 +475,20 @@ public class ScoreController extends GenericController<Score> implements Initial
 	@FXML
 	public void updateMinuteScoreButtonOnAction(ActionEvent event)
 	{
-		Integer selectedIndex = mouthTestComboBox.getSelectionModel().getSelectedIndex();
-		Score selectedItem = mouthTestComboBox.getItems().get(selectedIndex);
+		Integer selectedIndex = minuteTestComboBox.getSelectionModel().getSelectedIndex();
+		Score selectedItem = minuteTestComboBox.getItems().get(selectedIndex);
 		
 		if(selectedItem == null)
 			return;
 		
 		URL url = getClass().getResource("../../application/views/score/editdetail.fxml");
 		Stage stage = new Stage();
-		String title = "Sửa/xóa điểm miệng";
+		String title = "Sửa/xóa điểm 15 phút";
 		
 		FXMLLoader loader = SceneUtils.changeSceneWithoutLostFocus(url, stage, title, null, null);
 
 		ScoreDetailController controller = loader.getController();
-
+		controller.editDelegate = this;
 		controller.setItem(selectedIndex, selectedItem);
 	}
 	@FXML
@@ -383,14 +496,16 @@ public class ScoreController extends GenericController<Score> implements Initial
 	{
 		URL url = getClass().getResource("../../application/views/score/editdetail.fxml");
 		Stage stage = new Stage();
-		String title = "Thêm điểm miệng";
+		String title = "Thêm điểm 1 tiết";
 		
 		FXMLLoader loader = SceneUtils.changeSceneWithoutLostFocus(url, stage, title, null, null);
 		ScoreDetailController controller = loader.getController();
 		
+		controller.editDelegate = this;
+		
 		Score score = new Score();
 		Student student = model.getStudent();
-		ScoreType scoreType = scoreTypeService.findOne(1L);
+		ScoreType scoreType = scoreTypeService.findOne(3L);
 		Subject subject = model.getSubject();
 		Semester semester = model.getSemester();
 		SchoolYear schoolYear = model.getSchoolYear();
@@ -407,20 +522,20 @@ public class ScoreController extends GenericController<Score> implements Initial
 	@FXML
 	public void updateHourScoreButtonOnAction(ActionEvent event)
 	{
-		Integer selectedIndex = mouthTestComboBox.getSelectionModel().getSelectedIndex();
-		Score selectedItem = mouthTestComboBox.getItems().get(selectedIndex);
+		Integer selectedIndex = hourTestComboBox.getSelectionModel().getSelectedIndex();
+		Score selectedItem = hourTestComboBox.getItems().get(selectedIndex);
 		
 		if(selectedItem == null)
 			return;
 		
 		URL url = getClass().getResource("../../application/views/score/editdetail.fxml");
 		Stage stage = new Stage();
-		String title = "Sửa/xóa điểm miệng";
+		String title = "Sửa/xóa điểm 1 tiết";
 		
 		FXMLLoader loader = SceneUtils.changeSceneWithoutLostFocus(url, stage, title, null, null);
 
 		ScoreDetailController controller = loader.getController();
-
+		controller.editDelegate = this;
 		controller.setItem(selectedIndex, selectedItem);
 	}
 	@FXML
@@ -428,14 +543,16 @@ public class ScoreController extends GenericController<Score> implements Initial
 	{
 		URL url = getClass().getResource("../../application/views/score/editdetail.fxml");
 		Stage stage = new Stage();
-		String title = "Thêm điểm miệng";
+		String title = "Thêm điểm giữa kỳ";
 		
 		FXMLLoader loader = SceneUtils.changeSceneWithoutLostFocus(url, stage, title, null, null);
 		ScoreDetailController controller = loader.getController();
 		
+		controller.editDelegate = this;
+		
 		Score score = new Score();
 		Student student = model.getStudent();
-		ScoreType scoreType = scoreTypeService.findOne(1L);
+		ScoreType scoreType = scoreTypeService.findOne(4L);
 		Subject subject = model.getSubject();
 		Semester semester = model.getSemester();
 		SchoolYear schoolYear = model.getSchoolYear();
@@ -452,20 +569,20 @@ public class ScoreController extends GenericController<Score> implements Initial
 	@FXML
 	public void updateSemiScoreButtonOnAction(ActionEvent event)
 	{
-		Integer selectedIndex = mouthTestComboBox.getSelectionModel().getSelectedIndex();
-		Score selectedItem = mouthTestComboBox.getItems().get(selectedIndex);
+		Integer selectedIndex = semiTestComboBox.getSelectionModel().getSelectedIndex();
+		Score selectedItem = semiTestComboBox.getItems().get(selectedIndex);
 		
 		if(selectedItem == null)
 			return;
 		
 		URL url = getClass().getResource("../../application/views/score/editdetail.fxml");
 		Stage stage = new Stage();
-		String title = "Sửa/xóa điểm miệng";
+		String title = "Sửa/xóa điểm giữa kỳ";
 		
 		FXMLLoader loader = SceneUtils.changeSceneWithoutLostFocus(url, stage, title, null, null);
 
 		ScoreDetailController controller = loader.getController();
-
+		controller.editDelegate = this;
 		controller.setItem(selectedIndex, selectedItem);
 	}
 	@FXML
@@ -480,7 +597,7 @@ public class ScoreController extends GenericController<Score> implements Initial
 		
 		Score score = new Score();
 		Student student = model.getStudent();
-		ScoreType scoreType = scoreTypeService.findOne(1L);
+		ScoreType scoreType = scoreTypeService.findOne(5L);
 		Subject subject = model.getSubject();
 		Semester semester = model.getSemester();
 		SchoolYear schoolYear = model.getSchoolYear();
@@ -497,20 +614,20 @@ public class ScoreController extends GenericController<Score> implements Initial
 	@FXML
 	public void updateFinalScoreButtonOnAction(ActionEvent event)
 	{
-		Integer selectedIndex = mouthTestComboBox.getSelectionModel().getSelectedIndex();
-		Score selectedItem = mouthTestComboBox.getItems().get(selectedIndex);
+		Integer selectedIndex = finalTestComboBox.getSelectionModel().getSelectedIndex();
+		Score selectedItem = finalTestComboBox.getItems().get(selectedIndex);
 		
 		if(selectedItem == null)
 			return;
 		
 		URL url = getClass().getResource("../../application/views/score/editdetail.fxml");
 		Stage stage = new Stage();
-		String title = "Sửa/xóa điểm miệng";
+		String title = "Sửa/xóa điểm cuối kỳ";
 		
 		FXMLLoader loader = SceneUtils.changeSceneWithoutLostFocus(url, stage, title, null, null);
 
 		ScoreDetailController controller = loader.getController();
-
+		controller.editDelegate = this;
 		controller.setItem(selectedIndex, selectedItem);
 	}
 }

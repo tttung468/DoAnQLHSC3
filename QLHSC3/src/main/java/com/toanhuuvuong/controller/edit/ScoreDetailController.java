@@ -5,15 +5,7 @@ import java.util.ResourceBundle;
 
 import com.toanhuuvuong.model.Account;
 import com.toanhuuvuong.model.Score;
-import com.toanhuuvuong.service.impl.NationalityService;
-import com.toanhuuvuong.service.impl.ReligionService;
-import com.toanhuuvuong.service.impl.SchoolClassService;
-import com.toanhuuvuong.service.impl.SchoolYearService;
 import com.toanhuuvuong.service.impl.ScoreService;
-import com.toanhuuvuong.service.impl.ScoreTypeService;
-import com.toanhuuvuong.service.impl.SemesterService;
-import com.toanhuuvuong.service.impl.StudentService;
-import com.toanhuuvuong.service.impl.SubjectService;
 import com.toanhuuvuong.utils.SessionUtils;
 
 import javafx.fxml.FXML;
@@ -29,15 +21,7 @@ public class ScoreDetailController extends GenericController<Score> implements I
 	@FXML
 	private TextField valueTextField;
 	
-	private StudentService studentService = new StudentService();
 	private ScoreService scoreService = new ScoreService();
-	private ReligionService religionService = new ReligionService();
-	private NationalityService nationalityService = new NationalityService();
-	private ScoreTypeService scoreTypeService = new ScoreTypeService();
-	private SubjectService subjectService = new SubjectService();
-	private SemesterService semesterService = new SemesterService();
-	private SchoolYearService schoolYearService = new SchoolYearService();
-	private SchoolClassService schoolClassService = new SchoolClassService();
 	
 	private Account accountModel = (Account)SessionUtils.getInstance().getValue("accountModel");
 	public ScoreController editDelegate;

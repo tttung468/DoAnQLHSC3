@@ -58,4 +58,18 @@ public class ConductService extends GenericService<Conduct> implements IConductS
 		
 		return (conducts != null && !conducts.isEmpty()) ? conducts.get(0) : null;
 	}
+	@Override
+	public Conduct findByStudent(Student student, Semester semester, SchoolYear schoolYear)
+	{
+		Conduct filter = new Conduct();
+		filter.setStudent(student);
+		filter.setSemester(semester);
+		filter.setSchoolYear(schoolYear);
+		
+		Pageable<Conduct> pageable = new PageRequest<Conduct>(null, null, null, null, filter);
+		
+		List<Conduct> conducts = conductDAO.find(pageable);
+		
+		return (conducts != null && !conducts.isEmpty()) ? conducts.get(0) : null;
+	}
 }

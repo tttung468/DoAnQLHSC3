@@ -6,6 +6,8 @@ import java.util.ResourceBundle;
 
 import com.toanhuuvuong.constant.SystemConstant;
 import com.toanhuuvuong.converter.ScoreConverter;
+import com.toanhuuvuong.model.Account;
+import com.toanhuuvuong.model.Officer;
 import com.toanhuuvuong.model.SchoolClass;
 import com.toanhuuvuong.model.SchoolYear;
 import com.toanhuuvuong.model.Score;
@@ -13,6 +15,7 @@ import com.toanhuuvuong.model.ScoreType;
 import com.toanhuuvuong.model.Semester;
 import com.toanhuuvuong.model.Student;
 import com.toanhuuvuong.model.Subject;
+import com.toanhuuvuong.model.Teacher;
 import com.toanhuuvuong.pagination.PageRequest;
 import com.toanhuuvuong.pagination.Pageable;
 import com.toanhuuvuong.service.impl.SchoolClassService;
@@ -22,6 +25,7 @@ import com.toanhuuvuong.service.impl.ScoreTypeService;
 import com.toanhuuvuong.service.impl.SemesterService;
 import com.toanhuuvuong.service.impl.SubjectService;
 import com.toanhuuvuong.utils.CSVUtils;
+import com.toanhuuvuong.utils.SessionUtils;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -74,21 +78,17 @@ public class ScoreController extends GenericController<Score> implements Initial
 	private SemesterService semesterService = new SemesterService();
 	private SchoolYearService schoolYearService = new SchoolYearService();
 	private SchoolClassService schoolClassService = new SchoolClassService();
+	
+	private Account accountModel = (Account)SessionUtils.getInstance().getValue("accountModel");
+	private Teacher officerModel = (Teacher)SessionUtils.getInstance().getValue("officerModel");
+	private Semester semesterChoose;
+	private SchoolYear schoolYearChoose;
+	private SchoolClass schoolClassChoose;
 	// ------------------------------------------- Methods
 	@Override
 	public void initialize(URL location, ResourceBundle resources) 
 	{
 		super.initialize(location, resources);
-		
-		initGenderFilterComboBox();
-		
-		initStatusFilterComboBox();	
-		
-		initTableView();
-		
-		initListView();
-		
-		initPageable();
 	}
 	private void initGenderFilterComboBox()
 	{
@@ -280,10 +280,10 @@ public class ScoreController extends GenericController<Score> implements Initial
 	{
 		Score model = new Score();
 		
-		model.setSubject(subjectService.findOne(1L));
-		model.setSemester(semesterService.findOne(1L));
-		model.setSchoolYear(schoolYearService.findOne(3L));
-		model.setSchoolClass(schoolClassService.findOne(1L));
+		model.setSubject(officerModel.getSubject());
+		model.setSemester(semesterChoose);
+		model.setSchoolYear(schoolYearChoose);
+		model.setSchoolClass(schoolClassChoose);
 		
 		String code = codeFilterTextField.getText().trim();
 		String name = nameFilterTextField.getText().trim();
@@ -358,5 +358,24 @@ public class ScoreController extends GenericController<Score> implements Initial
 		tableView.setItems(observableList);
 		
 		listView.setItems(observableList);
+	}
+	public void setChoose(Semester semester, SchoolYear schoolYear, SchoolClass schoolClass)
+	{
+		this.semesterChoose = semester;
+		this.schoolYearChoose = schoolYear;
+		this.schoolClassChoose = schoolClass;
+		
+		initGenderFilterComboBox();
+		
+		initStatusFilterComboBox();	
+		
+		initTableView();
+		
+		initListView();
+		
+		initPageable();
+		
+		headerController.setTitleLabelText("BẢNG ĐIỂM MÔN " + officerModel.getSubject().getName().toUpperCase() 
+				+ " LỚP " + schoolClassChoose.getCode());
 	}
 }

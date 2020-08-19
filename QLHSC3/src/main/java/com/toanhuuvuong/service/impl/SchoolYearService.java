@@ -40,4 +40,9 @@ public class SchoolYearService extends GenericService<SchoolYear> implements ISc
 	{
 		return null;
 	}
+	@Override
+	public SchoolYear findCurrentSchoolYear() 
+	{
+		return findOne(3L);
+	}
 }

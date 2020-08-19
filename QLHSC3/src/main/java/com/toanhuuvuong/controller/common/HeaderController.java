@@ -3,17 +3,24 @@ package com.toanhuuvuong.controller.common;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.toanhuuvuong.constant.SystemConstant;
+import com.toanhuuvuong.controller.edit.UpdateProfileController;
 import com.toanhuuvuong.model.Account;
+import com.toanhuuvuong.model.Officer;
+import com.toanhuuvuong.utils.SceneUtils;
 import com.toanhuuvuong.utils.SessionUtils;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.image.Image;
 import javafx.scene.paint.ImagePattern;
 import javafx.scene.shape.Circle;
+import javafx.stage.Stage;
 
 public class HeaderController implements Initializable
 {
@@ -28,6 +35,7 @@ public class HeaderController implements Initializable
 	private MenuButton optionMenuButton;
 	
 	private Account accountModel = (Account)SessionUtils.getInstance().getValue("accountModel");
+	private Officer officerModel = (Officer)SessionUtils.getInstance().getValue("officerModel");
 	// ------------------------------------------- Methods
 	@Override
 	public void initialize(URL location, ResourceBundle resources) 
@@ -48,18 +56,27 @@ public class HeaderController implements Initializable
 	}
 	private void applyUI()
 	{
-		/*if(accountModel == null)
+		if(accountModel == null)
 			optionMenuButton.setVisible(false);
 		else
-			initAvatarCircle();*/
+		{
+			initOptionMenuButton();
+			initAvatarCircle();
+		}
+	}
+	private void initOptionMenuButton()
+	{
+		optionMenuButton.setText(officerModel.getName());
 	}
 	private void initAvatarCircle()
 	{
-		URL url = getClass().getResource("../../application/template/image/header/TaylorSwift.jpg");
+		String avatarPath = officerModel.getAvatarpath();
+		URL url = avatarPath != null ? getClass().getResource(avatarPath) : null;
 		String path = url != null ? url.toString() : null;
 		Image image = path != null ? new Image(path) : null;
 		
-		avatarCircle.setFill(new ImagePattern(image));
+		if(image != null)
+			avatarCircle.setFill(new ImagePattern(image));
 	}
 	public void setTitleLabelText(String title)
 	{
@@ -68,16 +85,25 @@ public class HeaderController implements Initializable
 	@FXML
 	public void updateProfileMenuItemOnAction(ActionEvent event)
 	{
-		/*URL url = getClass().getResource("../../application/common/update-profile.fxml");
-		FXMLLoader loader = SceneUtils.changeScene(url, null, null, null, null);
+		URL url = getClass().getResource("../../application/views/common/updateprofile.fxml");
+		Stage stage = new Stage();
+		String title = "Cập nhật profile";
+		
+		FXMLLoader loader = SceneUtils.changeSceneWithoutLostFocus(url, stage, title, null, null);
 		
 		UpdateProfileController controller = loader.getController();
 		controller.setItem(1, accountModel);
-		controller.showDialog();*/
 	}
 	@FXML
 	public void logoutMenuItemOnAction(ActionEvent event)
 	{
 		SessionUtils.getInstance().removeValue("accountModel");
+		SessionUtils.getInstance().removeValue("officerModel");
+		
+		URL url = getClass().getResource("../../application/views/common/login.fxml");
+		Stage stage = (Stage)((Node)optionMenuButton).getScene().getWindow();
+		String title = "Đăng nhập";
+		
+		SceneUtils.changeScene(url, stage, title, SystemConstant.FRAME_WIDTH, SystemConstant.FRAME_HEIGHT);
 	}
 }

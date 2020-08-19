@@ -48,7 +48,7 @@ public class ForgotPasswordController implements Initializable
 	@Override
 	public void initialize(URL location, ResourceBundle resources) 
 	{
-		//initLogoCircle();
+		initLogoCircle();
 	}
 	private void initLogoCircle()
 	{
