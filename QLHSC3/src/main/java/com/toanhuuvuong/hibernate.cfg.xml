@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+		<property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
+		<property name="hibernate.connection.url">jdbc:mysql://localhost:3306/qlhsc3DB?zeroDateTimeBehavior=convertToNull</property>
+		<property name="hibernate.connection.username">root</property>
+		<property name="hibernate.connection.password">1234</property>
+		
+		<mapping resource="model/Grade.hbm.xml" />
+		<mapping resource="model/Nationality.hbm.xml" />
+		<mapping resource="model/Score.hbm.xml" />
+		<mapping resource="model/Teacher.hbm.xml" />
+		<mapping resource="model/Observation.hbm.xml" />
+		<mapping resource="model/Religion.hbm.xml" />
+		<mapping resource="model/Regulation.hbm.xml" />
+		<mapping resource="model/HRStaff.hbm.xml" />
+		<mapping resource="model/StudentOfClass.hbm.xml" />
+		<mapping resource="model/Subject.hbm.xml" />
+		<mapping resource="model/Relatives.hbm.xml" />
+		<mapping resource="model/Student.hbm.xml" />
+		<mapping resource="model/Performance.hbm.xml" />
+		<mapping resource="model/ScoreType.hbm.xml" />
+		<mapping resource="model/Conduct.hbm.xml" />
+		<mapping resource="model/OfficeStaff.hbm.xml" />
+		<mapping resource="model/SchoolYear.hbm.xml" />
+		<mapping resource="model/Semester.hbm.xml" />
+		<mapping resource="model/Account.hbm.xml" />
+		<mapping resource="model/ConductType.hbm.xml" />
+		<mapping resource="model/FormTeacherAssignment.hbm.xml" />
+		<mapping resource="model/Role.hbm.xml" />
+		<mapping resource="model/Ethnic.hbm.xml" />
+		<mapping resource="model/Relationship.hbm.xml" />
+		<mapping resource="model/TeacherAssignment.hbm.xml" />
+		<mapping resource="model/VerificationToken.hbm.xml" />
+		<mapping resource="model/SchoolClass.hbm.xml" />
+		<mapping resource="model/Headmaster.hbm.xml" />
+	</session-factory>
+</hibernate-configuration>

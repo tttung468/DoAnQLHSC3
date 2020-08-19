@@ -1,0 +1,141 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>qlhsc3</groupId>
+	<artifactId>qlhsc3</artifactId>
+	<version>1.0</version>
+
+	<!-- Set các biến global -->
+	<properties>
+		<maven.compiler.plugin.version>3.8.0</maven.compiler.plugin.version>
+		<maven.compiler.source.version>1.8</maven.compiler.source.version>
+		<maven.compiler.target.version>1.8</maven.compiler.target.version>
+		<exec.maven.plugin.version>1.2.1</exec.maven.plugin.version>
+		<javafx.version>11</javafx.version>
+		<mysql.version>8.0.13</mysql.version>
+		<hibernate.core.version>4.3.1.Final</hibernate.core.version>
+		<hibernate.annotations.version>3.5.6-Final</hibernate.annotations.version>
+		<slf4j.log4j12.version>1.5.2</slf4j.log4j12.version>
+		<javassist.version>3.12.1.GA</javassist.version>
+		<jbrypt.version>0.4</jbrypt.version>
+		<org.jfree.jfreechart.version>1.5.0</org.jfree.jfreechart.version>
+		<mail.version>1.4</mail.version>
+		<fontawesomefx.version>8.1</fontawesomefx.version>
+		<jfoenix.version>8.0.1</jfoenix.version>
+	</properties>
+
+	<!-- Khai báo các gói lib dạng file jar được include vào project -->
+	<dependencies>
+		<!-- Lib của JavaFX -->
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-controls</artifactId>
+			<version>${javafx.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-media</artifactId>
+			<version>${javafx.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-graphics</artifactId>
+			<version>${javafx.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.openjfx</groupId>
+			<artifactId>javafx-fxml</artifactId>
+			<version>${javafx.version}</version>
+		</dependency>
+		<!-- Lib của MySQL -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>${mysql.version}</version>
+		</dependency>
+		<!-- Lib của hibernate -->
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-core</artifactId>
+			<version>${hibernate.core.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.hibernate</groupId>
+			<artifactId>hibernate-annotations</artifactId>
+			<version>${hibernate.annotations.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${slf4j.log4j12.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>javassist</groupId>
+			<artifactId>javassist</artifactId>
+			<version>${javassist.version}</version>
+		</dependency>
+		<!-- Mã hóa mật khẩu -->
+		<dependency>
+			<groupId>org.mindrot</groupId>
+			<artifactId>jbcrypt</artifactId>
+			<version>${jbrypt.version}</version>
+		</dependency>
+		<!-- Vẽ biểu đồ -->
+		<dependency>
+			<groupId>org.jfree</groupId>
+			<artifactId>jfreechart</artifactId>
+			<version>${org.jfree.jfreechart.version}</version>
+		</dependency>
+		<!-- Mail -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>${mail.version}</version>
+		</dependency>
+		<!-- Font awesome -->
+		<dependency>
+			<groupId>de.jensd</groupId>
+			<artifactId>fontawesomefx</artifactId>
+			<version>${fontawesomefx.version}</version>
+		</dependency>
+		<!-- DateTime Picker -->
+		<dependency>
+			<groupId>com.jfoenix</groupId>
+			<artifactId>jfoenix</artifactId>
+			<version>${jfoenix.version}</version>
+		</dependency>
+	</dependencies>
+
+	<build>
+		<plugins>
+			<!-- Khai báo compiler biên dịch project -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven.compiler.plugin.version}</version>
+				<configuration>
+					<source>${maven.compiler.source.version}</source>
+					<target>${maven.compiler.target.version}</target>
+				</configuration>
+			</plugin>
+
+			<!-- Khai báo javafx plugin -->
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>${exec.maven.plugin.version}</version>
+				<executions>
+					<execution>
+						<goals>
+							<goal>java</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<mainClass>com.toanhuuvuong.application.Main</mainClass>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+</project>

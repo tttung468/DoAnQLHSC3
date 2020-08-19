@@ -1,0 +1,40 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class name="com.toanhuuvuong.model.Subject" table="subject"
+		catalog="qlhsc3DB" optimistic-lock="version">
+		<id name="id" type="java.lang.Long">
+			<column name="id" />
+			<generator class="identity" />
+		</id>
+		<property name="code" type="string">
+			<column name="code" unique="true" />
+		</property>
+		<property name="name" type="string">
+			<column name="name" />
+		</property>
+		<property name="classHours" type="java.lang.Integer">
+			<column name="classHours" />
+		</property>
+		<property name="factor" type="java.lang.Integer">
+			<column name="factor" />
+		</property>
+		<property name="isDeleted" type="java.lang.Boolean">
+			<column name="isdeleted" />
+		</property>
+		<property name="createdDate" type="timestamp">
+			<column name="createddate" length="19" />
+		</property>
+		<property name="createdBy" type="string">
+			<column name="createdby" />
+		</property>
+		<property name="modifiedDate" type="timestamp">
+			<column name="modifieddate" length="19" />
+		</property>
+		<property name="modifiedBy" type="string">
+			<column name="modifiedby" />
+		</property>
+	</class>
+</hibernate-mapping>

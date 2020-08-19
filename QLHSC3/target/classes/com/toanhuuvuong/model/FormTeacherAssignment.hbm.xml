@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+	<class catalog="qlhsc3db"
+		name="com.toanhuuvuong.model.FormTeacherAssignment"
+		optimistic-lock="version" table="formteacherassignment">
+		<id name="id" type="java.lang.Long">
+			<column name="id" />
+			<generator class="identity" />
+		</id>
+		<many-to-one class="com.toanhuuvuong.model.SchoolClass"
+			fetch="join" lazy="false" name="schoolClass">
+			<column name="classid" />
+		</many-to-one>
+		<many-to-one class="com.toanhuuvuong.model.SchoolYear"
+			fetch="join" lazy="false" name="schoolYear">
+			<column name="schoolyearid" />
+		</many-to-one>
+		<many-to-one class="com.toanhuuvuong.model.Teacher"
+			fetch="join" lazy="false" name="teacher">
+			<column name="formteacherid" />
+		</many-to-one>
+		<property name="capacity" type="java.lang.Integer">
+			<column name="size" />
+		</property>
+		<property name="isDeleted" type="java.lang.Boolean">
+			<column name="isdeleted" />
+		</property>
+		<property name="createdDate" type="timestamp">
+			<column length="19" name="createddate" />
+		</property>
+		<property name="createdBy" type="string">
+			<column name="createdby" />
+		</property>
+		<property name="modifiedDate" type="timestamp">
+			<column length="19" name="modifieddate" />
+		</property>
+		<property name="modifiedBy" type="string">
+			<column name="modifiedby" />
+		</property>
+	</class>
+</hibernate-mapping>
